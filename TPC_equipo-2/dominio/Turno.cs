@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Personal : Persona
+    internal class Turno
     {
-        public string Usuario { get; set; }
-        public string Password { get; set; }
-
     }
 }
