@@ -21,11 +21,11 @@ namespace Negocio
         public AccesoDatos()
         {
             // Conexión Nahue
-            conexion = new SqlConnection("server=localhost; database=ConsultorioMedico; integrated security=false; User ID=sa; Password=Outatimerun1985");
+            //conexion = new SqlConnection("server=localhost; database=ConsultorioMedico; integrated security=false; User ID=sa; Password=Outatimerun1985");
             // Conexión Iña
             // conexion = new SqlConnection("server=localhost; database=ConsultorioMedico; integrated security=false; User ID=sa; Password=Gloria3279");
             // Conexión Nico
-            //conexion = new SqlConnection("server=localhost; database=ConsultorioMedico; integrated security=true");
+            conexion = new SqlConnection("server=localhost; database=ConsultorioMedico; integrated security=true");
             comando = new SqlCommand();
         }
 
