@@ -15,7 +15,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Agregar especialidad</a>
+                        <asp:Button Text="Agregar especialidad" CssClass="btn btn-primary" runat="server" />
                     </li>
                 </ul>
             </div>
@@ -23,11 +23,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-primary">
-                            <th scope="col">#</th>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Activo</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col" class="align-middle">#</th>
+                            <th scope="col" class="align-middle">Nombre</th>
+                            <th scope="col" class="align-middle">Estado</th>
+                            <th scope="col" class="align-middle">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,14 +34,17 @@
                             foreach (var especialidad in EspecialidadList)
                             {%>
                         <tr>
-                            <th scope="row"><%:loop %></th>
-                            <td><%:especialidad.Id %></td>
-                            <td><%:especialidad.Nombre %></td>
-                            <td><%:especialidad.Estado %></td>
-                            <td class="">
-                                <button type="button" class="btn btn-primary">Modificar</button>
-                                <button type="button" class="btn btn-danger">Eliminar</button>
-                                <button type="button" class="btn btn-warning">Desactivar</button>
+                            <th scope="row" class="align-middle"><%:loop %></th>
+                            <td class="align-middle"><%:especialidad.Nombre %></td>
+                            <td class="<%:especialidad.Estado ? "bg-success-subtle align-middle" : "bg-danger-subtle align-middle" %>">
+                                <%:especialidad.Estado ? "Activo" : "Inactivo" %>
+                            </td>
+                            <td style="max-width: 110px;" class="align-middle">
+                                <div class="btn-group">
+                                    <asp:Button Text="Modificar" CssClass="btn btn-primary" runat="server" />
+                                    <asp:Button Text="Eliminar" CssClass="btn btn-danger" runat="server" />
+                                    <asp:Button Text="Desactivar" CssClass="btn btn-warning" runat="server" />
+                                </div>
                             </td>
                         </tr>
 
@@ -50,7 +52,7 @@
                             } %>
                     </tbody>
                 </table>
-            </div>
+            </div>  
         </div>
 
 
