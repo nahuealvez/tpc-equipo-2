@@ -26,7 +26,7 @@ namespace Negocio
                     Especialidad aux = new Especialidad();
                     aux.Id = (int)datos.Lector["IdEspecialidad"];
                     aux.Nombre = (string)datos.Lector["Especialidad"];
-                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
 
