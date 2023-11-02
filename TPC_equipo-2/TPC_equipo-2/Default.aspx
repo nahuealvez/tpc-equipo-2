@@ -36,20 +36,20 @@
                         <tr>
                             <th scope="row" class="align-middle"><%:loop %></th>
                             <td class="align-middle"><%:especialidad.Nombre %></td>
-                            <td class="<%:especialidad.Estado ? "bg-success-subtle align-middle" : "bg-danger-subtle align-middle" %>">
+                            <td class="<%:especialidad.Estado ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                 <%:especialidad.Estado ? "Activo" : "Inactivo" %>
                             </td>
-                            <td style="max-width: 110px;" class="align-middle">
+                            <td style="max-width: 120px;" class="align-middle">
                                 <div class="btn-group">
-                                    <asp:Button Text="Modificar" CssClass="btn btn-primary" runat="server" />
-                                    <asp:Button Text="Eliminar" CssClass="btn btn-danger" runat="server" />
+                                    <asp:Button Text="Modificar" CssClass="btn btn-primary" style="width: 100px;" runat="server" />
+                                    <asp:Button Text="Eliminar" CssClass="btn btn-danger" style="width: 100px;" runat="server" />
                                     <%if (especialidad.Estado == true)
                                         { %>
-                                    <asp:Button Text="Desactivar" CssClass="btn btn-warning" runat="server" />
+                                    <asp:Button Text="Desactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" />
                                     <%}
                                         else
                                         { %>
-                                    <asp:Button Text="Activar" CssClass="btn btn-success" runat="server" />
+                                    <asp:Button Text="Activar" CssClass="btn btn-success" style="width: 100px;" runat="server" />
                                     <%} %>
                                     
                                 </div>
