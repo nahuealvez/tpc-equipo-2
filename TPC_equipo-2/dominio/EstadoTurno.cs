@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class EstadoTurno
+    public class EstadoTurno
     {
+        public int Id { get; set; }
+        public string Descripcion { get; set; }
+
     }
 }

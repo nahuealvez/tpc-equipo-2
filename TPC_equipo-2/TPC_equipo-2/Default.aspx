@@ -43,8 +43,15 @@
                                 <div class="btn-group">
                                     <asp:Button Text="Modificar" CssClass="btn btn-primary" runat="server" />
                                     <asp:Button Text="Eliminar" CssClass="btn btn-danger" runat="server" />
-                                    <asp:Button Text="Activar" CssClass="btn btn-success" runat="server" />
+                                    <%if (especialidad.Estado == true)
+                                        { %>
                                     <asp:Button Text="Desactivar" CssClass="btn btn-warning" runat="server" />
+                                    <%}
+                                        else
+                                        { %>
+                                    <asp:Button Text="Activar" CssClass="btn btn-success" runat="server" />
+                                    <%} %>
+                                    
                                 </div>
                             </td>
                         </tr>
