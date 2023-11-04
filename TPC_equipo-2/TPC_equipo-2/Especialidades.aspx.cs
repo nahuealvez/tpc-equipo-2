@@ -22,10 +22,15 @@ namespace TPC_equipo_2
 
         }
 
-        protected void OnAdd(object sender, EventArgs e)
+        protected void btnModificarEspecialidad_Click(object sender, EventArgs e)
         {
 
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "openModal()", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarEspecialidad()", true);
+        }
+
+        protected void btnEliminarEspecialidad_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalEliminarEspecialidad()", true);
         }
     }
 }
