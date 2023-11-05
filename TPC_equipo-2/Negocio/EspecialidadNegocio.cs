@@ -25,7 +25,7 @@ namespace Negocio
                 {
                     Especialidad aux = new Especialidad();
                     aux.Id = (int)datos.Lector["IdEspecialidad"];
-                    aux.Nombre = (string)datos.Lector["Especialidad"];
+                    aux.Descripcion = (string)datos.Lector["Especialidad"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
@@ -41,6 +41,87 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        public void Agregar(Especialidad nuevaEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("INSERT INTO Medico.Especialidad (Especialidad, Estado) VALUES (@especialidad,1)");
+                datos.SetearParametro("@especialidad", nuevaEspecialidad.Descripcion);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void Modificar(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE Medico.Especialidad set Especialidad = @Descripcion where IdEspecialidad = @Id");
+                datos.SetearParametro("@Descripcion", especialidad.Descripcion);
+                datos.SetearParametro("@Id", especialidad.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void ModificarEstado(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE Medico.Especialidad set Estado = @Estado where IdEspecialidad = @Id");
+                datos.SetearParametro("@Estado", especialidad.Estado);
+                datos.SetearParametro("@Id", especialidad.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void Eliminar(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("DELETE Medico.Especialidad WHERE IdEspecialidad = @Id");
+                datos.SetearParametro("@Id", especialidad.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
+
+
 }
