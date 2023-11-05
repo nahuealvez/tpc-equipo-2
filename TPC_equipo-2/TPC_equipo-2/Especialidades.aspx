@@ -50,11 +50,11 @@
                                     <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" style="width: 100px;" runat="server" OnClick="btnEliminarEspecialidad_Click" />
                                     <%if (especialidad.Estado == true)
                                         { %>
-                                    <asp:Button Text="Desactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" />
+                                    <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" Onclick="btnDesactivarEspecialidad_Click"/>
                                     <%}
                                         else
                                         { %>
-                                    <asp:Button Text="Activar" CssClass="btn btn-success" style="width: 100px;" runat="server" />
+                                    <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" style="width: 100px;" runat="server" Onclick="btnActivarEspecialidad_Click"/>
                                     <%} %>
                                     
                                 </div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
+                    <asp:Button Text="Guardar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnGuardarAgregarEspecialidad_Click" />
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
+                    <asp:Button Text="Guardar" class="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnGuardarModificacionEspecialidad_Click" />
                 </div>
             </div>
         </div>
@@ -123,9 +123,33 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="lblNombreEspecialidad" class="form-label">Nombre</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox2" />
+                        <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
+                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />                        
                         <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea eliminar esta especialidad?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarEliminarEspecialidad_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%-- Modal desactivar especialidad --%>
+    <div class="modal fade" id="DesactivarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarEspecialidadLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblDesactivarEspecialidad">Desactivar especialidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
+                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea desactivar esta especialidad?</label>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -136,9 +160,94 @@
         </div>
     </div>
 
+    <%-- Modal activar especialidad --%>
+    <div class="modal fade" id="ActivarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="activarEspecialidadLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblActivarEspecialidad">Activar especialidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
+                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea activar esta especialidad?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <%-- Modal desactivar especialidad --%>
+    <%-- Modal error agregar especialidad --%>
+    <div class="modal fade" id="ErrorAgregarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorAgregarEspecialidadLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblErrorAgregarEspecialidad">Error: No se puede agregar la especialidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
+                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">La especialidad ya se encuentra registrada en la base de datos</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <%-- Modal error modificar especialidad --%>
+    <div class="modal fade" id="ErrorModificarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorModificarEspecialidadLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblErrorModificarEspecialidad">Error: No se puede modificar la especialidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
+                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">La especialidad se encuentra vinculada a otro registro</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Modal error eliminar especialidad --%>
+    <div class="modal fade" id="ErrorEliminarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorEliminarEspecialidadLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblErrorEliminarEspecialidad">Error: No se puede eliminar la especialidad</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
+                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">La especialidad se encuentra vinculada a otro registro</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         function abrirModalModificarEspecialidad() {
@@ -146,8 +255,33 @@
             pageModal.show();
         }
 
-            function abrirModalEliminarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("EliminarEspecialidad"), { keyboard: false });
+        function abrirModalEliminarEspecialidad() {
+        var pageModal = new bootstrap.Modal(document.getElementById("EliminarEspecialidad"), { keyboard: false });
+        pageModal.show();
+        }
+
+        function abrirModalDesactivarEspecialidad() {
+            var pageModal = new bootstrap.Modal(document.getElementById("DesactivarEspecialidad"), { keyboard: false });
+            pageModal.show();
+        }
+
+        function abrirModalActivarEspecialidad() {
+            var pageModal = new bootstrap.Modal(document.getElementById("ActivarEspecialidad"), { keyboard: false });
+            pageModal.show();
+        }
+
+        function abrirModalErrorAgregarEspecialidad() {
+            var pageModal = new bootstrap.Modal(document.getElementById("ErrorAgregarEspecialidad"), { keyboard: false });
+            pageModal.show();
+        }
+
+        function abrirModalErrorModificarEspecialidad() {
+            var pageModal = new bootstrap.Modal(document.getElementById("ErrorModificarEspecialidad"), { keyboard: false });
+            pageModal.show();
+        }
+
+        function abrirModalErrorEliminarEspecialidad() {
+            var pageModal = new bootstrap.Modal(document.getElementById("ErrorModificarEspecialidad"), { keyboard: false });
             pageModal.show();
         }
     </script>
