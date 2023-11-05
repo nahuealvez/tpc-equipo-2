@@ -101,6 +101,25 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        public void Eliminar(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("DELETE Medico.Especialidad WHERE IdEspecialidad = @Id");
+                datos.SetearParametro("@Id", especialidad.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 

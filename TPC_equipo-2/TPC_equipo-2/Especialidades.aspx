@@ -115,7 +115,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />                        
+                        <asp:Label ID="lblNombreEspecEliminar" CssClass="form-label" runat="server" />      
                         <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea eliminar esta especialidad?</label>
                     </div>
                 </div>
