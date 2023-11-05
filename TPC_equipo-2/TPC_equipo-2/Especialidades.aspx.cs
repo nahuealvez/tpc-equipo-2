@@ -48,10 +48,6 @@ namespace TPC_equipo_2
 
         protected void btnEliminarEspecialidad_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(((Button)sender).CommandArgument);
-            Session.Add("idEspecialidad", id);
-            Especialidad especialidad = EspecialidadList.Find(x => x.Id == id);
-            lblNombreEspecEliminar.Text = especialidad.Descripcion;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalEliminarEspecialidad()", true);
         }
 
@@ -115,8 +111,6 @@ namespace TPC_equipo_2
                     especialidadModificar.Descripcion = tbxModificarEspecialidad.Text;
                     negocio.Modificar(especialidadModificar);
                     Response.Redirect(Request.RawUrl);
-                    //PENDIENTE VALIDACION PARA NO MODIFICAR SI ESTA ASOCIADO
-                    //ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorModificarEspecialidad()", true);
                 }
                 catch (Exception ex)
                 {
@@ -124,25 +118,13 @@ namespace TPC_equipo_2
                     throw ex;
                 }
             }
+            //PENDIENTE VALIDACION PARA NO MODIFICAR SI ESTA ASOCIADO
+            //ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorModificarEspecialidad()", true);
         }
 
         protected void btnAceptarEliminarEspecialidad_Click(object sender, EventArgs e)
         {
-            int idEspecialidad = (int)(Session["idEspecialidad"]);
-            EspecialidadNegocio negocio = new EspecialidadNegocio();
-            Especialidad especialidadEliminar = EspecialidadList.Find(x => x.Id == idEspecialidad);
-            try
-            {
-                negocio.Eliminar(especialidadEliminar);
-                Response.Redirect(Request.RawUrl);
-                //PENDIENTE VALIDACION NO ELIMINAR SI HAY ASOCIADO
-                //ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorEliminarEspecialidad()", true);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorEliminarEspecialidad()", true);
         }
         protected void btnAceptarDesactivarEspecialidad_Click(object sender, EventArgs e)
         {
