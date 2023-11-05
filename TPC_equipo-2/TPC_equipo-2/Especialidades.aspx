@@ -87,13 +87,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="lblAgregarEspecialidad">Modificar especialidad</h1>
+                    <h1 class="modal-title fs-5" id="lblModificarEspecialidad">Modificar especialidad</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Nombre</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarEspecialidad" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -139,13 +139,13 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <asp:Label ID="lblNombreEspecDesactivar" CssClass="form-label" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea desactivar esta especialidad?</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                    <asp:Button ID="btnGuardarDesactivarEspec" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarDesactivarEspecialidad_Click" />
                 </div>
             </div>
         </div>
@@ -162,13 +162,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <asp:Label ID="lblNombreEspecActivar" CssClass="form-label" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea activar esta especialidad?</label>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                    <asp:Button ID="btnGuardarActivarEspec" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarActivarEspecialidad_Click" />
+</div>
                 </div>
             </div>
         </div>

@@ -41,7 +41,8 @@ namespace TPC_equipo_2
 
         protected void btnModificarEspecialidad_Click(object sender, EventArgs e)
         {
-
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idEspecialidad", id);
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarEspecialidad()", true);
         }
 
@@ -52,11 +53,19 @@ namespace TPC_equipo_2
 
         protected void btnDesactivarEspecialidad_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idEspecialidad", id);
+            Especialidad especialidad = EspecialidadList.Find(x => x.Id == id);
+            lblNombreEspecDesactivar.Text = especialidad.Descripcion;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalDesactivarEspecialidad()", true);
         }
 
         protected void btnActivarEspecialidad_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idEspecialidad", id);
+            Especialidad especialidad = EspecialidadList.Find(x => x.Id == id);
+            lblNombreEspecActivar.Text = especialidad.Descripcion;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalActivarEspecialidad()", true);
         }
         protected void btnGuardarAgregarEspecialidad_Click(object sender, EventArgs e)
@@ -91,12 +100,67 @@ namespace TPC_equipo_2
         }
         protected void btnGuardarModificacionEspecialidad_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorModificarEspecialidad()", true);
+            int idEspecialidad = (int)(Session["idEspecialidad"]);
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Especialidad especialidadModificar = EspecialidadList.Find(x => x.Id == idEspecialidad);
+
+            if(tbxModificarEspecialidad.Text.Trim() != "")
+            {
+                try
+                {
+                    especialidadModificar.Descripcion = tbxModificarEspecialidad.Text;
+                    negocio.Modificar(especialidadModificar);
+                    Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            //PENDIENTE VALIDACION PARA NO MODIFICAR SI ESTA ASOCIADO
+            //ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorModificarEspecialidad()", true);
         }
 
         protected void btnAceptarEliminarEspecialidad_Click(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorEliminarEspecialidad()", true);
         }
+        protected void btnAceptarDesactivarEspecialidad_Click(object sender, EventArgs e)
+        {
+            int idEspecialidad = (int)(Session["idEspecialidad"]);
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Especialidad especialidadModificar = EspecialidadList.Find(x => x.Id == idEspecialidad);
+            try
+            {
+                especialidadModificar.Estado = false;
+                negocio.ModificarEstado(especialidadModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        protected void btnAceptarActivarEspecialidad_Click(object sender, EventArgs e)
+        {
+            int idEspecialidad = (int)(Session["idEspecialidad"]);
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            Especialidad especialidadModificar = EspecialidadList.Find(x => x.Id == idEspecialidad);
+            try
+            {
+                especialidadModificar.Estado = true;
+                negocio.ModificarEstado(especialidadModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
     }
 }

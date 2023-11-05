@@ -42,13 +42,49 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.TextBox tbxEspecialidad;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control tbxModificarEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbxModificarEspecialidad;
+
+        /// <summary>
+        /// Control lblNombreEspecDesactivar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreEspecDesactivar;
+
+        /// <summary>
+        /// Control btnGuardarDesactivarEspec.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarDesactivarEspec;
+
+        /// <summary>
+        /// Control lblNombreEspecActivar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreEspecActivar;
+
+        /// <summary>
+        /// Control btnGuardarActivarEspec.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarActivarEspec;
 
         /// <summary>
         /// Control lblErrorAgregarEsp.

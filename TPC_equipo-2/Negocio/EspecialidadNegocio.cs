@@ -61,6 +61,48 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        public void Modificar(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE Medico.Especialidad set Especialidad = @Descripcion where IdEspecialidad = @Id");
+                datos.SetearParametro("@Descripcion", especialidad.Descripcion);
+                datos.SetearParametro("@Id", especialidad.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void ModificarEstado(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("UPDATE Medico.Especialidad set Estado = @Estado where IdEspecialidad = @Id");
+                datos.SetearParametro("@Estado", especialidad.Estado);
+                datos.SetearParametro("@Id", especialidad.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
+
+
 }
