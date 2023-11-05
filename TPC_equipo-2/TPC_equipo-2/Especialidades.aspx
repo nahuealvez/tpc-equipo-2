@@ -40,7 +40,7 @@
                             {%>
                         <tr>
                             <th scope="row" class="align-middle"><%:loop %></th>
-                            <td class="align-middle"><%:especialidad.Nombre %></td>
+                            <td class="align-middle"><%:especialidad.Descripcion %></td>
                             <td class="<%:especialidad.Estado ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                 <%:especialidad.Estado ? "Activo" : "Inactivo" %>
                             </td>
@@ -84,8 +84,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <asp:Button Text="Guardar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="AgregarEspecialidad_Click" />
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
                 </div>
             </div>
         </div>

@@ -32,5 +32,26 @@ namespace TPC_equipo_2
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalEliminarEspecialidad()", true);
         }
+
+        protected void AgregarEspecialidad_Click(object sender, EventArgs e)
+        {
+            if(tbxEspecialidad.Text.Trim() != "")
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                Especialidad nuevaEspecialidad = new Especialidad();
+                try
+                {
+                    nuevaEspecialidad.Descripcion = tbxEspecialidad.Text;
+                    negocio.Agregar(nuevaEspecialidad);
+                    Response.Redirect(Request.RawUrl);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
     }
 }
