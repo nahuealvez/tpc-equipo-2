@@ -28,41 +28,32 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-primary">
-                            <th scope="col" class="align-middle">#</th>
                             <th scope="col" class="align-middle">Nombre</th>
                             <th scope="col" class="align-middle">Estado</th>
                             <th scope="col" class="align-middle">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <%  int loop = 1;
-                            foreach (var especialidad in EspecialidadList)
-                            {%>
+                <asp:Repeater runat="server" id="repRepetidor" >
+                <ItemTemplate>
                         <tr>
-                            <th scope="row" class="align-middle"><%:loop %></th>
-                            <td class="align-middle"><%:especialidad.Nombre %></td>
-                            <td class="<%:especialidad.Estado ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
-                                <%:especialidad.Estado ? "Activo" : "Inactivo" %>
+                            <th scope="row" class="align-middle"></th>
+                            <td class="align-middle"><%#Eval("Descripcion")%></td>
+                            <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
+                                <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
                             </td>
                             <td style="max-width: 120px;" class="align-middle">
                                 <div class="btn-group">
-                                    <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-primary" runat="server" Onclick="btnModificarEspecialidad_Click" />
-                                    <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" style="width: 100px;" runat="server" OnClick="btnEliminarEspecialidad_Click" />
-                                    <%if (especialidad.Estado == true)
-                                        { %>
-                                    <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" Onclick="btnDesactivarEspecialidad_Click"/>
-                                    <%}
-                                        else
-                                        { %>
-                                    <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" style="width: 100px;" runat="server" Onclick="btnActivarEspecialidad_Click"/>
-                                    <%} %>
+                                    <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnModificarEspecialidad_Click" />
+                                    <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarEspecialidad_Click" />
+                                    <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnDesactivarEspecialidad_Click" Visible="true"/>
+                                    <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnActivarEspecialidad_Click" Visible="false"/>
                                     
                                 </div>
                             </td>
                         </tr>
-
-                        <%  loop++;
-                            } %>
+                </ItemTemplate>
+            </asp:Repeater>
                     </tbody>
                 </table>
             </div>  
@@ -194,7 +185,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <asp:Label ID="lblErrorAgregarEsp" CssClass="form-label" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">La especialidad ya se encuentra registrada en la base de datos</label>
                     </div>
                 </div>

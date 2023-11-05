@@ -25,7 +25,7 @@ namespace Negocio
                 {
                     Especialidad aux = new Especialidad();
                     aux.Id = (int)datos.Lector["IdEspecialidad"];
-                    aux.Nombre = (string)datos.Lector["Especialidad"];
+                    aux.Descripcion = (string)datos.Lector["Especialidad"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     lista.Add(aux);
                 }
@@ -34,6 +34,26 @@ namespace Negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void Agregar(Especialidad nuevaEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("INSERT INTO Medico.Especialidad (Especialidad, Estado) VALUES (@especialidad,1)");
+                datos.SetearParametro("@especialidad", nuevaEspecialidad.Descripcion);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
             finally
