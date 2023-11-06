@@ -37,7 +37,6 @@
                 <asp:Repeater runat="server" id="repRepetidor" >
                 <ItemTemplate>
                         <tr>
-                            <th scope="row" class="align-middle"></th>
                             <td class="align-middle"><%#Eval("Descripcion")%></td>
                             <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                 <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
