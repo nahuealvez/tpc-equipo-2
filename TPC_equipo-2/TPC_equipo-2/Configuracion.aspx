@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container d-flex flex-column pt-3 gap-3">
-        <h3 class="h3">Configuración</h3>
+        <h2 class="h2">Configuración</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100">
@@ -15,7 +15,7 @@
                         <p class="card-text">Gestión de ABM de usuarios internos</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" type="button" class="btn float-end" style="background-color: #0364B8; color: white;"">Configurar</a>
+                        <a href="#" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         <p class="card-text">Gestión de ABM de especialistas</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" type="button" class="btn float-end" style="background-color: #0364B8; color: white;"">Configurar</a>
+                        <a href="#" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         <p class="card-text">Gestión de ABM de especialidades</p>
                     </div>
                     <div class="card-footer">
-                        <a href="/Especialidades.aspx" type="button" class="btn float-end" style="background-color: #0364B8; color: white;">Configurar</a>
+                        <a href="/Especialidades.aspx" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
                     </div>
                 </div>
             </div>

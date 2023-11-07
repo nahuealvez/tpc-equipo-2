@@ -14,12 +14,12 @@
                     <li class="d-flex">
                         <form class="d-flex" role="buscar">
                             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                            <button class="btn btn-color-project-primary" type="submit">Buscar</button>
                         </form>
                     </li>
                     <li class="nav-item">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AgregarEspecialidad">
+                        <button type="button" class="btn btn-color-project-primary" data-bs-toggle="modal" data-bs-target="#AgregarEspecialidad">
                             Agregar especialidad
                         </button>
                     </li>
@@ -44,7 +44,7 @@
                             </td>
                             <td style="max-width: 120px;" class="align-middle">
                                 <div class="btn-group">
-                                    <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnModificarEspecialidad_Click" />
+                                    <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnModificarEspecialidad_Click" />
                                     <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarEspecialidad_Click" />
                                     <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnDesactivarEspecialidad_Click" Visible="true"/>
                                     <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnActivarEspecialidad_Click" Visible="false"/>
@@ -240,41 +240,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function abrirModalModificarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("ModificarEspecialidad"), { keyboard: false });
-            pageModal.show();
-        }
-
-        function abrirModalEliminarEspecialidad() {
-        var pageModal = new bootstrap.Modal(document.getElementById("EliminarEspecialidad"), { keyboard: false });
-        pageModal.show();
-        }
-
-        function abrirModalDesactivarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("DesactivarEspecialidad"), { keyboard: false });
-            pageModal.show();
-        }
-
-        function abrirModalActivarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("ActivarEspecialidad"), { keyboard: false });
-            pageModal.show();
-        }
-
-        function abrirModalErrorAgregarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("ErrorAgregarEspecialidad"), { keyboard: false });
-            pageModal.show();
-        }
-
-        function abrirModalErrorModificarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("ErrorModificarEspecialidad"), { keyboard: false });
-            pageModal.show();
-        }
-
-        function abrirModalErrorEliminarEspecialidad() {
-            var pageModal = new bootstrap.Modal(document.getElementById("ErrorModificarEspecialidad"), { keyboard: false });
-            pageModal.show();
-        }
-    </script>
 </asp:Content>

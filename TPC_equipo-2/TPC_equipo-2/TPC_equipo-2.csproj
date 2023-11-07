@@ -66,9 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuracion.aspx" />
+    <Content Include="Content\Styles.css" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\Scripts.js" />
+    <Content Include="Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +106,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,9 @@
+﻿.btn-color-project-primary {
+    background-color: #0364B8;
+    color: white;
+}
+
+.btn-color-project-primary:hover {
+    background-color: #024681;
+    color: white;
+}
