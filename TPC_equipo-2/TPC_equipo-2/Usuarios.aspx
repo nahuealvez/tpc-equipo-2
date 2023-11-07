@@ -1,6 +1,98 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="TPC_equipo_2.Usuarios" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="TPC_equipo_2.Usuarios" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="container">
+        <h2 class="pt-3 pb-3">Usuarios</h2>
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-pills card-header-pills d-flex justify-content-between">
+                    <li class="d-flex">
+                        <form class="d-flex" role="buscar">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                            <button class="btn btn-color-project-primary" type="submit">Buscar</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <asp:Button Text="Agregar usuario" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnAgregarUsuario_Click" />
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col" class="align-middle">Usuario</th>
+                            <th scope="col" class="align-middle">Estado</th>
+                            <th scope="col" class="align-middle">Acciones</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater runat="server" ID="repRepetidor">
+                            <ItemTemplate>
+                                <tr>
+                                    <td class="align-middle"><%#Eval("Descripcion")%></td>
+                                    <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
+                                        <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
+                                    </td>
+                                    <td style="max-width: 120px;" class="align-middle">
+                                        <div class="btn-group">
+                                            <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnModificarUsuario_Click" />
+                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarUsuario_Click" />
+                                            <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnDesactivarUsuario_Click" Visible="true" />
+                                            <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnActivarUsuario_Click" Visible="false" />
 
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agregar usuario -->
+    <div class="modal fade" id="AgregarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblAgregarUsuario">Agregar usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblApellidosUsuario" class="form-label">Apellidos</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lblNombresUsuario" class="form-label">Nombres</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lblNombreUsuario" class="form-label">DNI</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox5" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lblNombreUsuario" class="form-label">Usuario</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox2" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lblNombreUsuario" class="form-label">Contraseña</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox3" />
+                    </div>
+                    <asp:DropDownList ID="ddlExample" runat="server" CssClass="form-select">
+                        <asp:ListItem Text="Seleccionar..." Value="" Selected="True" />
+                        <asp:ListItem Text="Administrador" Value="0" />
+                        <asp:ListItem Text="Recepcionista" Value="1" />
+                    </asp:DropDownList>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button Text="Guardar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnGuardarAgregarUsuario_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

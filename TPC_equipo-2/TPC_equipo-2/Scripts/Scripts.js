@@ -1,4 +1,11 @@
-﻿/* Modales de especialidad */
+﻿/* Modales de usuario */
+
+function abrirModalAgregarUsuario() {
+    var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), { keyboard: false });
+    pageModal.show();
+}
+
+/* Modales de especialidad */
 function abrirModalAgregarEspecialidad() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarEspecialidad"), { keyboard: false });
     pageModal.show();
