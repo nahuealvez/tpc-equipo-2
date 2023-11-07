@@ -106,7 +106,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("DELETE Medico.Especialidad WHERE IdEspecialidad = @Id");
+                datos.SetearConsulta("EXEC [Medico].[sp_DelEspecialidad] @Id;");
                 datos.SetearParametro("@Id", especialidad.Id);
                 datos.EjecutarAccion();
             }
