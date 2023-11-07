@@ -18,10 +18,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-color-project-primary" data-bs-toggle="modal" data-bs-target="#AgregarEspecialidad">
-                            Agregar especialidad
-                        </button>
+                        <asp:Button Text="Agregar especialidad" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" Onclick="btnAgregarEspecialidad_Click" />
                     </li>
                 </ul>
             </div>
@@ -71,7 +68,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Nombre</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxEspecialidad"/>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxEspecialidad" />
                     </div>
                 </div>
                 <div class="modal-footer">

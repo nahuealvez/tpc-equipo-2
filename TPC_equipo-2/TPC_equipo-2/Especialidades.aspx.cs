@@ -39,6 +39,11 @@ namespace TPC_equipo_2
 
         }
 
+        protected void btnAgregarEspecialidad_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialidad()", true);
+        }
+
         protected void btnModificarEspecialidad_Click(object sender, EventArgs e)
         {
             int id = int.Parse(((Button)sender).CommandArgument);

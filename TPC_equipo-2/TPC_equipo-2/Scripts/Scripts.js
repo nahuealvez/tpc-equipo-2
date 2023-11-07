@@ -1,4 +1,10 @@
-﻿function abrirModalModificarEspecialidad() {
+﻿/* Modales de especialidad */
+function abrirModalAgregarEspecialidad() {
+    var pageModal = new bootstrap.Modal(document.getElementById("AgregarEspecialidad"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalModificarEspecialidad() {
     var pageModal = new bootstrap.Modal(document.getElementById("ModificarEspecialidad"), { keyboard: false });
     pageModal.show();
 }
