@@ -61,36 +61,49 @@
                     <h1 class="modal-title fs-5" id="lblAgregarUsuario">Agregar usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <p class="bg-primary">
+                    <asp:ValidationSummary ID="valSummaryForm" Visible="false" runat="server" />                    
+                </p>
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                         <label for="lblApellidosUsuario" class="form-label">Apellidos</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" />
+                        <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                     </div>
                     <div class="mb-3">
                         <label for="lblNombresUsuario" class="form-label">Nombres</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" />
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" />
                     </div>
                     <div class="mb-3">
-                        <label for="lblNombreUsuario" class="form-label">DNI</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox5" />
+                        <label for="lblDni" class="form-label">DNI</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" />
                     </div>
                     <div class="mb-3">
-                        <label for="lblNombreUsuario" class="form-label">Usuario</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox2" />
+                        <label for="lblEmail" class="form-label">Email</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="txtEmail" type="mail" />
                     </div>
                     <div class="mb-3">
-                        <label for="lblNombreUsuario" class="form-label">Contraseña</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox3" />
+                        <label for="lblUsuario" class="form-label">Usuario</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" />
                     </div>
+                    <div class="mb-3">
+                        <label for="lblContrasenia" class="form-label">Contraseña</label>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxContrasenia" type="password" />
+                    </div>
+                    <label for="lblPerfil" class="form-label">Perfil</label>
                     <asp:DropDownList ID="ddlExample" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="Seleccionar..." Value="" Selected="True" />
+                        <asp:ListItem Text="" Selected="True"/>
                         <asp:ListItem Text="Administrador" Value="0" />
                         <asp:ListItem Text="Recepcionista" Value="1" />
                     </asp:DropDownList>
+                    <br />
+                    <div class="alert alert-info" role="alert">
+                        * Todos los campos son obligatorios
+                    </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button Text="Guardar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnGuardarAgregarUsuario_Click" />
+                    <asp:Button ID="btnGuardar" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarAgregarUsuario_Click" />
                 </div>
             </div>
         </div>

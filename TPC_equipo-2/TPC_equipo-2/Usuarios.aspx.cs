@@ -21,7 +21,10 @@ namespace TPC_equipo_2
 
         protected void btnGuardarAgregarUsuario_Click(object sender, EventArgs e)
         {
-
+            if (!Page.IsValid)
+            {
+                valSummaryForm.Visible = true;
+            }
         }
 
         protected void btnModificarUsuario_Click(Object sender, EventArgs e)

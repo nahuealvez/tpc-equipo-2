@@ -1,7 +1,10 @@
 ﻿/* Modales de usuario */
 
 function abrirModalAgregarUsuario() {
-    var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), { keyboard: false });
+    var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), {
+        keyboard: false,
+        dismiss: "modal"
+    });
     pageModal.show();
 }
 
