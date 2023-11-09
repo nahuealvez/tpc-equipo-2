@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    internal class Paciente
+    public class Paciente
     {
-        public int idPaciente {  get; set; }
+        public int IdPaciente {  get; set; }
         public string Apellido { get; set; }
         public string Nombre { get; set; }
         public int Dni {  get; set; }
@@ -17,6 +17,6 @@ namespace dominio
         public string Mail {  get; set; }
         public string Telefono { get; set; }
         public string Cobertura { get; set; }
-        public string NroCredencial { get; set; }
+        public int NroCredencial { get; set; }
     }
 }

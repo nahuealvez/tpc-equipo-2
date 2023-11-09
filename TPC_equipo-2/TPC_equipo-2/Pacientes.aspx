@@ -27,7 +27,8 @@
                             <th scope="col" class="align-middle">DNI</th>
                             <th scope="col" class="align-middle">Apellidos</th>
                             <th scope="col" class="align-middle">Nombres</th>
-                            <th scope="col" class="align-middle">Estado</th>
+                            <th scope="col" class="align-middle">Cobertura</th>
+                            <th scope="col" class="align-middle">Nro. Credencial</th>
                             <th scope="col" class="align-middle">Acciones</th>
                         </tr>
                     </thead>
@@ -35,16 +36,20 @@
                         <asp:Repeater runat="server" ID="repRepetidor">
                             <ItemTemplate>
                                 <tr>
-                                    <td class="align-middle"><%#Eval("Descripcion")%></td>
-                                    <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
+                                    <td class="align-middle"><%#Eval("Dni")%></td>
+                                    <td class="align-middle"><%#Eval("Apellido")%></td>
+                                    <td class="align-middle"><%#Eval("Nombre")%></td>
+                                    <td class="align-middle"><%#Eval("Cobertura")%></td>
+                                    <td class="align-middle"><%#Eval("NroCredencial")%></td>
+                                    <%--<td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                         <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
-                                    </td>
+                                    </td>--%>
                                     <td style="max-width: 120px;" class="align-middle">
                                         <div class="btn-group">
-                                            <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnModificarPaciente_Click" />
-                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarPaciente_Click" />
-                                            <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnDesactivarPaciente_Click" Visible="true" />
-                                            <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnActivarPaciente_Click" Visible="false" />
+                                            <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnModificarPaciente_Click" />
+                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnEliminarPaciente_Click" />
+<%--                                            <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnDesactivarPaciente_Click" Visible="true" />
+                                            <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnActivarPaciente_Click" Visible="false" />--%>
 
                                         </div>
                                     </td>
