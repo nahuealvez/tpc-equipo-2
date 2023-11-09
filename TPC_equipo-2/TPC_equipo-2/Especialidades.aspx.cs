@@ -48,7 +48,10 @@ namespace TPC_equipo_2
         {
             int id = int.Parse(((Button)sender).CommandArgument);
             Session.Add("idEspecialidad", id);
+            tbxModificarEspecialidad.Text = EspecialidadList.Find(x => x.Id == id).Descripcion;
+
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarEspecialidad()", true);
+            
         }
 
         protected void btnEliminarEspecialidad_Click(object sender, EventArgs e)
