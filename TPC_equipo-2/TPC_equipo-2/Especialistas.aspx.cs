@@ -42,6 +42,11 @@ namespace TPC_equipo_2
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialista()", true);
         }
 
+        protected void btnModificarEspecialista_Click(Object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarEspecialista()", true);
+        }
+
         protected void btnGuardarAgregarEspecialista_Click(object sender, EventArgs e)
         {
             //PENDIENTE MANEJAR VALIDACIONES COMO USUARIO REPETIDO / DNI REPETIDO X EJ
@@ -71,7 +76,17 @@ namespace TPC_equipo_2
             }
         }
 
-        protected void btnModificarEspecialista_Click(Object sender, EventArgs e)
+        protected void btnAgregarQuitarEspecialidades_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarQuitarEspecialidades()", true);
+        }
+
+        protected void btnAgregarJornadas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarModificarEspecialista_Click(object sender, EventArgs e)
         {
 
         }

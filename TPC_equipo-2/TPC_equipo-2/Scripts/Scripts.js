@@ -25,6 +25,16 @@ function abrirModalAgregarEspecialista() {
     pageModal.show();
 }
 
+function abrirModalModificarEspecialista() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ModificarEspecialista"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalAgregarQuitarEspecialidades() {
+    var pageModal = new bootstrap.Modal(document.getElementById("AgregarQuitarEspecialidades"), { keyboard: false });
+    pageModal.show();
+}
+
 /* Modales de especialidad */
 function abrirModalAgregarEspecialidad() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarEspecialidad"), { keyboard: false });

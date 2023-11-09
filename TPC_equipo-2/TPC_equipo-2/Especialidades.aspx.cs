@@ -80,6 +80,7 @@ namespace TPC_equipo_2
             lblNombreEspecActivar.Text = especialidad.Descripcion;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalActivarEspecialidad()", true);
         }
+
         protected void btnGuardarAgregarEspecialidad_Click(object sender, EventArgs e)
         {
             if (tbxEspecialidad.Text.Trim() != "")
@@ -110,6 +111,7 @@ namespace TPC_equipo_2
             }
 
         }
+
         protected void btnGuardarModificacionEspecialidad_Click(object sender, EventArgs e)
         {
             int idEspecialidad = (int)(Session["idEspecialidad"]);
@@ -152,6 +154,7 @@ namespace TPC_equipo_2
                 throw ex;
             }
         }
+
         protected void btnAceptarDesactivarEspecialidad_Click(object sender, EventArgs e)
         {
             int idEspecialidad = (int)(Session["idEspecialidad"]);
@@ -169,6 +172,7 @@ namespace TPC_equipo_2
                 throw ex;
             }
         }
+
         protected void btnAceptarActivarEspecialidad_Click(object sender, EventArgs e)
         {
             int idEspecialidad = (int)(Session["idEspecialidad"]);
