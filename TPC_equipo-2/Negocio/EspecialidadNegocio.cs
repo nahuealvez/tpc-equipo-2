@@ -87,7 +87,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("EXEC [Especialidad].[sp_UpdEstado] @Id, @Estado");
+                datos.SetearConsulta("EXEC [Especialidad].[sp_UpdEstadoEspecialidad] @Id, @Estado");
                 datos.SetearParametro("@Id", especialidad.Id);
                 datos.SetearParametro("@Estado", especialidad.Estado);
                 datos.EjecutarAccion();
