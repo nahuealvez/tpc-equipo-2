@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("EXEC [Medico].[sp_GetEspecialidad]");
+                datos.SetearConsulta("EXEC [Especialidad].[sp_GetEspecialidades]");
 
                 datos.EjecutarLectura();
 
@@ -47,7 +47,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("INSERT INTO Medico.Especialidad (Especialidad, Estado) VALUES (@especialidad,1)");
+                datos.SetearConsulta("EXEC [Especialidad].[sp_InsEspecialidad] @especialidad");
                 datos.SetearParametro("@especialidad", nuevaEspecialidad.Descripcion);
                 datos.EjecutarAccion();
             }
@@ -66,9 +66,10 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("UPDATE Medico.Especialidad set Especialidad = @Descripcion where IdEspecialidad = @Id");
-                datos.SetearParametro("@Descripcion", especialidad.Descripcion);
+                datos.SetearConsulta("EXEC [Especialidad].[sp_UpdEspecialidad] @Id, @Descripcion, @Estado");
                 datos.SetearParametro("@Id", especialidad.Id);
+                datos.SetearParametro("@Descripcion", especialidad.Descripcion);
+                datos.SetearParametro("@Estado", especialidad.Estado);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -86,9 +87,9 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("UPDATE Medico.Especialidad set Estado = @Estado where IdEspecialidad = @Id");
-                datos.SetearParametro("@Estado", especialidad.Estado);
+                datos.SetearConsulta("EXEC [Especialidad].[sp_UpdEstado] @Id, @Estado");
                 datos.SetearParametro("@Id", especialidad.Id);
+                datos.SetearParametro("@Estado", especialidad.Estado);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
@@ -106,7 +107,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("EXEC [Medico].[sp_DelEspecialidad] @Id;");
+                datos.SetearConsulta("EXEC [Especialidad].[sp_DelEspecialidad] @Id;");
                 datos.SetearParametro("@Id", especialidad.Id);
                 datos.EjecutarAccion();
             }
