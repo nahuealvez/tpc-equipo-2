@@ -1,4 +1,13 @@
-﻿/* Modales de usuario */
+﻿/* Modales de paciente */
+function abrirModalAgregarPaciente() {
+    var pageModal = new bootstrap.Modal(document.getElementById("AgregarPaciente"), {
+        keyboard: false,
+        dismiss: "modal"
+    });
+    pageModal.show();
+}
+
+/* Modales de usuario */
 function abrirModalAgregarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), {
         keyboard: false,
@@ -15,7 +24,6 @@ function abrirModalAgregarEspecialista() {
     });
     pageModal.show();
 }
-
 
 /* Modales de especialidad */
 function abrirModalAgregarEspecialidad() {
