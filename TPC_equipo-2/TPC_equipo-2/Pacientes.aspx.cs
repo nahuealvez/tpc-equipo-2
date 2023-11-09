@@ -37,6 +37,11 @@ namespace TPC_equipo_2
             }
         }
 
+        protected void btnAgendarTurno_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void btnAgregarPaciente_Click(object sender, EventArgs e)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarPaciente()", true);
