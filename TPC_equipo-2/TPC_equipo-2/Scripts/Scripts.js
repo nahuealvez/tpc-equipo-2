@@ -1,5 +1,4 @@
 ﻿/* Modales de usuario */
-
 function abrirModalAgregarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), {
         keyboard: false,
@@ -7,6 +6,16 @@ function abrirModalAgregarUsuario() {
     });
     pageModal.show();
 }
+
+/* Modales de especialista */
+function abrirModalAgregarEspecialista() {
+    var pageModal = new bootstrap.Modal(document.getElementById("AgregarEspecialista"), {
+        keyboard: false,
+        dismiss: "modal"
+    });
+    pageModal.show();
+}
+
 
 /* Modales de especialidad */
 function abrirModalAgregarEspecialidad() {

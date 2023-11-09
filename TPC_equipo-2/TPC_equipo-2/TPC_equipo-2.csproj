@@ -68,6 +68,7 @@
     <Content Include="Configuracion.aspx" />
     <Content Include="Content\Styles.css" />
     <Content Include="Especialidades.aspx" />
+    <Content Include="Especialistas.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\Scripts.js" />
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Especialidades.aspx.designer.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Especialistas.aspx.cs">
+      <DependentUpon>Especialistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Especialistas.aspx.designer.cs">
+      <DependentUpon>Especialistas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
