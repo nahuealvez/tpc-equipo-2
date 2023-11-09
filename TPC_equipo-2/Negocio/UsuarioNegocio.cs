@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,13 +51,53 @@ namespace Negocio
             }
         }
 
+        public List<Usuario> ListarEspecialistas()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("SELECT * FROM Usuario.Usuario where IdPerfil = 3");
+
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Dni = (int)datos.Lector["Dni"];
+                    aux.Sexo = (string)datos.Lector["Sexo"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.UsuarioReg = (string)datos.Lector["Usuario"];
+                    aux.Password = (string)datos.Lector["Password"];
+                    aux.Perfil = (int)datos.Lector["IdPerfil"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Agregar(Usuario nuevoUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
-            {
-                datos.SetearConsulta("EXEC [Usuario].[sp_InsUsuario] @Apellido @Nombre @Dni @Sexo @FechaNacimiento @Mail @Telefono @NombreUsuario @Password @IdPerfil");
+            {                
+                datos.SetearConsulta("EXEC [Usuario].[sp_InsUsuario] @Apellido, @Nombre, @Dni, @Sexo, @FechaNacimiento, @Mail, @Telefono, @NombreUsuario, @Password, @IdPerfil");
                 datos.SetearParametro("@Apellido", nuevoUsuario.Apellido);
                 datos.SetearParametro("@Nombre", nuevoUsuario.Nombre);
                 datos.SetearParametro("@Dni", nuevoUsuario.Dni);
@@ -85,7 +126,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("EXEC [Usuario].[sp_UpdUsuario] @IdUsuario @NuevoApellido @NuevoNombre @NuevoDni @NuevoSexo @NuevaFechaNacimiento @NuevoMail @NuevoTelefono @NuevoNombreUsuario @NuevoPassword @NuevoIdPerfil @NuevoEstado");
+                datos.SetearConsulta("EXEC [Usuario].[sp_UpdUsuario] @IdUsuario, @NuevoApellido, @NuevoNombre, @NuevoDni, @NuevoSexo, @NuevaFechaNacimiento, @NuevoMail, @NuevoTelefono, @NuevoNombreUsuario, @NuevoPassword, @NuevoIdPerfil, @NuevoEstado");
                 datos.SetearParametro("@IdUsuario", usuario.IdUsuario);
                 datos.SetearParametro("@NuevoApellido", usuario.Apellido);
                 datos.SetearParametro("@NuevoNombre", usuario.Nombre);

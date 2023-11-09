@@ -33,16 +33,16 @@
                         <asp:Repeater runat="server" ID="repRepetidor">
                             <ItemTemplate>
                                 <tr>
-                                    <td class="align-middle"><%#Eval("Descripcion")%></td>
+                                    <td class="align-middle"><%#Eval("Apellido")%> <%#Eval("Nombre")%></td>
                                     <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                         <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
                                     </td>
                                     <td style="max-width: 120px;" class="align-middle">
                                         <div class="btn-group">
-                                            <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnModificarEspecialista_Click" />
-                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarEspecialista_Click" />
-                                            <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnDesactivarEspecialista_Click" Visible="true" />
-                                            <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnActivarEspecialista_Click" Visible="false" />
+                                            <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialidadId" OnClick="btnModificarEspecialista_Click" />
+                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialidadId" OnClick="btnEliminarEspecialista_Click" />
+                                            <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialidadId" OnClick="btnDesactivarEspecialista_Click" Visible="true" />
+                                            <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialidadId" OnClick="btnActivarEspecialista_Click" Visible="false" />
 
                                         </div>
                                     </td>
@@ -93,17 +93,17 @@
                             </div>
                             <div class="mb-3">
                                 <label for="lblFechaNacimiento" class="form-label">Fecha de nacimiento</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtFechaNacimiento" type="date" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxFechaNacimiento" type="date" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtEmail" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtTelefono" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>

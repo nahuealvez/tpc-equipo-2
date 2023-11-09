@@ -91,17 +91,17 @@
                             </div>
                             <div class="mb-3">
                                 <label for="lblFechaNacimiento" class="form-label">Fecha de nacimiento</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtFechaNacimiento" type="date" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxFechaNacimiento" type="date" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtEmail" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtTelefono" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>
@@ -115,8 +115,8 @@
                                 <label for="lblPerfil" class="form-label">Perfil</label>
                                 <asp:DropDownList ID="DropDownListPerfil" runat="server" CssClass="form-select">
                                     <asp:ListItem Text="" Selected="True" />
-                                    <asp:ListItem Text="Administrador" Value="0" />
-                                    <asp:ListItem Text="Recepcionista" Value="1" />
+                                    <asp:ListItem Text="Administrador" Value="1" />
+                                    <asp:ListItem Text="Recepcionista" Value="2" />
                                 </asp:DropDownList>
                             </div>
                         </div>

@@ -43,6 +43,31 @@ namespace TPC_equipo_2
 
         protected void btnGuardarAgregarUsuario_Click(object sender, EventArgs e)
         {
+            //PENDIENTE MANEJAR VALIDACIONES COMO USUARIO REPETIDO / DNI REPETIDO X EJ
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario nuevoUsuario = new Usuario();
+
+            nuevoUsuario.Nombre = tbxNombres.Text;
+            nuevoUsuario.Apellido = tbxApellidos.Text;
+            nuevoUsuario.Dni = int.Parse(tbxDNI.Text);
+            nuevoUsuario.Sexo = DropDownListSexo.Text;
+            nuevoUsuario.FechaNacimiento = DateTime.Parse(tbxFechaNacimiento.Text);
+            nuevoUsuario.Mail = tbxEmail.Text;
+            nuevoUsuario.Telefono = tbxTelefono.Text;
+            nuevoUsuario.UsuarioReg = tbxUsuario.Text;
+            nuevoUsuario.Password = tbxContrasenia.Text;
+            nuevoUsuario.Perfil = int.Parse(DropDownListPerfil.Text);
+
+            try
+            {
+                negocio.Agregar(nuevoUsuario);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             if (!Page.IsValid)
             {
                 valSummaryForm.Visible = true;

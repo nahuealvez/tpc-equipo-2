@@ -55,7 +55,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("EXEC [Usuario].[sp_InsPaciente] @Apellido @Nombre @Dni @Sexo @FechaNacimiento @Mail @Telefono @Cobertura @NroCredencial");
+                datos.SetearConsulta("EXEC [Usuario].[sp_InsPaciente] @Apellido, @Nombre, @Dni, @Sexo, @FechaNacimiento, @Mail, @Telefono, @Cobertura, @NroCredencial");
                 datos.SetearParametro("@Apellido", nuevoPaciente.Apellido);
                 datos.SetearParametro("@Nombre", nuevoPaciente.Nombre);
                 datos.SetearParametro("@Dni", nuevoPaciente.Dni);
@@ -84,7 +84,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("EXEC [Usuario].[sp_UpdPaciente] @IdUsuario @NuevoApellido @NuevoNombre @NuevoDni @NuevoSexo @NuevaFechaNacimiento @NuevoMail @NuevoTelefono @NuevoCobertura @NuevoNroCredencial");
+                datos.SetearConsulta("EXEC [Usuario].[sp_UpdPaciente] @IdUsuario, @NuevoApellido, @NuevoNombre, @NuevoDni, @NuevoSexo, @NuevaFechaNacimiento, @NuevoMail, @NuevoTelefono, @NuevoCobertura, @NuevoNroCredencial");
                 datos.SetearParametro("@IdUsuario", paciente.IdPaciente);
                 datos.SetearParametro("@NuevoApellido", paciente.Apellido);
                 datos.SetearParametro("@NuevoNombre", paciente.Nombre);
