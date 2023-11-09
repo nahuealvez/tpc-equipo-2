@@ -57,7 +57,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("SELECT * FROM Usuario.Usuario where IdPerfil = 3");
+                datos.SetearConsulta("EXEC [Usuario].[sp_GetEspecialistas]");
 
                 datos.EjecutarLectura();
 

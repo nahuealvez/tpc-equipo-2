@@ -49,6 +49,29 @@ namespace TPC_equipo_2
 
         protected void btnGuardarAgregarPaciente_Click(object sender, EventArgs e)
         {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente nuevoPaciente  = new Paciente();
+            
+            nuevoPaciente.Apellido = tbxApellidos.Text;
+            nuevoPaciente.Nombre =  tbxNombres.Text;
+            nuevoPaciente.Dni =int.Parse(tbxDNI.Text);
+            nuevoPaciente.Sexo = DropDownListSexo.Text;
+            nuevoPaciente.FechaNacimiento = DateTime.Parse(tbxFechaNacimiento.Text);
+            nuevoPaciente.Mail = tbxEmail.Text;
+            nuevoPaciente.Telefono = tbxTelefono.Text;
+            nuevoPaciente.Cobertura = tbxCobertura.Text;
+            nuevoPaciente.NroCredencial = int.Parse(tbxNroCredencial.Text);
+
+            try
+            {
+                negocio.Agregar(nuevoPaciente);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
