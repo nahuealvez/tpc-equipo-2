@@ -15,7 +15,7 @@
                         <p class="card-text">Gestión de ABM de usuarios internos</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
+                        <a href="/Usuarios.aspx" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                         <p class="card-text">Gestión de ABM de especialistas</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
+                        <a href="/Especialistas.aspx" type="button" class="btn float-end btn-color-project-primary">Configurar</a>
                     </div>
                 </div>
             </div>

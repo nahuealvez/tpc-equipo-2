@@ -55,49 +55,73 @@
 
     <!-- Modal agregar usuario -->
     <div class="modal fade" id="AgregarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarUsuarioLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="lblAgregarUsuario">Agregar usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <p class="bg-primary">
-                    <asp:ValidationSummary ID="valSummaryForm" Visible="false" runat="server" />                    
-                </p>
+                    <asp:ValidationSummary ID="valSummaryForm" Visible="false" runat="server" />
+                </p>               
                 <div class="modal-body">
-                    <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
-                        <label for="lblApellidosUsuario" class="form-label">Apellidos</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" />
-                        <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
+                                <label for="lblApellidosUsuario" class="form-label">Apellidos</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" />
+                                <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblNombresUsuario" class="form-label">Nombres</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblSexo" class="form-label">Sexo</label>
+                                <asp:DropDownList ID="DropDownListSexo" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="" Selected="True" />
+                                    <asp:ListItem Text="Masculino" Value="M" />
+                                    <asp:ListItem Text="Femenino" Value="F" />
+                                    <asp:ListItem Text="No especificado" Value="X" />
+                                </asp:DropDownList>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblFechaNacimiento" class="form-label">Fecha de nacimiento</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="txtFechaNacimiento" type="date" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="lblEmail" class="form-label">Email</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="txtEmail" type="mail" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="txtTelefono" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblUsuario" class="form-label">Usuario</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblContrasenia" class="form-label">Contraseña</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxContrasenia" type="password" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblPerfil" class="form-label">Perfil</label>
+                                <asp:DropDownList ID="DropDownListPerfil" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="" Selected="True" />
+                                    <asp:ListItem Text="Administrador" Value="0" />
+                                    <asp:ListItem Text="Recepcionista" Value="1" />
+                                </asp:DropDownList>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="lblNombresUsuario" class="form-label">Nombres</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="lblDni" class="form-label">DNI</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="lblEmail" class="form-label">Email</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="txtEmail" type="mail" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="lblUsuario" class="form-label">Usuario</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="lblContrasenia" class="form-label">Contraseña</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxContrasenia" type="password" />
-                    </div>
-                    <label for="lblPerfil" class="form-label">Perfil</label>
-                    <asp:DropDownList ID="ddlExample" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="" Selected="True"/>
-                        <asp:ListItem Text="Administrador" Value="0" />
-                        <asp:ListItem Text="Recepcionista" Value="1" />
-                    </asp:DropDownList>
-                    <br />
-                    <div class="alert alert-info" role="alert">
+                    <div class="alert alert-primary" role="alert">
                         * Todos los campos son obligatorios
                     </div>
                 </div>

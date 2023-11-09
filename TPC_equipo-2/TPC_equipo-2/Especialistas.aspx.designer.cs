@@ -11,7 +11,7 @@ namespace TPC_equipo_2
 {
 
 
-    public partial class Usuarios
+    public partial class Especialistas
     {
 
         /// <summary>
