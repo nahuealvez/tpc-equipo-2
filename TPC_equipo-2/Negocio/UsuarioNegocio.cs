@@ -130,5 +130,25 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public void Eliminar(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("EXEC [Usuario].[sp_DelUsuario] @IdUsuario;");
+                datos.SetearParametro("@IdUsuario", usuario.IdUsuario);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }
