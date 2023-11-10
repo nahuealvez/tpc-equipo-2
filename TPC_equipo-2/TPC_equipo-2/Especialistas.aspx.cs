@@ -44,6 +44,19 @@ namespace TPC_equipo_2
 
         protected void btnModificarEspecialista_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Usuario aux = EspecialistasList.Find(x => x.IdUsuario ==  id);
+            tbxModificarApellido.Text = aux.Apellido;
+            tbxModificarNombre.Text = aux.Nombre;
+            tbxModificarDni.Text = aux.Dni.ToString();
+            dplModificarSexo.Text = aux.Sexo.ToString();
+            tbxModificarNacimiento.Text = aux.FechaNacimiento.ToString(("yyyy-MM-dd"));
+            tbxModificarMail.Text = aux.Mail.ToString();
+            tbxModificarTel.Text = aux.Telefono;
+            tbxModificarUser.Text = aux.UsuarioReg;
+            tbxModificarPass.Text = aux.Password;
+            Session.Add("usuarioModificar", aux);
+
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarEspecialista()", true);
         }
 
@@ -89,6 +102,28 @@ namespace TPC_equipo_2
         protected void btnGuardarModificarEspecialista_Click(object sender, EventArgs e)
         {
 
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuarioModificar = (Usuario)(Session["usuarioModificar"]);
+            usuarioModificar.Nombre = tbxModificarNombre.Text;
+            usuarioModificar.Apellido = tbxModificarApellido.Text;
+            usuarioModificar.Dni = int.Parse(tbxModificarDni.Text);
+            usuarioModificar.Sexo = dplModificarSexo.Text;
+            usuarioModificar.FechaNacimiento = DateTime.Parse(tbxModificarNacimiento.Text);
+            usuarioModificar.Mail = tbxModificarMail.Text;
+            usuarioModificar.Telefono = tbxModificarTel.Text;
+            usuarioModificar.UsuarioReg = tbxModificarUser.Text;
+            usuarioModificar.Password = tbxModificarPass.Text;
+            //usuarioModificar.Perfil = 3;
+            try
+            {
+                negocio.Modificar(usuarioModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         protected void btnEliminarEspecialista_Click(Object sender, EventArgs e)

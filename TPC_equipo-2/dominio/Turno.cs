@@ -12,7 +12,7 @@ namespace dominio
         public DateTime FechaHora { get; set; }
         public string MotivoConsulta { get; set; }
         public string Diagnostico { get; set; }
-        public Especialista Especialista { get; set; }
+        public Usuario Especialista { get; set; }
         public EstadoTurno Estado { get; set; }
     }
 }

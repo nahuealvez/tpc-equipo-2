@@ -145,20 +145,20 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblApellidosEspecialista" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarApellido" />
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblNombresEspecialista" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox2" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarNombre" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox3" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarDni" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblSexo" class="form-label">Sexo</label>
-                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select">
+                                <asp:DropDownList ID="dplModificarSexo" runat="server" CssClass="form-select">
                                     <asp:ListItem Text="" Selected="True" />
                                     <asp:ListItem Text="Masculino" Value="M" />
                                     <asp:ListItem Text="Femenino" Value="F" />
@@ -167,25 +167,25 @@
                             </div>
                             <div class="mb-3">
                                 <label for="lblFechaNacimiento" class="form-label">Fecha de nacimiento</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox4" type="date" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarNacimiento" type="date" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox5" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarMail" type="mail" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox6" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarTel" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox7" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUser" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblContrasenia" class="form-label">Contraseña</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="TextBox8" type="password" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarPass" type="password" />
                             </div>
                         </div>
                     </div>
