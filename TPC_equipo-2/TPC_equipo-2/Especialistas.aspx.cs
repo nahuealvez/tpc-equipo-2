@@ -91,6 +91,13 @@ namespace TPC_equipo_2
 
         protected void btnAgregarQuitarEspecialidades_Click(object sender, EventArgs e)
         {
+            EspecialidadNegocio negocioEspecialidad = new EspecialidadNegocio();
+            List<Especialidad> especialidadesList = new List<Especialidad>();
+            especialidadesList = negocioEspecialidad.Listar();
+            ddlEspecialidades.DataSource = especialidadesList;
+            ddlEspecialidades.DataTextField = "Descripcion";
+            ddlEspecialidades.DataValueField = "Id";
+            ddlEspecialidades.DataBind();
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarQuitarEspecialidades()", true);
         }
 
@@ -113,7 +120,7 @@ namespace TPC_equipo_2
             usuarioModificar.Telefono = tbxModificarTel.Text;
             usuarioModificar.UsuarioReg = tbxModificarUser.Text;
             usuarioModificar.Password = tbxModificarPass.Text;
-            //usuarioModificar.Perfil = 3;
+
             try
             {
                 negocio.Modificar(usuarioModificar);

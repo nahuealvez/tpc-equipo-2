@@ -216,10 +216,8 @@
                     <div class="mb-3">
                         <label for="lblSelectorEspecialidades" class="form-label">Seleccione las especialidades</label>
                         <div class="input-group">
-                            <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-select">
+                            <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select">
                                 <asp:ListItem Text="" Selected="True" />
-                                <asp:ListItem Text="Pediatría" />
-                                <asp:ListItem Text="Neumonología" />
                             </asp:DropDownList>
                             <asp:Button ID="btnGuardarEspecialidad" Text="Agregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnGuardarModificarEspecialista_Click" />
                         </div>
