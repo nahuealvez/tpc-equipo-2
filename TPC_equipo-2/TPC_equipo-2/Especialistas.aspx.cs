@@ -140,6 +140,10 @@ namespace TPC_equipo_2
 
         protected void btnDesactivarEspecialista_Click(Object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalDesactivarEspecialista()", true);
+        }
+        protected void btnAceptarDesactivarEspecialista_Click(object sender, EventArgs e)
+        {
 
         }
 

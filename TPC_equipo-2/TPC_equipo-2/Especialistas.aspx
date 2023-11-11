@@ -249,4 +249,27 @@
             </div>
         </div>
     </div>
+
+        <%-- Modal desactivar especialista --%>
+    <div class="modal fade" id="DesactivarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarEspecialistaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblDesactivarEspecialista">Desactivar especialista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialista" class="form-label">Especialista: </label>
+                        <asp:Label ID="lblNombreEspecialistaDesactivar" CssClass="form-label" runat="server" />
+                        <label for="lblNombreEspecialista" class="form-label">¿Está seguro que desea desactivar este especialista?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarDesactivarEspecialista" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarDesactivarEspecialista_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

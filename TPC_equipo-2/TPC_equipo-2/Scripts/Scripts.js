@@ -34,6 +34,11 @@ function abrirModalAgregarQuitarEspecialidades() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarQuitarEspecialidades"), { keyboard: false });
     pageModal.show();
 }
+function abrirModalDesactivarEspecialista() {
+    console.log("Función ejecutada");
+    var pageModal = new bootstrap.Modal(document.getElementById("DesactivarEspecialista"), { keyboard: false });
+    pageModal.show();
+}
 
 /* Modales de especialidad */
 function abrirModalAgregarEspecialidad() {
