@@ -121,6 +121,33 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        public List<int> EspecialidadesXEspecialista(int id)
+        {
+            List<int> lista = new List<int>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT * FROM Especialidad.EspecialistaEspecialidad WHERE IdUsuario = @Id");
+                datos.SetearParametro("@Id", id);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    lista.Add((int)datos.Lector["IdEspecialidad"]);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
     }
 

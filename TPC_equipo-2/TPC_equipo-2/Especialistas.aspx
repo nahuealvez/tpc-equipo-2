@@ -40,7 +40,7 @@
                                     <td style="max-width: 150px;" class="align-middle">
                                         <div class="btn-group">
                                             <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialistaId" OnClick="btnModificarEspecialista_Click" />
-                                            <asp:Button Text="Especialidades" ID="btnAgregarEspecialidades" CssClass="btn btn-secondary" runat="server" OnClick="btnAgregarQuitarEspecialidades_Click" />
+                                            <asp:Button Text="Especialidades" ID="btnAgregarEspecialidades" CssClass="btn btn-secondary" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialistaId" OnClick="btnAgregarQuitarEspecialidades_Click" />
                                             <asp:Button Text="Jornadas" ID="btnAgregarJornadas" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnAgregarJornadas_Click" />
                                             <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialistaId" OnClick="btnEliminarEspecialista_Click" />
                                             <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialistaId" OnClick="btnDesactivarEspecialista_Click" Visible="true" />

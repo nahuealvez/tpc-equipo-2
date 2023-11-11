@@ -91,10 +91,21 @@ namespace TPC_equipo_2
 
         protected void btnAgregarQuitarEspecialidades_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
             EspecialidadNegocio negocioEspecialidad = new EspecialidadNegocio();
             List<Especialidad> especialidadesList = new List<Especialidad>();
+            List<Especialidad> especialidadesNoAsignadas = new List<Especialidad>();
+            List<int> especialidadesAsignadas = new List<int>();
             especialidadesList = negocioEspecialidad.Listar();
-            ddlEspecialidades.DataSource = especialidadesList;
+            especialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(id);
+            foreach(Especialidad especialidad in especialidadesList)
+            {
+                if(!especialidadesAsignadas.Exists(x => x == especialidad.Id))
+                {
+                    especialidadesNoAsignadas.Add(especialidad);
+                }
+            }
+            ddlEspecialidades.DataSource = especialidadesNoAsignadas;
             ddlEspecialidades.DataTextField = "Descripcion";
             ddlEspecialidades.DataValueField = "Id";
             ddlEspecialidades.DataBind();
