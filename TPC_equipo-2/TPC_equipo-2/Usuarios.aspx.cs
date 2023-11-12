@@ -76,7 +76,44 @@ namespace TPC_equipo_2
 
         protected void btnModificarUsuario_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Usuario aux = UsuarioList.Find(x => x.IdUsuario == id);
+            tbxModificarUserApellido.Text = aux.Apellido;
+            tbxModificarUserNombre.Text = aux.Nombre;
+            tbxModificarUserDni.Text = aux.Dni.ToString();
+            dplModificarUserSexo.Text = aux.Sexo.ToString();
+            tbxModificarUserNacimiento.Text = aux.FechaNacimiento.ToString(("yyyy-MM-dd"));
+            tbxModificarUserMail.Text = aux.Mail.ToString();
+            tbxModificarUserTel.Text = aux.Telefono;
+            tbxModificarUser.Text = aux.UsuarioReg;
+            tbxModificarUserPass.Text = aux.Password;
+            Session.Add("usuarioModificar", aux);
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarUsuario()", true);
+        }
+        protected void btnGuardarModificarUser_Click(Object sender, EventArgs e)
+        {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuarioModificar = (Usuario)(Session["usuarioModificar"]);
+            usuarioModificar.Nombre = tbxModificarUserNombre.Text;
+            usuarioModificar.Apellido = tbxModificarUserApellido.Text;
+            usuarioModificar.Dni = int.Parse(tbxModificarUserDni.Text);
+            usuarioModificar.Sexo = dplModificarUserSexo.Text;
+            usuarioModificar.FechaNacimiento = DateTime.Parse(tbxModificarUserNacimiento.Text);
+            usuarioModificar.Mail = tbxModificarUserMail.Text;
+            usuarioModificar.Telefono = tbxModificarUserTel.Text;
+            usuarioModificar.UsuarioReg = tbxModificarUser.Text;
+            usuarioModificar.Password = tbxModificarUserPass.Text;
 
+            try
+            {
+                negocio.Modificar(usuarioModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         protected void btnEliminarUsuario_Click(Object sender, EventArgs e)

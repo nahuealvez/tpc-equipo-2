@@ -244,7 +244,7 @@
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="Button2" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModificarEspecialista_Click" />
+                    <asp:Button ID="btnGuardarModificarEspecialista" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModificarEspecialista_Click" />
                 </div>
             </div>
         </div>

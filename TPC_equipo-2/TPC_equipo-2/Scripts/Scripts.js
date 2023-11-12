@@ -15,6 +15,10 @@ function abrirModalAgregarUsuario() {
     });
     pageModal.show();
 }
+function abrirModalModificarUsuario() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ModificarUsuario"), { keyboard: false });
+    pageModal.show();
+}
 
 /* Modales de especialista */
 function abrirModalAgregarEspecialista() {
