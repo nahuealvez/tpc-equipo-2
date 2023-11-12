@@ -123,6 +123,10 @@ namespace TPC_equipo_2
 
         protected void btnDesactivarUsuario_Click(Object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalDesactivarUsuario()", true);
+        }
+        protected void btnAceptarDesactivarUsuario_Click(Object sender, EventArgs e)
+        {
 
         }
 

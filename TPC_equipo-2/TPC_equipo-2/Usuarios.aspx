@@ -204,4 +204,26 @@
             </div>
         </div>
     </div>
+            <%-- Modal desactivar Usuario --%>
+    <div class="modal fade" id="DesactivarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblDesactivarEspecialista">Desactivar Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreUsuario" class="form-label">Usuario: </label>
+                        <asp:Label ID="lblNombreUsuarioDesactivar" CssClass="form-label" runat="server" />
+                        <label for="lblNombreUsuario" class="form-label">¿Está seguro que desea desactivar este usuario?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarDesactivarUsuario" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarDesactivarUsuario_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

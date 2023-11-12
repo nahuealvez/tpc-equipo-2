@@ -19,6 +19,10 @@ function abrirModalModificarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("ModificarUsuario"), { keyboard: false });
     pageModal.show();
 }
+function abrirModalDesactivarUsuario() {
+    var pageModal = new bootstrap.Modal(document.getElementById("DesactivarUsuario"), { keyboard: false });
+    pageModal.show();
+}
 
 /* Modales de especialista */
 function abrirModalAgregarEspecialista() {
