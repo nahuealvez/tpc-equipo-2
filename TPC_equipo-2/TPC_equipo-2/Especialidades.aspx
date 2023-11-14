@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="container">
         <h2 class="pt-3 pb-3">Especialidades</h2>
         <div class="card text-center">
@@ -234,4 +235,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

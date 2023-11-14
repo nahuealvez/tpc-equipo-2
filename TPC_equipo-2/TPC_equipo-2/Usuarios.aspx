@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    <%-- Modal desactivar Usuario --%>
+    <%-- Modal desactivar usuario --%>
     <div class="modal fade" id="DesactivarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -231,7 +231,7 @@
         </div>
     </div>
 
-    <%-- Modal activar Usuario --%>
+    <%-- Modal activar usuario --%>
     <div class="modal fade" id="ActivarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="activarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -249,6 +249,29 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="Button1" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarActivarUsuario_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Modal eliminar usuario --%>
+    <div class="modal fade" id="EliminarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblEliminarUsuario">Eliminar usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Usuario: </label>
+                        <asp:Label ID="lblNombreEliminarUsuario" CssClass="form-label" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea eliminar este usuario?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarEliminarUsuario_Click" />
                 </div>
             </div>
         </div>

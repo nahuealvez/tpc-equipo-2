@@ -120,7 +120,28 @@ namespace TPC_equipo_2
 
         protected void btnEliminarUsuario_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idUsuario", id);
+            Usuario usuario = UsuarioList.Find(x => x.IdUsuario == id);
+            lblNombreEliminarUsuario.Text = usuario.UsuarioReg;
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalEliminarUsuario()", true);
+        }
 
+        protected void btnAceptarEliminarUsuario_Click(Object sender, EventArgs e)
+        {
+            int idUsuario = (int)(Session["idUsuario"]);
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuarioEliminar = UsuarioList.Find(x => x.IdUsuario == idUsuario);
+
+            try
+            {
+                negocio.Eliminar(usuarioEliminar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void btnDesactivarUsuario_Click(Object sender, EventArgs e)

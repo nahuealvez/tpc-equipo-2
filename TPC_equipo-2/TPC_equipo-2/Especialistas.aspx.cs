@@ -157,6 +157,7 @@ namespace TPC_equipo_2
             lblNombreEspecialistaDesactivar.Text = usuario.UsuarioReg;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalDesactivarEspecialista()", true);
         }
+
         protected void btnAceptarDesactivarEspecialista_Click(object sender, EventArgs e)
         {
             int idUsuario = (int)(Session["idEspecialista"]);
@@ -201,6 +202,6 @@ namespace TPC_equipo_2
                 throw ex;
             }
         }
-
     }
+
 }
