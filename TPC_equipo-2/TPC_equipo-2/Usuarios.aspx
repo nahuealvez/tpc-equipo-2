@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="TPC_equipo_2.Usuarios" EnableEventValidation="false" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="container">
         <h2 class="pt-3 pb-3">Usuarios</h2>
         <div class="card text-center">
@@ -24,7 +27,7 @@
                         <tr class="table-primary">
                             <th scope="col" class="align-middle">Usuario</th>
                             <th scope="col" class="align-middle">Estado</th>
-                            <th scope="col" class="align-middle">Acciones</th> 
+                            <th scope="col" class="align-middle">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,7 +66,7 @@
                 </div>
                 <p class="bg-primary">
                     <asp:ValidationSummary ID="valSummaryForm" Visible="false" runat="server" />
-                </p>               
+                </p>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
@@ -133,7 +136,7 @@
         </div>
     </div>
 
-        <!-- Modal modificar usuario -->
+    <!-- Modal modificar usuario -->
     <div class="modal fade" id="ModificarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -204,12 +207,13 @@
             </div>
         </div>
     </div>
-            <%-- Modal desactivar Usuario --%>
+
+    <%-- Modal desactivar Usuario --%>
     <div class="modal fade" id="DesactivarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarUsuarioLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="lblDesactivarEspecialista">Desactivar Usuario</h1>
+                    <h1 class="modal-title fs-5" id="lblDesactivarUsuarios">Desactivar Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -226,4 +230,28 @@
             </div>
         </div>
     </div>
+
+    <%-- Modal activar Usuario --%>
+    <div class="modal fade" id="ActivarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="activarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblActivarUsuarios">Activar Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreUsuario" class="form-label">Usuario: </label>
+                        <asp:Label ID="lblNombreUsuarioActivar" CssClass="form-label" runat="server" />
+                        <label for="lblNombreUsuarioActivar" class="form-label">¿Está seguro que desea activar este usuario?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="Button1" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarActivarUsuario_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

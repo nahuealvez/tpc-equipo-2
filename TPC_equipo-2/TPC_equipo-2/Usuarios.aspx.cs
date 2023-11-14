@@ -1,6 +1,7 @@
 ﻿using dominio;
 using Negocio;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -90,6 +91,7 @@ namespace TPC_equipo_2
             Session.Add("usuarioModificar", aux);
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarUsuario()", true);
         }
+
         protected void btnGuardarModificarUser_Click(Object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
@@ -123,16 +125,56 @@ namespace TPC_equipo_2
 
         protected void btnDesactivarUsuario_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idUsuario", id);
+            Usuario usuario = UsuarioList.Find(x => x.IdUsuario == id);
+            lblNombreUsuarioDesactivar.Text = usuario.UsuarioReg;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalDesactivarUsuario()", true);
         }
+
         protected void btnAceptarDesactivarUsuario_Click(Object sender, EventArgs e)
         {
+            int idUsuario = (int)(Session["idUsuario"]);
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuarioModificar = UsuarioList.Find(x => x.IdUsuario == idUsuario);
 
+            try
+            {
+                usuarioModificar.Estado = false;
+                negocio.ModificarEstado(usuarioModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void btnActivarUsuario_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idUsuario", id);
+            Usuario usuario = UsuarioList.Find(x => x.IdUsuario == id);
+            lblNombreUsuarioActivar.Text = usuario.UsuarioReg;
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalActivarUsuario()", true);
+        }
 
+        protected void btnAceptarActivarUsuario_Click(object sender, EventArgs e)
+        {
+            int idUsuario = (int)(Session["idUsuario"]);
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuarioModificar = UsuarioList.Find(x => x.IdUsuario == idUsuario);
+
+            try
+            {
+                usuarioModificar.Estado = true;
+                negocio.ModificarEstado(usuarioModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
