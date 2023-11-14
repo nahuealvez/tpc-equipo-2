@@ -6,6 +6,10 @@ function abrirModalAgregarPaciente() {
     });
     pageModal.show();
 }
+function abrirModalModificarPaciente() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ModificarPaciente"), { keyboard: false });
+    pageModal.show();
+}
 
 /* Modales de usuario */
 function abrirModalAgregarUsuario() {

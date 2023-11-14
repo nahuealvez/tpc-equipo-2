@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <!-- Modal agregar usuario -->
+    <!-- Modal agregar Paciente -->
     <div class="modal fade" id="AgregarPaciente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarPacienteLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -124,4 +124,77 @@
             </div>
         </div>
     </div>
+
+        <!-- Modal modificar Paciente -->
+    <div class="modal fade" id="ModificarPaciente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarPacienteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblModificarPaciente">Modificar paciente</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <p class="bg-primary">
+                    <asp:ValidationSummary ID="ValidationSummary1" Visible="false" runat="server" />
+                </p>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
+                                <label for="lblModApellidosPaciente" class="form-label">Apellidos</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModApellidoPaciente" />
+                                <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModNombresPaciente" class="form-label">Nombres</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModNombrePaciente" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModDniPaciente" class="form-label">DNI (Sin puntos)</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModDniPaciente" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModSexoPaciente" class="form-label">Sexo</label>
+                                <asp:DropDownList ID="dplModSexoPaciente" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="" Selected="True" />
+                                    <asp:ListItem Text="Masculino" Value="M" />
+                                    <asp:ListItem Text="Femenino" Value="F" />
+                                    <asp:ListItem Text="No especificado" Value="X" />
+                                </asp:DropDownList>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModFechaNacimientoPaciente" class="form-label">Fecha de nacimiento</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModNacPaciente" type="date" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="lblModEmailPaciente" class="form-label">Email</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModEmailPaciente" type="mail" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModTelefonoPaciente" class="form-label">Teléfono (Sin guiones ni espacios)</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModTelPaciente" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModCoberturaPaciente" class="form-label">Cobertura</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModCoberturaPaciente" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblModNroCredencialPaciente" class="form-label">Nro. de credencial</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModCredPaciente" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-primary" role="alert">
+                        * Todos los campos son obligatorios
+                    </div>
+                </div>
+                <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button ID="btnGuardModPaciente" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModPaciente_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

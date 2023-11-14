@@ -77,6 +77,23 @@ namespace TPC_equipo_2
 
         protected void btnModificarPaciente_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Paciente aux = PacienteList.Find(x => x.IdPaciente == id);
+            tbxModApellidoPaciente.Text = aux.Apellido;
+            tbxModNombrePaciente.Text = aux.Nombre;
+            tbxModDniPaciente.Text = aux.Dni.ToString();
+            dplModSexoPaciente.Text = aux.Sexo.ToString();
+            tbxModNacPaciente.Text = aux.FechaNacimiento.ToString(("yyyy-MM-dd"));
+            tbxModEmailPaciente.Text = aux.Mail.ToString();
+            tbxModTelPaciente.Text = aux.Telefono;
+            tbxModCoberturaPaciente.Text = aux.Cobertura;
+            tbxModCredPaciente.Text = aux.NroCredencial.ToString();
+
+            Session.Add("pacienteModificar", aux);
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarPaciente()", true);
+        }
+        protected void btnGuardarModPaciente_Click(Object sender, EventArgs e)
+        {
 
         }
 
