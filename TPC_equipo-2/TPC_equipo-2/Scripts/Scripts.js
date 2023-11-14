@@ -15,12 +15,19 @@ function abrirModalAgregarUsuario() {
     });
     pageModal.show();
 }
+
 function abrirModalModificarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("ModificarUsuario"), { keyboard: false });
     pageModal.show();
 }
+
 function abrirModalDesactivarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("DesactivarUsuario"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalActivarUsuario() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ActivarUsuario"), { keyboard: false });
     pageModal.show();
 }
 
@@ -42,9 +49,15 @@ function abrirModalAgregarQuitarEspecialidades() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarQuitarEspecialidades"), { keyboard: false });
     pageModal.show();
 }
+
 function abrirModalDesactivarEspecialista() {
     console.log("Función ejecutada");
     var pageModal = new bootstrap.Modal(document.getElementById("DesactivarEspecialista"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalActivarEspecialista() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ActivarEspecialista"), { keyboard: false });
     pageModal.show();
 }
 

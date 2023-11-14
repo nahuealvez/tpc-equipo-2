@@ -33,11 +33,11 @@
                         <asp:Repeater runat="server" ID="repRepetidor">
                             <ItemTemplate>
                                 <tr>
-                                    <td class="align-middle"><%#Eval("Apellido")%> <%#Eval("Nombre")%></td>
+                                    <td style="width: 400px" class="align-middle"><%#Eval("Apellido")%> <%#Eval("Nombre")%></td>
                                     <td style="width: 120px;" class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                         <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
                                     </td>
-                                    <td style="max-width: 150px;" class="align-middle">
+                                    <td style="width: auto;" class="align-middle">
                                         <div class="btn-group">
                                             <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialistaId" OnClick="btnModificarEspecialista_Click" />
                                             <asp:Button Text="Especialidades" ID="btnAgregarEspecialidades" CssClass="btn btn-secondary" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialistaId" OnClick="btnAgregarQuitarEspecialidades_Click" />
@@ -250,7 +250,7 @@
         </div>
     </div>
 
-        <%-- Modal desactivar especialista --%>
+    <%-- Modal desactivar especialista --%>
     <div class="modal fade" id="DesactivarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarEspecialistaLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -268,6 +268,29 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnGuardarDesactivarEspecialista" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarDesactivarEspecialista_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Modal activar especialista --%>
+    <div class="modal fade" id="ActivarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="activarEspecialistaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblActivarEspecialista">Activar especialista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialistaActivar" class="form-label">Especialista: </label>
+                        <asp:Label ID="lblNombreEspecialistaActivar" CssClass="form-label" runat="server" />
+                        <label for="lblNombreEspecialista" class="form-label">¿Está seguro que desea activar este especialista?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="Button2" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarActivarEspecialista_Click" />
                 </div>
             </div>
         </div>

@@ -151,16 +151,55 @@ namespace TPC_equipo_2
 
         protected void btnDesactivarEspecialista_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idEspecialista", id);
+            Usuario usuario = EspecialistasList.Find(x => x.IdUsuario == id);
+            lblNombreEspecialistaDesactivar.Text = usuario.UsuarioReg;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalDesactivarEspecialista()", true);
         }
         protected void btnAceptarDesactivarEspecialista_Click(object sender, EventArgs e)
         {
+            int idUsuario = (int)(Session["idEspecialista"]);
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario especialistaModificar = EspecialistasList.Find(x => x.IdUsuario == idUsuario);
 
+            try
+            {
+                especialistaModificar.Estado = false;
+                negocio.ModificarEstado(especialistaModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void btnActivarEspecialista_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idEspecialista", id);
+            Usuario usuario = EspecialistasList.Find(x => x.IdUsuario == id);
+            lblNombreEspecialistaActivar.Text = usuario.UsuarioReg;
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalActivarEspecialista()", true);
+        }
 
+        protected void btnAceptarActivarEspecialista_Click(object sender, EventArgs e)
+        {
+            int idUsuario = (int)(Session["idEspecialista"]);
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario especialistaModificar = EspecialistasList.Find(x => x.IdUsuario == idUsuario);
+
+            try
+            {
+                especialistaModificar.Estado = true;
+                negocio.ModificarEstado(especialistaModificar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }
