@@ -39,6 +39,11 @@ namespace TPC_equipo_2
 
         protected void btnAgendarTurno_Click(object sender, EventArgs e)
         {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
+        }
+
+        protected void btnAceptarAgendarTurno_Click(Object sender, EventArgs e)
+        {
 
         }
 
@@ -92,6 +97,7 @@ namespace TPC_equipo_2
             Session.Add("pacienteModificar", aux);
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarPaciente()", true);
         }
+
         protected void btnGuardarModPaciente_Click(Object sender, EventArgs e)
         {
             PacienteNegocio negocio = new PacienteNegocio();

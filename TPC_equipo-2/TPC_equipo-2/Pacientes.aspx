@@ -4,6 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <div class="container">
         <h2 class="pt-3 pb-3">Pacientes</h2>
         <div class="card text-center">
@@ -125,7 +126,7 @@
         </div>
     </div>
 
-        <!-- Modal modificar Paciente -->
+    <!-- Modal modificar Paciente -->
     <div class="modal fade" id="ModificarPaciente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modificarPacienteLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -192,6 +193,77 @@
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     <asp:Button ID="btnGuardModPaciente" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModPaciente_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agendar turno -->
+    <div class="modal fade" id="AgendarTurno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="AgendarTurnoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblAgendarTurno">Agendar turno</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <p class="bg-primary">
+                    <asp:ValidationSummary ID="ValidationSummary2" Visible="false" runat="server" />
+                </p>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="lblFechaTurno" class="form-label">Fecha de turno</label>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="txtFechaTurno" type="date" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblSelectorEspecialidades" class="form-label">Especialidad</label>
+                                <div class="input-group">
+                                    <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select">
+                                        <asp:ListItem Text="" Selected="True" />
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lblSelectorEspecialidades" class="form-label">Especialista</label>
+                                <div class="input-group">
+                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select">
+                                        <asp:ListItem Text="" Selected="True" />
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th scope="col" class="align-middle">Fecha</th>
+                                    <th scope="col" class="align-middle">Hora</th>
+                                    <th scope="col" class="align-middle">Especialidad</th>
+                                    <th scope="col" class="align-middle">Especialista</th>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle">
+                                        <p>14/11/2023</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <p>13:00</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <p>Ginecología</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <p>Federico García</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button ID="btnGuardarModificarEspecialista" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnAceptarAgendarTurno_Click" />
                 </div>
             </div>
         </div>

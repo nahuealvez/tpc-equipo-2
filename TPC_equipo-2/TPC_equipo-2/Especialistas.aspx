@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <%-- Modal eliminar usuario --%>
+    <%-- Modal eliminar especialista --%>
     <div class="modal fade" id="EliminarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarEspecialistaLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

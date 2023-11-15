@@ -12,6 +12,11 @@ function abrirModalModificarPaciente() {
     pageModal.show();
 }
 
+function abrirModalAgendarTurno() {
+    var pageModal = new bootstrap.Modal(document.getElementById("AgendarTurno"), { keyboard: false });
+    pageModal.show();
+}
+
 /* Modales de usuario */
 function abrirModalAgregarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), {
