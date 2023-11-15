@@ -96,12 +96,17 @@ namespace TPC_equipo_2
             EspecialidadNegocio negocioEspecialidad = new EspecialidadNegocio();
             List<Especialidad> especialidadesList = new List<Especialidad>();
             List<Especialidad> especialidadesNoAsignadas = new List<Especialidad>();
-            List<int> especialidadesAsignadas = new List<int>();
+            List<Especialidad> especialidadesAsignadas = new List<Especialidad>();
+            List<int> idsEespecialidadesAsignadas = new List<int>();
             especialidadesList = negocioEspecialidad.Listar();
-            especialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(id);
+            idsEespecialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(id);
             foreach(Especialidad especialidad in especialidadesList)
             {
-                if(!especialidadesAsignadas.Exists(x => x == especialidad.Id))
+                if(idsEespecialidadesAsignadas.Exists(x => x == especialidad.Id))
+                {
+                    especialidadesAsignadas.Add(especialidad);
+                }
+                else
                 {
                     especialidadesNoAsignadas.Add(especialidad);
                 }
@@ -110,6 +115,9 @@ namespace TPC_equipo_2
             ddlEspecialidades.DataTextField = "Descripcion";
             ddlEspecialidades.DataValueField = "Id";
             ddlEspecialidades.DataBind();
+            repEspecialidadesEspecialista.DataSource = especialidadesAsignadas;
+            repEspecialidadesEspecialista.DataBind();
+
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarQuitarEspecialidades()", true);
         }
 

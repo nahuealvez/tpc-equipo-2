@@ -231,17 +231,22 @@
                                     <th scope="col" class="align-middle">Especialidad</th>
                                     <th scope="col" class="align-middle" style="width: 100px">Acciones</th>
                                 </tr>
-                                <tr>
-                                    <td class="align-middle">
-                                        <p>Ginecología</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" />
-                                    </td>
-                                </tr>
+
+                                <asp:Repeater runat="server" ID="repEspecialidadesEspecialista">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td class="align-middle"><%#Eval("Descripcion")%></td>
+                                            <td class="align-middle">
+                                                <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" />
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
                             </thead>
                         </table>
                      </div>
+
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
