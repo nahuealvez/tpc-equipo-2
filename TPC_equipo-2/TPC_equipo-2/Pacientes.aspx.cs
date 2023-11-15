@@ -94,6 +94,29 @@ namespace TPC_equipo_2
         }
         protected void btnGuardarModPaciente_Click(Object sender, EventArgs e)
         {
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente pacienteModificar = (Paciente)(Session["pacienteModificar"]);
+            pacienteModificar.Apellido = tbxModApellidoPaciente.Text;
+            pacienteModificar.Nombre = tbxModNombrePaciente.Text;
+            pacienteModificar.Dni = int.Parse(tbxModDniPaciente.Text);
+            pacienteModificar.Sexo = dplModSexoPaciente.Text;
+            pacienteModificar.FechaNacimiento = DateTime.Parse(tbxModNacPaciente.Text);
+            pacienteModificar.Mail = tbxModEmailPaciente.Text;
+            pacienteModificar.Telefono = tbxModTelPaciente.Text;
+            pacienteModificar.Cobertura = tbxModCoberturaPaciente.Text;
+            pacienteModificar.NroCredencial = int.Parse(tbxModCredPaciente.Text);
+
+            try
+            {
+                negocio.Modificar(pacienteModificar);
+                Response.Redirect(Request.RawUrl);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
