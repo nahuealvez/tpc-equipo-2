@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -146,7 +147,29 @@ namespace TPC_equipo_2
 
         protected void btnEliminarEspecialista_Click(Object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idUsuario", id);
+            Usuario usuario = EspecialistasList.Find(x => x.IdUsuario == id);
+            lblNombreEliminarEspecialista.Text = usuario.UsuarioReg;
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalEliminarEspecialista()", true);
+        }
 
+        protected void btnAceptarEliminarEspecialista_Click(object sender, EventArgs e)
+        {
+            int idUsuario = (int)(Session["idUsuario"]);
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario especialistaEliminar = EspecialistasList.Find(x => x.IdUsuario == idUsuario);
+
+            try
+            {
+                negocio.Eliminar(especialistaEliminar);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                lblNombreErrorEliminarEspecialista.Text = especialistaEliminar.UsuarioReg;
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorEliminarEspecialista()", true);
+            }
         }
 
         protected void btnDesactivarEspecialista_Click(Object sender, EventArgs e)

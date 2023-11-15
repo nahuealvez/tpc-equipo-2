@@ -34,7 +34,7 @@
                         <asp:Repeater runat="server" ID="repRepetidor">
                             <ItemTemplate>
                                 <tr>
-                                    <td style="width: 400px" class="align-middle"><%#Eval("Apellido")%> <%#Eval("Nombre")%></td>
+                                    <td style="width: 450px" class="align-middle"><%#Eval("Apellido")%> <%#Eval("Nombre")%></td>
                                     <td style="width: 120px;" class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                         <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
                                     </td>
@@ -292,6 +292,51 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="Button2" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarActivarEspecialista_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Modal eliminar usuario --%>
+    <div class="modal fade" id="EliminarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarEspecialistaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblEliminarEspecialista">Eliminar especialista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialista" class="form-label">Especialista: </label>
+                        <asp:Label ID="lblNombreEliminarEspecialista" CssClass="form-label" runat="server" />
+                        <label for="lblNombreEspecialista" class="form-label">¿Está seguro que desea eliminar este especialista?</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarEliminarEspecialista_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%-- Modal error eliminar especialista --%>
+    <div class="modal fade" id="ErrorEliminarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorEliminarEspecialistaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblErrorEliminarEspecialista">Error</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Especialista: </label>
+                        <asp:Label CssClass="form-label" ID="lblNombreErrorEliminarEspecialista" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">El especialista no se puede eliminar porque se encuentra vinculado a otro registro.</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>

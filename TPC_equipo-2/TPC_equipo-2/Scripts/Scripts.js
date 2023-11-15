@@ -6,6 +6,7 @@ function abrirModalAgregarPaciente() {
     });
     pageModal.show();
 }
+
 function abrirModalModificarPaciente() {
     var pageModal = new bootstrap.Modal(document.getElementById("ModificarPaciente"), { keyboard: false });
     pageModal.show();
@@ -67,6 +68,16 @@ function abrirModalDesactivarEspecialista() {
 
 function abrirModalActivarEspecialista() {
     var pageModal = new bootstrap.Modal(document.getElementById("ActivarEspecialista"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalEliminarEspecialista() {
+    var pageModal = new bootstrap.Modal(document.getElementById("EliminarEspecialista"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalErrorEliminarEspecialista() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ErrorEliminarEspecialista"), { keyboard: false });
     pageModal.show();
 }
 
