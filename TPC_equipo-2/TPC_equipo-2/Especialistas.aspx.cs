@@ -90,9 +90,8 @@ namespace TPC_equipo_2
             }
         }
 
-        protected void btnAgregarQuitarEspecialidades_Click(object sender, EventArgs e)
+        protected void cargarModalAgregarQuitarEspecialidades(int id)
         {
-            int id = int.Parse(((Button)sender).CommandArgument);
             EspecialidadNegocio negocioEspecialidad = new EspecialidadNegocio();
             List<Especialidad> especialidadesList = new List<Especialidad>();
             List<Especialidad> especialidadesNoAsignadas = new List<Especialidad>();
@@ -100,9 +99,9 @@ namespace TPC_equipo_2
             List<int> idsEespecialidadesAsignadas = new List<int>();
             especialidadesList = negocioEspecialidad.Listar();
             idsEespecialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(id);
-            foreach(Especialidad especialidad in especialidadesList)
+            foreach (Especialidad especialidad in especialidadesList)
             {
-                if(idsEespecialidadesAsignadas.Exists(x => x == especialidad.Id))
+                if (idsEespecialidadesAsignadas.Exists(x => x == especialidad.Id))
                 {
                     especialidadesAsignadas.Add(especialidad);
                 }
@@ -119,6 +118,17 @@ namespace TPC_equipo_2
             repEspecialidadesEspecialista.DataBind();
 
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarQuitarEspecialidades()", true);
+        }
+
+        protected void btnGuardarEspecialidadEnEspecialista_Click(object sender, EventArgs e)
+        {
+            cargarModalAgregarQuitarEspecialidades(1);
+        }
+
+        protected void btnAgregarQuitarEspecialidades_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            cargarModalAgregarQuitarEspecialidades(id);
         }
 
         protected void btnAgregarJornadas_Click(object sender, EventArgs e)

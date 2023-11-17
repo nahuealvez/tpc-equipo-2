@@ -220,7 +220,7 @@
                             <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select">
                                 <asp:ListItem Text="" Selected="True" />
                             </asp:DropDownList>
-                            <asp:Button ID="btnGuardarEspecialidad" Text="Agregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnGuardarModificarEspecialista_Click" />
+                            <asp:Button ID="btnGuardarEspecialidadEnEspecialista" Text="Agregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnGuardarEspecialidadEnEspecialista_Click" />
                         </div>
                     </div>
                             
@@ -250,7 +250,6 @@
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="btnGuardarModificarEspecialista" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModificarEspecialista_Click" />
                 </div>
             </div>
         </div>

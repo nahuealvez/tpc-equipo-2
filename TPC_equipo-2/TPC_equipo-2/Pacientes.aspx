@@ -213,10 +213,6 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="lblFechaTurno" class="form-label">Fecha de turno</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="txtFechaTurno" type="date" />
-                            </div>
-                            <div class="mb-3">
                                 <label for="lblSelectorEspecialidades" class="form-label">Especialidad</label>
                                 <div class="input-group">
                                     <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select">
@@ -232,6 +228,9 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <asp:Button Text="Buscar turno" CssClass="btn btn-color-project-primary" runat="server" />
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -242,10 +241,11 @@
                                     <th scope="col" class="align-middle">Hora</th>
                                     <th scope="col" class="align-middle">Especialidad</th>
                                     <th scope="col" class="align-middle">Especialista</th>
+                                    <th scope="col" class="align-middle">Acciones</th>
                                 </tr>
                                 <tr>
                                     <td class="align-middle">
-                                        <p>14/11/2023</p>
+                                        <p>16/11/2023</p>
                                     </td>
                                     <td class="align-middle">
                                         <p>13:00</p>
@@ -255,6 +255,9 @@
                                     </td>
                                     <td class="align-middle">
                                         <p>Federico García</p>
+                                    </td>
+                                    <td class="align-middle">
+                                        <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" />
                                     </td>
                                 </tr>
                             </thead>

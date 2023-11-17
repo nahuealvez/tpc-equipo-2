@@ -249,13 +249,13 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidades;
 
         /// <summary>
-        /// Control btnGuardarEspecialidad.
+        /// Control btnGuardarEspecialidadEnEspecialista.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarEspecialidad;
+        protected global::System.Web.UI.WebControls.Button btnGuardarEspecialidadEnEspecialista;
 
         /// <summary>
         /// Control repEspecialidadesEspecialista.
@@ -265,15 +265,6 @@ namespace TPC_equipo_2
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater repEspecialidadesEspecialista;
-
-        /// <summary>
-        /// Control btnGuardarModificarEspecialista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarModificarEspecialista;
 
         /// <summary>
         /// Control lblNombreEspecialistaDesactivar.
