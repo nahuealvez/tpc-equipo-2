@@ -149,6 +149,47 @@ namespace Negocio
             }
         }
 
+        public void AgregarEspecialidadEspecialista(int idUsuario, int idEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("INSERT INTO Especialidad.EspecialistaEspecialidad (IdUsuario, IdEspecialidad) VALUES (@IdEspecialista, @IdEspecialidad)");
+                datos.SetearParametro("@IdEspecialista", idUsuario);
+                datos.SetearParametro("@IdEspecialidad", idEspecialidad);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        public void EliminarEspecialidadEspecialista(int idUsuario, int idEspecialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.SetearConsulta("DELETE FROM Especialidad.EspecialistaEspecialidad WHERE IdUsuario = @IdEspecialista AND IdEspecialidad = @IdEspecialidad");
+                datos.SetearParametro("@IdEspecialista", idUsuario);
+                datos.SetearParametro("@IdEspecialidad", idEspecialidad);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 
 

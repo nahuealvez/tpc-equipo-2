@@ -196,7 +196,7 @@
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="Button1" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModificarEspecialista_Click" />
+                    <asp:Button ID="btnGuardarModificarEspeclista" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnGuardarModificarEspecialista_Click" />
                 </div>
             </div>
         </div>
@@ -237,7 +237,7 @@
                                         <tr>
                                             <td class="align-middle"><%#Eval("Descripcion")%></td>
                                             <td class="align-middle">
-                                                <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" />
+                                                <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnQuitarEspecialidad_Click" />
                                             </td>
                                         </tr>
                                     </ItemTemplate>
