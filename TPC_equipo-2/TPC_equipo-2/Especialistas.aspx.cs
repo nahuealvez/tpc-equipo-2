@@ -119,6 +119,7 @@ namespace TPC_equipo_2
 
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarQuitarEspecialidades()", true);
         }
+
         protected void btnAgregarQuitarEspecialidades_Click(object sender, EventArgs e)
         {
             int id = int.Parse(((Button)sender).CommandArgument);
@@ -136,6 +137,7 @@ namespace TPC_equipo_2
 
             cargarModalAgregarQuitarEspecialidades(idEspecialista);
         }
+
         protected void btnQuitarEspecialidad_Click(object sender, EventArgs e)
         {
             EspecialidadNegocio negocioEspecialidad = new EspecialidadNegocio();
@@ -147,10 +149,16 @@ namespace TPC_equipo_2
             cargarModalAgregarQuitarEspecialidades(idEspecialista);
         }
 
-
-        protected void btnAgregarJornadas_Click(object sender, EventArgs e)
+        protected void cargarModalConfigurarJornadas(int id)
         {
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfigurarJornada()", true);
+        }
 
+        protected void btnConfigurarJornadas_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Session.Add("idEspecialista", id);
+            cargarModalConfigurarJornadas(id);
         }
 
         protected void btnGuardarModificarEspecialista_Click(object sender, EventArgs e)
@@ -261,5 +269,4 @@ namespace TPC_equipo_2
             }
         }
     }
-
 }
