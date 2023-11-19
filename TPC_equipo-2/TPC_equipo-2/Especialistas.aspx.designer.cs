@@ -276,13 +276,22 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary3;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control ddlEspecialidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
+
+        /// <summary>
+        /// Control ddlDiaSemana.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiaSemana;
 
         /// <summary>
         /// Control lblNombreEspecialistaDesactivar.

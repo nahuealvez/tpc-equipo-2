@@ -246,10 +246,9 @@
                             </thead>
                         </table>
                      </div>
-
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -257,7 +256,7 @@
 
     <!-- Modal configurar jornada -->
     <div class="modal fade" id="ConfigurarJornada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ConfigurarJornadaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="lblAgregarQuitarEspecialidades">Configurar jornada</h1>
@@ -267,198 +266,84 @@
                     <asp:ValidationSummary ID="ValidationSummary3" Visible="false" runat="server" />
                 </p>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="lblSelectorEspecialidades" class="form-label">Seleccione la especialidad</label>
-                        <div class="input-group">
-                            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select">
-                                <asp:ListItem Text="" Selected="True" />
-                            </asp:DropDownList>
+                    <div class="mb-3 row">
+                        <div class="mb-3 col">
+                            <label for="lblSelectorEspecialidades" class="form-label">Seleccione la especialidad</label>
+                            <div class="input-group">
+                                <asp:DropDownList ID="ddlEspecialidad" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="" Selected="True" />
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="mb-3 col">
+                            <label for="lblSelectorEspecialidades" class="form-label">Seleccione el día de la semana</label>
+                            <div class="input-group">
+                                <asp:DropDownList ID="ddlDiaSemana" runat="server" CssClass="form-select">
+                                    <asp:ListItem Text="" Selected="True" />
+                                    <asp:ListItem Text="Lunes" Value="1" />
+                                    <asp:ListItem Text="Martes" Value="2" />
+                                    <asp:ListItem Text="Miércoles" Value="3" />
+                                    <asp:ListItem Text="Jueves" Value="4" />
+                                    <asp:ListItem Text="Viernes" Value="5" />
+                                    <asp:ListItem Text="Sábado" Value="6" />
+                                    <asp:ListItem Text="Domingo" Value="7" />
+                                </asp:DropDownList>
+                            </div>
                         </div>
                     </div>
-
+                    <div class="row mb-3">
+                        <div class="col mb-3">
+                            <label for="lblHorarioInicio" class="form-label">Horario inicio</label>
+                            <div class="input-group">
+                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" />
+                                <div class="input-group-text">Hs</div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="lblHorarioInicio" class="form-label">Horario fin</label>
+                            <div class="input-group">
+                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" />
+                                <div class="input-group-text">Hs</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col mb-3">
+                            <asp:Button Text="Agregar jornada" CssClass="btn btn-color-project-primary" style="width: 100%;" runat="server" />
+                        </div>
+                    </div>
+                    
                     <div class="card-body">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Lunes</label>
-                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th scope="col" class="align-middle">Especialidad</th>
+                                    <th scope="col" class="align-middle">Día</th>
+                                    <th scope="col" class="align-middle">Horario Inicio</th>
+                                    <th scope="col" class="align-middle">Horario Fin</th>
+                                    <th scope="col" class="align-middle">Acciones</th>
+                                </tr>
 
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                            <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
+                                <%-- Acá va el repeater con la tabla --%>
 
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Martes</label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                                                        <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Miércoles</label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                                                        <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Jueves</label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                                                        <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Viernes</label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                                                        <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Sábado</label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                                                        <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
-
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">Domingo</label>
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora inicio</label>
-                            </div>
-                            <div class="col form-outline">
-                                <div class="input-group">
-                                    <asp:TextBox runat="server" CssClass="form-control" type="number" min="1" max="24" />
-                                    <div class="input-group-text">Hs</div>
-                                </div>
-                                <label class="form-label" for="typeNumber">Hora fin</label>
-                            </div>
-                                                        <div class="col">
-                                <asp:Button Text="Setear horario" CssClass="btn btn-color-project-primary" style="width: 250px;" runat="server" />
-                            </div>
-                        </div>
+                                <%--                                <asp:Repeater runat="server" ID="Repeater1">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td class="align-middle"><%#Eval("Descripcion")%></td>
+                                            <td class="align-middle">
+                                                <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnQuitarEspecialidad_Click" />
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>--%>
+                            </thead>
+                        </table>
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
-        </div>
-    </div>
 
     <%-- Modal desactivar especialista --%>
     <div class="modal fade" id="DesactivarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="desactivarEspecialistaLabel" aria-hidden="true">
