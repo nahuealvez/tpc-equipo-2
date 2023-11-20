@@ -25,7 +25,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-primary">
+                            <th scope="col" class="align-middle">Nombre y apellido</th>
                             <th scope="col" class="align-middle">Usuario</th>
+                            <th scope="col" class="align-middle">Perfil</th>
                             <th scope="col" class="align-middle">Estado</th>
                             <th scope="col" class="align-middle">Acciones</th>
                         </tr>
@@ -35,10 +37,14 @@
                             <ItemTemplate>
                                 <tr>
                                     <td class="align-middle"><%#Eval("Apellido")%> <%#Eval("Nombre")%></td>
+                                    <td class="align-middle"><%#Eval("UsuarioReg")%></td>
+                                    <td class="align-middle">
+                                        <%# (int)Eval("Perfil") == 1 ? "Administrador" : ((int)Eval("Perfil") == 2 ? "Recepcionista" : "Otro") %>
+                                    </td>
                                     <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
                                         <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
                                     </td>
-                                    <td style="max-width: 120px;" class="align-middle">
+                                    <td style="max-width: auto;" class="align-middle">
                                         <div class="btn-group">
                                             <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialidadId" OnClick="btnModificarUsuario_Click" />
                                             <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("IdUsuario") %>' CommandName="EspecialidadId" OnClick="btnEliminarUsuario_Click" />
