@@ -145,13 +145,11 @@ namespace TPC_equipo_2
             {
                 negocio.Eliminar(especialidadEliminar);
                 Response.Redirect(Request.RawUrl);
-                //PENDIENTE VALIDACION NO ELIMINAR SI HAY ASOCIADO
-                //ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorEliminarEspecialidad()", true);
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                lblErrorEliminarEspecialidad.Text = especialidadEliminar.Descripcion;
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorEliminarEspecialidad()", true);
             }
         }
 

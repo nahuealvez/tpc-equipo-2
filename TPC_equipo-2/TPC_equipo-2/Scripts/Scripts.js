@@ -128,6 +128,6 @@ function abrirModalErrorModificarEspecialidad() {
 }
 
 function abrirModalErrorEliminarEspecialidad() {
-    var pageModal = new bootstrap.Modal(document.getElementById("ErrorModificarEspecialidad"), { keyboard: false });
+    var pageModal = new bootstrap.Modal(document.getElementById("ErrorEliminarEspecialidad"), { keyboard: false });
     pageModal.show();
 }

@@ -181,7 +181,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label ID="lblErrorAgregarEsp" CssClass="form-label" runat="server" />
+                        <asp:Label CssClass="form-label" ID="lblErrorAgregarEsp" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">La especialidad ya se encuentra registrada en la base de datos</label>
                     </div>
                 </div>
@@ -219,13 +219,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="lblErrorEliminarEspecialidad">Error: No se puede eliminar la especialidad</h1>
+                    <h1 class="modal-title fs-5">Error: No se puede eliminar la especialidad</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label CssClass="form-label" Text="Nombre especialidad" runat="server" />
+                        <asp:Label CssClass="form-label" ID="lblErrorEliminarEspecialidad" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">La especialidad se encuentra vinculada a otro registro</label>
                     </div>
                 </div>
