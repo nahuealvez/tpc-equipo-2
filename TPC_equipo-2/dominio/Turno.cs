@@ -8,11 +8,13 @@ namespace dominio
 {
     public class Turno
     {
-        public int Id { get; set; }
+        public int IdTurno { get; set; }
+        public Paciente Paciente { get; set; }
+        public Usuario Usuario { get; set; }
+        public Especialidad Especialidad { get; set; }
         public DateTime FechaHora { get; set; }
         public string MotivoConsulta { get; set; }
         public string Diagnostico { get; set; }
-        public Usuario Especialista { get; set; }
         public EstadoTurno Estado { get; set; }
     }
 }
