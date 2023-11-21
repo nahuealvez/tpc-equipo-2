@@ -149,16 +149,73 @@ namespace TPC_equipo_2
             cargarModalAgregarQuitarEspecialidades(idEspecialista);
         }
 
-        protected void cargarModalConfigurarJornadas(int id)
+        protected void cargarModalConfigurarJornadas(Usuario especialista)
         {
+            EspecialidadNegocio negocioEspecialidad = new EspecialidadNegocio();
+            JornadaNegocio negocioJornada = new JornadaNegocio();
+            List<Jornada> jornadasList = negocioJornada.ListarXEspecialista(especialista);
+            List<Especialidad> especialidades = new List<Especialidad>();
+            List<Especialidad> especialidadesAsignadas = new List<Especialidad>();
+            List<int> idsEspecialidadesAsignadas = new List<int> ();
+            especialidades = negocioEspecialidad.Listar();
+            idsEspecialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(especialista.IdUsuario);
+
+            foreach(Especialidad especialidad in especialidades)
+            {
+                if(idsEspecialidadesAsignadas.Exists(x => x == especialidad.Id))
+                {
+                    especialidadesAsignadas.Add(especialidad);
+                }
+            }
+
+            ddlEspecialidad.DataSource = especialidadesAsignadas;
+            ddlEspecialidad.DataTextField = "Descripcion";
+            ddlEspecialidad.DataValueField = "Id";
+            ddlEspecialidad.DataBind();
+
+            repJornadas.DataSource = jornadasList;
+            repJornadas.DataBind();
+
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfigurarJornada()", true);
         }
 
         protected void btnConfigurarJornadas_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(((Button)sender).CommandArgument);
-            Session.Add("idEspecialista", id);
-            cargarModalConfigurarJornadas(id);
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            Usuario especialista = new Usuario();
+            EspecialistasList = usuarioNegocio.ListarEspecialistas();
+
+            int idEspecialista = int.Parse(((Button)sender).CommandArgument);
+            especialista = EspecialistasList.Find(x => x.IdUsuario == idEspecialista);
+
+            Session.Add("especialista", especialista);
+            cargarModalConfigurarJornadas(especialista);
+        }
+        protected void btnGuardarJornada_Click(object sender, EventArgs e)
+        {
+            JornadaNegocio jornadaNegocio = new JornadaNegocio();
+            Jornada nuevaJornada = new Jornada();
+            Usuario especialista = (Usuario)(Session["especialista"]);
+            EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+            List<Especialidad> especialidades = new List<Especialidad>();
+            especialidades = especialidadNegocio.Listar();
+            string horaInicioFormateada = tbxHoraInicio.Text.PadLeft(2, '0')+":00:00";
+            string horaFinFormateada = tbxHoraFin.Text.PadLeft(2, '0') + ":00:00";
+
+            nuevaJornada.Especialidad = especialidades.Find(x => x.Id == int.Parse(ddlEspecialidad.Text));
+            nuevaJornada.Especialista = especialista;
+            nuevaJornada.DiaSemana = ddlDiaSemana.SelectedItem.Text;
+            nuevaJornada.HoraInicio = TimeSpan.Parse(horaInicioFormateada);
+            nuevaJornada.HoraFin = TimeSpan.Parse(horaFinFormateada);
+
+            jornadaNegocio.Agregar(nuevaJornada);
+
+            cargarModalConfigurarJornadas(especialista);
+        }
+        protected void btnQuitarJornada_Click(object sender, EventArgs e)
+        {
+            Usuario especialista = (Usuario)(Session["especialista"]);
+            cargarModalConfigurarJornadas(especialista);
         }
 
         protected void btnGuardarModificarEspecialista_Click(object sender, EventArgs e)

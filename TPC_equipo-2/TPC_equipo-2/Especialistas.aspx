@@ -258,7 +258,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="lblAgregarQuitarEspecialidades">Configurar jornada</h1>
+                    <h1 class="modal-title fs-5" id="lblConfigurarJornada">Configurar jornada</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <p class="bg-primary">
@@ -294,21 +294,21 @@
                         <div class="col mb-3">
                             <label for="lblHorarioInicio" class="form-label">Horario inicio</label>
                             <div class="input-group">
-                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" />
+                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" ID="tbxHoraInicio" />
                                 <div class="input-group-text">Hs</div>
                             </div>
                         </div>
                         <div class="col mb-3">
-                            <label for="lblHorarioInicio" class="form-label">Horario fin</label>
+                            <label for="lblHorarioFin" class="form-label">Horario fin</label>
                             <div class="input-group">
-                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" />
+                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" ID="tbxHoraFin"/>
                                 <div class="input-group-text">Hs</div>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col mb-3">
-                            <asp:Button Text="Agregar jornada" CssClass="btn btn-color-project-primary" style="width: 100%;" runat="server" />
+                            <asp:Button ID="btnGuardarJornada" Text="Agregar jornada" CssClass="btn btn-color-project-primary" style="width: 100%;" runat="server" OnClick="btnGuardarJornada_Click" />
                         </div>
                     </div>
                     
@@ -323,18 +323,20 @@
                                     <th scope="col" class="align-middle">Acciones</th>
                                 </tr>
 
-                                <%-- Acá va el repeater con la tabla --%>
 
-                                <%--                                <asp:Repeater runat="server" ID="Repeater1">
+                                <asp:Repeater runat="server" ID="repJornadas">
                                     <ItemTemplate>
                                         <tr>
-                                            <td class="align-middle"><%#Eval("Descripcion")%></td>
+                                            <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
+                                            <td class="align-middle"><%#Eval("DiaSemana")%></td>
+                                            <td class="align-middle"><%#Eval("HoraInicio")%></td>
+                                            <td class="align-middle"><%#Eval("HoraFin")%></td>
                                             <td class="align-middle">
-                                                <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnQuitarEspecialidad_Click" />
+                                                <asp:Button Text="Quitar" CssClass="btn btn-danger" runat="server" CommandArgument='<%#Eval("IdJornada") %>' CommandName="JornadaId" OnClick="btnQuitarJornada_Click" />
                                             </td>
                                         </tr>
                                     </ItemTemplate>
-                                </asp:Repeater>--%>
+                                </asp:Repeater>
                             </thead>
                         </table>
                     </div>

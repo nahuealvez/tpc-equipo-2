@@ -294,6 +294,42 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.DropDownList ddlDiaSemana;
 
         /// <summary>
+        /// Control tbxHoraInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxHoraInicio;
+
+        /// <summary>
+        /// Control tbxHoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxHoraFin;
+
+        /// <summary>
+        /// Control btnGuardarJornada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarJornada;
+
+        /// <summary>
+        /// Control repJornadas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repJornadas;
+
+        /// <summary>
         /// Control lblNombreEspecialistaDesactivar.
         /// </summary>
         /// <remarks>
