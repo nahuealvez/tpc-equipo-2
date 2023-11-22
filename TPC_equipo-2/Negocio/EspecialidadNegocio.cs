@@ -41,6 +41,42 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<Especialidad> ListarActivos()
+        {
+            List<Especialidad> lista = new List<Especialidad>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC [Especialidad].[sp_GetEspecialidades]");
+
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Especialidad aux = new Especialidad();
+                    aux.Id = (int)datos.Lector["IdEspecialidad"];
+                    aux.Descripcion = (string)datos.Lector["Especialidad"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    
+                    if (aux.Estado == true)
+                    {
+                        lista.Add(aux);
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
         public void Agregar(Especialidad nuevaEspecialidad)
         {
             AccesoDatos datos = new AccesoDatos();

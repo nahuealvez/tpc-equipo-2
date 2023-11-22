@@ -97,7 +97,7 @@ namespace TPC_equipo_2
             List<Especialidad> especialidadesNoAsignadas = new List<Especialidad>();
             List<Especialidad> especialidadesAsignadas = new List<Especialidad>();
             List<int> idsEespecialidadesAsignadas = new List<int>();
-            especialidadesList = negocioEspecialidad.Listar();
+            especialidadesList = negocioEspecialidad.ListarActivos();
             idsEespecialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(id);
             foreach (Especialidad especialidad in especialidadesList)
             {
