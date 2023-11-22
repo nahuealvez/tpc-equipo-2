@@ -1,8 +1,11 @@
 ﻿using dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -184,6 +187,48 @@ namespace Negocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public List<Usuario> LoginUsuario(string usuario, string password)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC [Usuario].[sp_GetUsuarioByMailPassword] @Usuario, @Password");
+                datos.SetearParametro("@Usuario", usuario);
+                datos.SetearParametro("@Password", password);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Dni = (int)datos.Lector["Dni"];
+                    aux.Sexo = (string)datos.Lector["Sexo"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.UsuarioReg = (string)datos.Lector["Usuario"];
+                    aux.Password = (string)datos.Lector["Password"];
+                    aux.Perfil = (int)datos.Lector["IdPerfil"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
