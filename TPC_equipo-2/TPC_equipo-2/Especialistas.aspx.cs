@@ -97,7 +97,7 @@ namespace TPC_equipo_2
             List<Especialidad> especialidadesNoAsignadas = new List<Especialidad>();
             List<Especialidad> especialidadesAsignadas = new List<Especialidad>();
             List<int> idsEespecialidadesAsignadas = new List<int>();
-            especialidadesList = negocioEspecialidad.ListarActivos();
+            especialidadesList = negocioEspecialidad.Listar();
             idsEespecialidadesAsignadas = negocioEspecialidad.EspecialidadesXEspecialista(id);
             foreach (Especialidad especialidad in especialidadesList)
             {
@@ -107,7 +107,10 @@ namespace TPC_equipo_2
                 }
                 else
                 {
-                    especialidadesNoAsignadas.Add(especialidad);
+                    if (especialidad.Estado == true)
+                    {
+                        especialidadesNoAsignadas.Add(especialidad);
+                    }
                 }
             }
             ddlEspecialidades.DataSource = especialidadesNoAsignadas;
