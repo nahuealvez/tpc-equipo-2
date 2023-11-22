@@ -35,7 +35,7 @@
                             <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" style="color: #0364B8;">Turnos</a>
+                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
