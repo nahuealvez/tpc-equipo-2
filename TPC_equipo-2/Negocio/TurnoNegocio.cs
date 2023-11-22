@@ -51,5 +51,25 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public void CancelarTurno(Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC [Especialidad].[sp_CanTurno] @IdTurno");
+                datos.SetearParametro("@IdTurno", turno.IdTurno);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            { 
+                throw ex; 
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
     }
 }
