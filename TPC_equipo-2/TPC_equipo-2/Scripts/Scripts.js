@@ -131,3 +131,9 @@ function abrirModalErrorEliminarEspecialidad() {
     var pageModal = new bootstrap.Modal(document.getElementById("ErrorEliminarEspecialidad"), { keyboard: false });
     pageModal.show();
 }
+
+/* Modales de turnos */
+function abrirModalCancelarTurno() {
+    var pageModal = new bootstrap.Modal(document.getElementById("CancelarTurno"), { keyboard: false });
+    pageModal.show();
+}
