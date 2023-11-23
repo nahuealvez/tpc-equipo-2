@@ -10,12 +10,18 @@
         <div class="card text-center">
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills d-flex justify-content-between">
-                    <li class="d-flex">
-                        <form class="d-flex" role="buscar">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn-color-project-primary" type="submit">Buscar</button>
-                        </form>
-                    </li>
+                    <div class="d-flex justify-content-center align-items-center gap-4">
+                        <li class="d-flex">
+                            <asp:TextBox CssClass="form-control me-2" placeholder="Buscar especialista" ID="txtBusqueda" runat="server" />
+                            <asp:Button ID="btnBuscarEspecialista" Text="Buscar" class="btn btn-color-project-primary" OnClick="btnBuscar_Click" runat="server" />
+                        </li>
+                        <li class="d-flex">
+                            <asp:DropDownList ID="ddlFiltroEspecialidades" runat="server" CssClass="form-select me-2">
+                                <asp:ListItem Text="" Selected="True" />
+                            </asp:DropDownList>
+                            <asp:Button ID="btnFiltrarEspecialista" Text="Filtrar" class="btn btn-color-project-primary" runat="server" />    
+                        </li>
+                    </div>
                     <li class="nav-item">
                         <asp:Button Text="Agregar especialista" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnAgregarEspecialista_Click" />
                     </li>

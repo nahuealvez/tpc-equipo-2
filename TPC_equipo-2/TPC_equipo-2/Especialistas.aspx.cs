@@ -18,6 +18,17 @@ namespace TPC_equipo_2
         {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             EspecialistasList = usuarioNegocio.ListarEspecialistas();
+
+            List<Especialidad> especialidadesList = new List<Especialidad>();
+            EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+            especialidadesList = especialidadNegocio.Listar();
+            especialidadesList = especialidadesList.OrderBy(x => x.Descripcion).ToList();
+            ddlFiltroEspecialidades.DataTextField = "Descripcion";
+            ddlFiltroEspecialidades.DataValueField = "Id";
+            ddlFiltroEspecialidades.DataSource = especialidadesList;
+            ddlFiltroEspecialidades.DataBind();
+            ddlFiltroEspecialidades.Items.Insert(0, "Todas las especialidades");
+
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = EspecialistasList;
@@ -194,6 +205,7 @@ namespace TPC_equipo_2
             Session.Add("especialista", especialista);
             cargarModalConfigurarJornadas(especialista);
         }
+
         protected void btnGuardarJornada_Click(object sender, EventArgs e)
         {
             JornadaNegocio jornadaNegocio = new JornadaNegocio();
@@ -215,6 +227,7 @@ namespace TPC_equipo_2
 
             cargarModalConfigurarJornadas(especialista);
         }
+
         protected void btnQuitarJornada_Click(object sender, EventArgs e)
         {
             Usuario especialista = (Usuario)(Session["especialista"]);
@@ -327,6 +340,16 @@ namespace TPC_equipo_2
             {
                 throw ex;
             }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string busqueda = txtBusqueda.Text.Trim().ToLower();
+
+            List<Usuario> especialistasFiltrados = EspecialistasList.Where(x => x.Apellido.ToLower().Contains(busqueda) || x.Nombre.ToLower().Contains(busqueda)).ToList();
+
+            repRepetidor.DataSource = especialistasFiltrados;
+            repRepetidor.DataBind();
         }
     }
 }
