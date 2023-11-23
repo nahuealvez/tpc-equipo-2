@@ -37,9 +37,25 @@ namespace TPC_equipo_2
             }
         }
 
+        protected void cargarModalGestionTurnos()
+        {
+            List<Turno> turnosDisponibles = new List<Turno>();
+            turnosDisponibles = (List<Turno>)Session["turnosDisponibles"];
+            repTurnosDisponibles.DataSource = turnosDisponibles;
+            repTurnosDisponibles.DataBind();
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
+        }
         protected void btnAgendarTurno_Click(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
+            cargarModalGestionTurnos();
+        }
+        protected void btnBuscarTurnos_Click(object sender, EventArgs e)
+        {
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            List<Turno> turnosDisponibles = new List<Turno>();
+            turnosDisponibles = turnoNegocio.ChequearTurnos(10, 5);
+            Session.Add("turnosDisponibles", turnosDisponibles);
+            cargarModalGestionTurnos();
         }
 
         protected void btnAceptarAgendarTurno_Click(Object sender, EventArgs e)
@@ -125,6 +141,7 @@ namespace TPC_equipo_2
             }
 
         }
+
 
         protected void btnEliminarPaciente_Click(Object sender, EventArgs e)
         {

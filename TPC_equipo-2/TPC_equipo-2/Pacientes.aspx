@@ -221,15 +221,15 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="lblSelectorEspecialidades" class="form-label">Especialista</label>
+                                <label for="lblSelectorEspecialistas" class="form-label">Especialista</label>
                                 <div class="input-group">
-                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-select">
+                                    <asp:DropDownList ID="ddlEspecialistas" runat="server" CssClass="form-select">
                                         <asp:ListItem Text="" Selected="True" />
                                     </asp:DropDownList>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <asp:Button Text="Buscar turno" CssClass="btn btn-color-project-primary" runat="server" />
+                                <asp:Button Text="Buscar turno" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnBuscarTurnos_Click" />
                             </div>
                         </div>
                     </div>
@@ -243,23 +243,19 @@
                                     <th scope="col" class="align-middle">Especialista</th>
                                     <th scope="col" class="align-middle">Acciones</th>
                                 </tr>
-                                <tr>
-                                    <td class="align-middle">
-                                        <p>16/11/2023</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p>13:00</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p>Ginecología</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <p>Federico García</p>
-                                    </td>
-                                    <td class="align-middle">
-                                        <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" />
-                                    </td>
-                                </tr>
+                                <asp:Repeater ID="repTurnosDisponibles" runat="server">
+                                    <ItemTemplate>
+                                    <tr>
+                                        <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("dd/MM/yyyy")%></td>
+                                        <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("HH:mm")%></td>
+                                        <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
+                                        <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
+                                        <td class="align-middle">
+                                            <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" />
+                                        </td>
+                                    </tr>
+                                        </ItemTemplate>
+                                </asp:Repeater>
                             </thead>
                         </table>
                     </div>

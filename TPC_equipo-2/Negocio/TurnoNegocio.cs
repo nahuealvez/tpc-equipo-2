@@ -71,5 +71,83 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+
+        public List<Turno> ChequearTurnos(int idEspecialista, int idEspecialidad)
+        {
+            JornadaNegocio jornadaNegocio = new JornadaNegocio();
+            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            //EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+            List<Usuario> especialistas = new List<Usuario>();
+            //List<Especialidad> especialidades = new List<Especialidad>();
+            especialistas = usuarioNegocio.ListarEspecialistas();
+            //especialidades = especialidadNegocio.Listar();
+            Usuario especialista = especialistas.Find(x => x.IdUsuario == idEspecialista);
+            List<Turno> turnosDisponibles = new List<Turno>();
+            List<Turno> turnosAsignadosEspecialidadMedico = new List<Turno>();
+            List<string> stringsCompararTurnosAsigndos = new List<string>();
+            List<Turno> turnosAsignados = Listar();
+            List<Jornada> jornadasEspecialista = new List<Jornada>();
+            jornadasEspecialista = jornadaNegocio.ListarXEspecialista(especialista);
+            
+            foreach(Turno turno in turnosAsignados)
+            {
+                if(turno.Usuario.IdUsuario ==  idEspecialista && turno.Especialidad.Id == idEspecialidad)
+                {
+                    turnosAsignadosEspecialidadMedico.Add(turno);
+                }
+            }
+
+            foreach(Turno turno in turnosAsignadosEspecialidadMedico)
+            {
+                string idEspecialistaStr = turno.Usuario.IdUsuario.ToString();
+                string idEspecilidadStr = turno.Especialidad.Id.ToString();
+                string fechaTurnoStr = turno.FechaHora.ToString();
+
+                string codigoTurno = (idEspecialistaStr + "-" + idEspecilidadStr +  "-" + fechaTurnoStr).ToUpper();
+                stringsCompararTurnosAsigndos.Add(codigoTurno);
+            }
+
+            for(int i = 1; i < 31; i++)
+            {
+                DateTime fechaAComprobar = DateTime.Now.AddDays(i);
+                string nombreDia = (fechaAComprobar.ToString("dddd")).ToUpper();
+                
+                foreach(Jornada jornadaAEvaluar in jornadasEspecialista)
+                {
+                    if(nombreDia == (jornadaAEvaluar.DiaSemana).ToUpper())
+                    {
+                        int cantidadHsJornada = (int)(jornadaAEvaluar.HoraFin - jornadaAEvaluar.HoraInicio).TotalHours;
+                        DateTime fechaHoraTurnoPotencial = new DateTime(
+                            fechaAComprobar.Year,
+                            fechaAComprobar.Month,
+                            fechaAComprobar.Day,
+                            jornadaAEvaluar.HoraInicio.Hours,
+                            jornadaAEvaluar.HoraInicio.Minutes,
+                            jornadaAEvaluar.HoraInicio.Seconds
+                        );
+
+                        for(int j = 0; j < cantidadHsJornada; j++)
+                        {
+                            string idEspecialistaStr = jornadaAEvaluar.Especialista.IdUsuario.ToString();
+                            string idEspecilidadStr = jornadaAEvaluar.Especialidad.Id.ToString();
+                            string fechaTurnoStr = fechaHoraTurnoPotencial.ToString();
+                            string codigoTurnoComparar = (idEspecialistaStr + "-" + idEspecilidadStr + "-" + fechaTurnoStr).ToUpper();
+                            if (!stringsCompararTurnosAsigndos.Contains(codigoTurnoComparar))
+                            {
+                                Turno aux = new Turno();
+                                aux.Jornada = jornadaAEvaluar;
+                                aux.FechaHora = fechaHoraTurnoPotencial;
+                                aux.Usuario = jornadaAEvaluar.Especialista;
+                                aux.Especialidad = jornadaAEvaluar.Especialidad;
+                                turnosDisponibles.Add(aux);
+                            }
+                            fechaHoraTurnoPotencial = fechaHoraTurnoPotencial.AddHours(1);
+                        }
+                    }
+                }
+               
+            }
+            return turnosDisponibles;
+        }
     }
 }
