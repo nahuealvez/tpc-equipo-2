@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -342,11 +343,28 @@ namespace TPC_equipo_2
             }
         }
 
+        protected static string EliminarAcentosConRegEx(string inputString)
+        {
+            Regex reemplazarAcentos_a = new Regex("[á|à|ä|â]", RegexOptions.Compiled);
+            Regex reemplazarAcentos_b = new Regex("[é|è|ë|ê]", RegexOptions.Compiled);
+            Regex reemplazarAcentos_c = new Regex("[í|ì|ï|î]", RegexOptions.Compiled);
+            Regex reemplazarAcentos_d = new Regex("[ó|ò|ö|ô]", RegexOptions.Compiled);
+            Regex reemplazarAcentos_e = new Regex("[ú|ù|ü|û]", RegexOptions.Compiled);
+
+            inputString = reemplazarAcentos_a.Replace(inputString, "a");
+            inputString = reemplazarAcentos_b.Replace(inputString, "e");
+            inputString = reemplazarAcentos_c.Replace(inputString, "i");
+            inputString = reemplazarAcentos_d.Replace(inputString, "o");
+            inputString = reemplazarAcentos_e.Replace(inputString, "u");
+
+            return inputString;
+        }
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            string busqueda = txtBusqueda.Text.Trim().ToLower();
+            string busqueda = EliminarAcentosConRegEx(txtBusqueda.Text.Trim().ToLower());
 
-            List<Usuario> especialistasFiltrados = EspecialistasList.Where(x => x.Apellido.ToLower().Contains(busqueda) || x.Nombre.ToLower().Contains(busqueda)).ToList();
+            List<Usuario> especialistasFiltrados = EspecialistasList.Where(x => EliminarAcentosConRegEx(x.Apellido.ToLower()).Contains(busqueda) || EliminarAcentosConRegEx(x.Nombre.ToLower()).Contains(busqueda)).ToList();
 
             repRepetidor.DataSource = especialistasFiltrados;
             repRepetidor.DataBind();
