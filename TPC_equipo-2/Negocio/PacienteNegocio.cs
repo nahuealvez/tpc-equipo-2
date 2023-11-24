@@ -48,6 +48,43 @@ namespace Negocio
             }
         }
 
+        public Paciente ListarXIdPaciente(int idPaciente)
+        {
+            Paciente pacienteEncontrado = new Paciente();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT * FROM usuario.Paciente WHERE IdPaciente = @id");
+                datos.SetearParametro("@id", idPaciente);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    pacienteEncontrado.IdPaciente = (int)datos.Lector["IdPaciente"];
+                    pacienteEncontrado.Apellido = (string)datos.Lector["Apellido"];
+                    pacienteEncontrado.Nombre = (string)datos.Lector["Nombre"];
+                    pacienteEncontrado.Dni = (int)datos.Lector["Dni"];
+                    pacienteEncontrado.Sexo = (string)datos.Lector["Sexo"];
+                    pacienteEncontrado.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    pacienteEncontrado.Mail = (string)datos.Lector["Mail"];
+                    pacienteEncontrado.Telefono = (string)datos.Lector["Telefono"];
+                    pacienteEncontrado.Cobertura = (string)datos.Lector["Cobertura"];
+                    pacienteEncontrado.NroCredencial = (int)datos.Lector["NroCredencial"];
+                }
+
+                return pacienteEncontrado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
         public void Agregar(Paciente nuevoPaciente)
         {

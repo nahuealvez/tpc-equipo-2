@@ -42,6 +42,36 @@ namespace Negocio
             }
         }
 
+        public Especialidad ListarXId(int idEspecialidad)
+        {
+            Especialidad especialidadEncontrada = new Especialidad();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT * FROM Especialidad.Especialidad WHERE IdEspecialidad = @id");
+                datos.SetearParametro("@id", idEspecialidad);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    especialidadEncontrada.Id = (int)datos.Lector["IdEspecialidad"];
+                    especialidadEncontrada.Descripcion = (string)datos.Lector["Especialidad"];
+                    especialidadEncontrada.Estado = (bool)datos.Lector["Estado"];
+                }
+
+                return especialidadEncontrada;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Especialidad> ListarActivos()
         {
             List<Especialidad> lista = new List<Especialidad>();

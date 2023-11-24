@@ -53,7 +53,7 @@ namespace TPC_equipo_2
         {
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             List<Turno> turnosDisponibles = new List<Turno>();
-            turnosDisponibles = turnoNegocio.ChequearTurnos(10, 5);
+            turnosDisponibles = turnoNegocio.ChequearTurnos(6, 13);
             Session.Add("turnosDisponibles", turnosDisponibles);
             cargarModalGestionTurnos();
         }
