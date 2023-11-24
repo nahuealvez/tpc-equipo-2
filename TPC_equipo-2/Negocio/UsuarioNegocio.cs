@@ -54,6 +54,46 @@ namespace Negocio
             }
         }
 
+        public Usuario ListarXIdUsuario(int idUsuario)
+        {
+            Usuario usuarioEncontrado = new Usuario();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT * FROM Usuario.Usuario WHERE IdUsuario = @Id");
+                datos.SetearParametro("@Id", idUsuario);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    usuarioEncontrado.IdUsuario = (int)datos.Lector["IdUsuario"];
+                    usuarioEncontrado.Apellido = (string)datos.Lector["Apellido"];
+                    usuarioEncontrado.Nombre = (string)datos.Lector["Nombre"];
+                    usuarioEncontrado.Dni = (int)datos.Lector["Dni"];
+                    usuarioEncontrado.Sexo = (string)datos.Lector["Sexo"];
+                    usuarioEncontrado.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    usuarioEncontrado.Mail = (string)datos.Lector["Mail"];
+                    usuarioEncontrado.Telefono = (string)datos.Lector["Telefono"];
+                    usuarioEncontrado.UsuarioReg = (string)datos.Lector["Usuario"];
+                    usuarioEncontrado.Password = (string)datos.Lector["Password"];
+                    usuarioEncontrado.Perfil = (int)datos.Lector["IdPerfil"];
+                    usuarioEncontrado.Estado = (bool)datos.Lector["Estado"];
+
+                }
+
+                return usuarioEncontrado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public List<Usuario> ListarEspecialistas()
         {
             List<Usuario> lista = new List<Usuario>();
