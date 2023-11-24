@@ -215,7 +215,7 @@
                             <div class="mb-3">
                                 <label for="lblSelectorEspecialidades" class="form-label">Especialidad</label>
                                 <div class="input-group">
-                                    <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="form-select">
+                                    <asp:DropDownList ID="ddlEspecialidades" CssClass="form-select" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged">
                                         <asp:ListItem Text="" Selected="True" />
                                     </asp:DropDownList>
                                 </div>

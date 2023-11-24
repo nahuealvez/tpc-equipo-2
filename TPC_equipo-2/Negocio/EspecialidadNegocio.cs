@@ -187,6 +187,7 @@ namespace Negocio
                 datos.CerrarConexion();
             }
         }
+        // DEVUELVE UNA LISTA DE ID DE ESPECIALIDADES QUE ATIENDE UN ESPECIALISTA
         public List<int> EspecialidadesXEspecialista(int id)
         {
             List<int> lista = new List<int>();
@@ -201,6 +202,34 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     lista.Add((int)datos.Lector["IdEspecialidad"]);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+        // DEVUELVE UNA LISTA DE ID DE ESPECIALISTAS QUE ATIENDEN UNA ESPECIALIDAD
+        public List<int> EspecialistasXEspecialidad(int idEspecialidad)
+        {
+            List<int> lista = new List<int>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT * FROM Especialidad.EspecialistaEspecialidad WHERE IdEspecialidad = @Id");
+                datos.SetearParametro("@Id", idEspecialidad);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    lista.Add((int)datos.Lector["IdUsuario"]);
                 }
 
                 return lista;

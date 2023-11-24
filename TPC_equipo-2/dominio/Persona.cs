@@ -16,5 +16,8 @@ namespace dominio
         public string Mail { get; set; }
         public string Telefono { get; set; }
 
+        //Propiedad de solo lectura -- Concatena el nombre y el apellido
+        public string NombreCompleto => $"{Apellido}, {Nombre}";
+
     }
 }
