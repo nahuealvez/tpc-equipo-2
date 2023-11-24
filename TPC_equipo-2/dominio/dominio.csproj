@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumPerfil.cs" />
     <Compile Include="Jornada.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Especialidad.cs" />

@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -21,14 +21,22 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="d-flex justify-content-center align-items-center gap-1 navbar-brand" href="#">
-                    <img width="24" height="24" src="https://img.icons8.com/material/24/0364B8/heart-with-pulse.png" alt="heart-with-pulse"/>
+                    <img width="24" height="24" src="https://img.icons8.com/material/24/0364B8/heart-with-pulse.png" alt="heart-with-pulse" />
                     <div style="color: #0364B8; font-family: 'Fira Sans', sans-serif; font-weight: 800;">
-                        Port Salut <span style="font-weight: 400;"> | Medicina privada</span>
+                        Port Salut <span style="font-weight: 400;">| Medicina privada</span>
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <%
+                    if (UsuarioLogeado != null)
+                    {
+
+                        switch (UsuarioLogeado.Perfil)
+                        {
+                            case (int)dominio.EnumPerfil.Administrador:
+                %>
                 <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -42,6 +50,53 @@
                         </li>
                     </ul>
                 </div>
+                <%
+                        break;
+                    case (int)dominio.EnumPerfil.Recepcionista:
+                %>
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                        </li>
+                    </ul>
+                </div>
+                <%
+                        break;
+                    case (int)dominio.EnumPerfil.Especialista:
+                %>
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                        </li>
+                    </ul>
+                </div>
+                <%
+                        break;
+                    default:
+                %>
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
+                        </li>
+                    </ul>
+                </div>
+                <%
+                            break;
+                        }
+                    }
+                %>
             </div>
         </nav>
         <div>
