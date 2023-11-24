@@ -25,29 +25,55 @@ namespace Negocio
             try
             {
                 //datos.SetearConsulta("SELECT A.IdTurno, A.FechaHoraTurno, A.MotivoConsulta, A.Diagnostico, B.Dni AS DniPaciente, B.Apellido AS ApellidoPaciente, B.Nombre AS NombrePaciente , C.Apellido AS ApellidoEspecialista, C.Nombre AS NombreEspecialista, D.Especialidad, E.NombreEstado FROM Especialidad.Turno AS A LEFT JOIN Usuario.Paciente AS B ON A.IdPaciente = B.IdPaciente LEFT JOIN Usuario.Usuario AS C ON A.IdEspecialista = C.IdUsuario LEFT JOIN Especialidad.Especialidad AS D ON A.IdEspecialidad = D.IdEspecialidad LEFT JOIN Especialidad.EstadoTurno AS E ON A.IdEstadoTurno = E.IdEstadoTurno");
-                datos.SetearConsulta("SELECT * FROM Especialidad.Turno");
+                datos.SetearConsulta("EXEC [Especialidad].[sp_GetTurnos]");
+                //datos.SetearConsulta("SELECT * FROM Especialidad.Turno");
+                
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Turno aux = new Turno();
                     aux.IdTurno = (int)datos.Lector["IdTurno"];
-                    //aux.Paciente = new Paciente();
-                    //aux.Paciente.Dni = (Int32)datos.Lector["DniPaciente"];
-                    //aux.Paciente.Apellido = (string)datos.Lector["ApellidoPaciente"];
-                    //aux.Paciente.Nombre = (string)datos.Lector["NombrePaciente"];
-                    aux.Usuario = especialistas.Find(x => x.IdUsuario == (int)datos.Lector["IdEspecialista"]);
-                    //aux.Usuario = new Usuario();
-                    //aux.Usuario.Apellido = (string)datos.Lector["ApellidoEspecialista"];
-                    //aux.Usuario.Nombre = (string)datos.Lector["NombreEspecialista"];
-                    aux.Especialidad = especialidades.Find(x => x.Id == (int)datos.Lector["IdEspecialidad"]);
-                    //aux.Especialidad = new Especialidad();
-                    //aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
                     aux.FechaHora = (DateTime)datos.Lector["FechaHoraTurno"];
                     aux.MotivoConsulta = (string)datos.Lector["MotivoConsulta"];
                     aux.Diagnostico = (string)datos.Lector["Diagnostico"];
-                    //aux.Estado = new EstadoTurno();
-                    //aux.Estado.Descripcion = (string)datos.Lector["NombreEstado"];
+                    
+                    aux.Paciente = new Paciente();
+                    aux.Paciente.IdPaciente = (Int32)datos.Lector["IdPaciente"];
+                    aux.Paciente.Dni = (Int32)datos.Lector["DniPaciente"];
+                    aux.Paciente.Apellido = (string)datos.Lector["ApellidoPaciente"];
+                    aux.Paciente.Nombre = (string)datos.Lector["NombrePaciente"];
+                    aux.Paciente.Sexo = (string)datos.Lector["SexoPaciente"];
+                    aux.Paciente.FechaNacimiento = (DateTime)datos.Lector["FechaNacimientoPaciente"];
+                    aux.Paciente.Mail = (string)datos.Lector["MailPaciente"];
+                    aux.Paciente.Telefono = (string)datos.Lector["TelefonoPaciente"];
+                    aux.Paciente.Cobertura = (string)datos.Lector["CoberturaPaciente"];
+                    aux.Paciente.NroCredencial = (int)datos.Lector["NroCredencialPaciente"];
+
+                    aux.Usuario = especialistas.Find(x => x.IdUsuario == (int)datos.Lector["IdEspecialista"]);
+                    aux.Usuario = new Usuario();
+                    aux.Usuario.IdUsuario = (int)datos.Lector["IdEspecialista"];
+                    aux.Usuario.Apellido = (string)datos.Lector["ApellidoEspecialista"];
+                    aux.Usuario.Nombre = (string)datos.Lector["NombreEspecialista"];
+                    aux.Usuario.Dni = (int)datos.Lector["DniEspecialista"];
+                    aux.Usuario.Sexo = (string)datos.Lector["SexoEspecialista"];
+                    aux.Usuario.FechaNacimiento = (DateTime)datos.Lector["FechaNacimientoEspecialista"];
+                    aux.Usuario.Mail = (string)datos.Lector["MailEspecialista"];
+                    aux.Usuario.Telefono = (string)datos.Lector["TelefonoEspecialista"];
+                    aux.Usuario.UsuarioReg = (string)datos.Lector["UsuarioEspecialista"];
+                    aux.Usuario.Password = (string)datos.Lector["PasswordEspecialista"];
+                    aux.Usuario.Perfil = (int)datos.Lector["IdPerfilEspecialista"];
+                    aux.Usuario.Estado = (bool)datos.Lector["EstadoEspecialidad"];
+
+                    aux.Especialidad = especialidades.Find(x => x.Id == (int)datos.Lector["IdEspecialidad"]);
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Id = (int)datos.Lector["IdEspecialidad"];
+                    aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
+                    aux.Especialidad.Estado = (bool)datos.Lector["EstadoEspecialidad"];
+
+                    aux.Estado = new EstadoTurno();
+                    aux.Estado.Id = (int)datos.Lector["IdEstadoTurno"];
+                    aux.Estado.Descripcion = (string)datos.Lector["NombreEstado"];
                     lista.Add(aux);
                 }
 
