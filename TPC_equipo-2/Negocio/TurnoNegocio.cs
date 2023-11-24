@@ -115,12 +115,7 @@ namespace Negocio
         {
             JornadaNegocio jornadaNegocio = new JornadaNegocio();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            //EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
-            List<Usuario> especialistas = new List<Usuario>();
-            //List<Especialidad> especialidades = new List<Especialidad>();
-            especialistas = usuarioNegocio.ListarEspecialistas();
-            //especialidades = especialidadNegocio.Listar();
-            Usuario especialista = especialistas.Find(x => x.IdUsuario == idEspecialista);
+            Usuario especialista = usuarioNegocio.ListarXIdUsuario(idEspecialista);
             List<Turno> turnosDisponibles = new List<Turno>();
             List<Turno> turnosAsignadosEspecialidadMedico = new List<Turno>();
             List<string> stringsCompararTurnosAsigndos = new List<string>();
@@ -135,7 +130,7 @@ namespace Negocio
                     turnosAsignadosEspecialidadMedico.Add(turno);
                 }
             }
-
+            //POSIBLEMENTE ESTO PUEDE INCLUIRSE EN EL MISMO FOR EACH DE ARRIBA.
             foreach(Turno turno in turnosAsignadosEspecialidadMedico)
             {
                 string idEspecialistaStr = turno.Usuario.IdUsuario.ToString();
@@ -153,7 +148,7 @@ namespace Negocio
                 
                 foreach(Jornada jornadaAEvaluar in jornadasEspecialista)
                 {
-                    if(nombreDia == (jornadaAEvaluar.DiaSemana).ToUpper())
+                    if(nombreDia == (jornadaAEvaluar.DiaSemana).ToUpper() && jornadaAEvaluar.)
                     {
                         int cantidadHsJornada = (int)(jornadaAEvaluar.HoraFin - jornadaAEvaluar.HoraInicio).TotalHours;
                         DateTime fechaHoraTurnoPotencial = new DateTime(
