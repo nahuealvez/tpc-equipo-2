@@ -4,7 +4,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <%if (UsuarioLogeado.Perfil == (int)dominio.EnumPerfil.Administrador)
+        {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Especialistas</h2>
         <div class="card text-center">
@@ -19,7 +20,7 @@
                             <asp:DropDownList ID="ddlFiltroEspecialidades" runat="server" CssClass="form-select me-2">
                                 <asp:ListItem Text="" Selected="True" />
                             </asp:DropDownList>
-                            <asp:Button ID="btnFiltrarEspecialista" Text="Filtrar" class="btn btn-color-project-primary" runat="server" />    
+                            <asp:Button ID="btnFiltrarEspecialista" Text="Filtrar" class="btn btn-color-project-primary" runat="server" />
                         </li>
                     </div>
                     <li class="nav-item">
@@ -62,6 +63,14 @@
             </div>
         </div>
     </div>
+    <%}
+        else
+        {%>
+    <h2 class="h2">Acceso solo para Administradores</h2>
+
+    <% }
+    %>
+
 
     <!-- Modal agregar especialista -->
     <div class="modal fade" id="AgregarEspecialista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarEspecialistaLabel" aria-hidden="true">
@@ -228,7 +237,7 @@
                             <asp:Button ID="btnGuardarEspecialidadEnEspecialista" Text="Agregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnGuardarEspecialidadEnEspecialista_Click" />
                         </div>
                     </div>
-                            
+
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
@@ -250,7 +259,7 @@
 
                             </thead>
                         </table>
-                     </div>
+                    </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
@@ -307,17 +316,17 @@
                         <div class="col mb-3">
                             <label for="lblHorarioFin" class="form-label">Horario fin</label>
                             <div class="input-group">
-                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" ID="tbxHoraFin"/>
+                                <asp:TextBox min="1" max="24" CssClass="form-control" type="number" runat="server" ID="tbxHoraFin" />
                                 <div class="input-group-text">Hs</div>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col mb-3">
-                            <asp:Button ID="btnGuardarJornada" Text="Agregar jornada" CssClass="btn btn-color-project-primary" style="width: 100%;" runat="server" OnClick="btnGuardarJornada_Click" />
+                            <asp:Button ID="btnGuardarJornada" Text="Agregar jornada" CssClass="btn btn-color-project-primary" Style="width: 100%;" runat="server" OnClick="btnGuardarJornada_Click" />
                         </div>
                     </div>
-                    
+
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>

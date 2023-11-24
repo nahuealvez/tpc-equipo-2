@@ -12,9 +12,11 @@ namespace TPC_equipo_2
     public partial class Pacientes : System.Web.UI.Page
     {
         public List<Paciente> PacienteList;
+        public Usuario UsuarioLogeado { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
             PacienteList = pacienteNegocio.Listar();
             if (!IsPostBack)
@@ -119,7 +121,7 @@ namespace TPC_equipo_2
         {
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             List<Turno> turnosDisponibles = new List<Turno>();
-            turnosDisponibles = turnoNegocio.ChequearTurnos(6, 13);
+            turnosDisponibles = turnoNegocio.ChequearTurnos(10, 5);
             Session.Add("turnosDisponibles", turnosDisponibles);
             cargarModalGestionTurnos();
         }

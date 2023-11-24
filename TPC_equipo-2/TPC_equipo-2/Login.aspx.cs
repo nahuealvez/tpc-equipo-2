@@ -23,7 +23,19 @@ namespace TPC_equipo_2
 
             if (usuario.Count > 0)
             {
-                Response.Redirect("Configuracion.aspx");
+                Session["UsuarioSesion"] = usuario[0];
+                if (usuario[0].Perfil == (int)EnumPerfil.Administrador)
+                {
+                    Response.Redirect("Configuracion.aspx");
+                }
+                if (usuario[0].Perfil == (int)EnumPerfil.Recepcionista)
+                {
+                    Response.Redirect("Turnos.aspx");
+                }
+                else
+                {
+                    Response.Redirect("Turnos.aspx");
+                }
             }
             else
             {

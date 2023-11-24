@@ -4,7 +4,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <%if (UsuarioLogeado.Perfil == (int)dominio.EnumPerfil.Administrador)
+        {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Usuarios</h2>
         <div class="card text-center">
@@ -61,6 +62,14 @@
             </div>
         </div>
     </div>
+    <%}
+        else
+        {%>
+    <h2 class="h2">Acceso solo para Administradores</h2>
+
+    <% }
+    %>
+
 
     <!-- Modal agregar usuario -->
     <div class="modal fade" id="AgregarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarUsuarioLabel" aria-hidden="true">

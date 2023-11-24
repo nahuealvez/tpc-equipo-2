@@ -13,8 +13,10 @@ namespace TPC_equipo_2
     public partial class Usuarios : System.Web.UI.Page
     {
         public List<Usuario> UsuarioList;
+        public Usuario UsuarioLogeado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             UsuarioList = usuarioNegocio.Listar();
             if (!IsPostBack)

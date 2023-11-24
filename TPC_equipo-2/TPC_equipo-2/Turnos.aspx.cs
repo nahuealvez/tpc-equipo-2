@@ -12,10 +12,13 @@ namespace TPC_equipo_2
     public partial class Turnos : System.Web.UI.Page
     {
         public List<Turno> TurnosList;
+        public Usuario UsuarioLogeado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             TurnoNegocio turnoNegocio = new TurnoNegocio();
-            TurnosList = turnoNegocio.Listar();
+            if (UsuarioLogeado.Perfil == (int)EnumPerfil.Especialista) TurnosList = turnoNegocio.ListarPorEspecialista(UsuarioLogeado.IdUsuario);
+            else TurnosList = turnoNegocio.Listar();
             
             if (!IsPostBack)
             {

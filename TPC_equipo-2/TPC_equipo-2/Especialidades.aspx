@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <%if (UsuarioLogeado.Perfil == (int)dominio.EnumPerfil.Administrador)
+        {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Especialidades</h2>
         <div class="card text-center">
@@ -16,7 +17,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <asp:Button Text="Agregar especialidad" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" Onclick="btnAgregarEspecialidad_Click" />
+                        <asp:Button Text="Agregar especialidad" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnAgregarEspecialidad_Click" />
                     </li>
                 </ul>
             </div>
@@ -30,30 +31,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                <asp:Repeater runat="server" id="repRepetidor" >
-                <ItemTemplate>
-                        <tr>
-                            <td class="align-middle"><%#Eval("Descripcion")%></td>
-                            <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
-                                <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
-                            </td>
-                            <td style="max-width: 120px;" class="align-middle">
-                                <div class="btn-group">
-                                    <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnModificarEspecialidad_Click" />
-                                    <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarEspecialidad_Click" />
-                                    <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnDesactivarEspecialidad_Click" Visible="true"/>
-                                    <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" Onclick="btnActivarEspecialidad_Click" Visible="false"/>
-                                    
-                                </div>
-                            </td>
-                        </tr>
-                </ItemTemplate>
-            </asp:Repeater>
+                        <asp:Repeater runat="server" ID="repRepetidor">
+                            <ItemTemplate>
+                                <tr>
+                                    <td class="align-middle"><%#Eval("Descripcion")%></td>
+                                    <td class="<%# (bool)Eval("Estado") ? "bg-success-subtle align-middle" : "bg-warning-subtle align-middle" %>">
+                                        <%#(bool)Eval("Estado") ? "Activo" : "Inactivo" %>
+                                    </td>
+                                    <td style="max-width: 120px;" class="align-middle">
+                                        <div class="btn-group">
+                                            <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnModificarEspecialidad_Click" />
+                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnEliminarEspecialidad_Click" />
+                                            <asp:Button Text="Desactivar" ID="btnDesactivar" CssClass="btn btn-warning" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnDesactivarEspecialidad_Click" Visible="true" />
+                                            <asp:Button Text="Activar" ID="btnActivar" CssClass="btn btn-success" Style="width: 100px;" runat="server" CommandArgument='<%#Eval("Id") %>' CommandName="EspecialidadId" OnClick="btnActivarEspecialidad_Click" Visible="false" />
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </tbody>
                 </table>
-            </div>  
+            </div>
         </div>
     </div>
+    <%}
+        else
+        {%>
+    <h2 class="h2">Acceso solo para Administradores</h2>
+
+    <% }
+    %>
+
 
     <!-- Modal agregar especialidad -->
     <div class="modal fade" id="AgregarEspecialidad" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarEspecialidadLabel" aria-hidden="true">
@@ -110,7 +119,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Especialidad: </label>
-                        <asp:Label ID="lblNombreEspecEliminar" CssClass="form-label" runat="server" />      
+                        <asp:Label ID="lblNombreEspecEliminar" CssClass="form-label" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">¿Está seguro que desea eliminar esta especialidad?</label>
                     </div>
                 </div>
@@ -164,10 +173,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnGuardarActivarEspec" Text="Aceptar" CssClass="btn btn-success" data-bs-dismiss="modal" runat="server" OnClick="btnAceptarActivarEspecialidad_Click" />
-</div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <%-- Modal error agregar especialidad --%>
