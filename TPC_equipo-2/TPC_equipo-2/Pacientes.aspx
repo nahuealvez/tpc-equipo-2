@@ -4,7 +4,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <%if (UsuarioLogeado.Perfil != (int)dominio.EnumPerfil.Especialista)
+        {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Pacientes</h2>
         <div class="card text-center">
@@ -53,6 +54,13 @@
             </div>
         </div>
     </div>
+    <% }
+        else
+        {%>
+    <h2 class="h2">Acceso solo para Recepcionistas y Administradores</h2>
+    <% }
+    %>
+
 
     <!-- Modal agregar Paciente -->
     <div class="modal fade" id="AgregarPaciente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarPacienteLabel" aria-hidden="true">
@@ -245,16 +253,16 @@
                                 </tr>
                                 <asp:Repeater ID="repTurnosDisponibles" runat="server">
                                     <ItemTemplate>
-                                    <tr>
-                                        <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("dd/MM/yyyy")%></td>
-                                        <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("HH:mm")%></td>
-                                        <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
-                                        <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
-                                        <td class="align-middle">
-                                            <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" />
-                                        </td>
-                                    </tr>
-                                        </ItemTemplate>
+                                        <tr>
+                                            <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("dd/MM/yyyy")%></td>
+                                            <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("HH:mm")%></td>
+                                            <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
+                                            <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
+                                            <td class="align-middle">
+                                                <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" />
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
                                 </asp:Repeater>
                             </thead>
                         </table>

@@ -12,19 +12,18 @@ namespace Negocio
         public List<Turno> Listar()
         {
             List<Turno> lista = new List<Turno>();
-            List<Usuario> especialistas = new List<Usuario>();
-            List<Especialidad> especialidades = new List<Especialidad>();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
-
-            especialistas = usuarioNegocio.ListarEspecialistas();
-            especialidades = especialidadNegocio.Listar();
+            PacienteNegocio pacienteNegocio = new PacienteNegocio();
 
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("EXEC [Especialidad].[sp_GetTurnos]");
+                //datos.SetearConsulta("SELECT A.IdTurno, A.FechaHoraTurno, A.MotivoConsulta, A.Diagnostico, B.Dni AS DniPaciente, B.Apellido AS ApellidoPaciente, B.Nombre AS NombrePaciente , C.Apellido AS ApellidoEspecialista, C.Nombre AS NombreEspecialista, D.Especialidad, E.NombreEstado FROM Especialidad.Turno AS A LEFT JOIN Usuario.Paciente AS B ON A.IdPaciente = B.IdPaciente LEFT JOIN Usuario.Usuario AS C ON A.IdEspecialista = C.IdUsuario LEFT JOIN Especialidad.Especialidad AS D ON A.IdEspecialidad = D.IdEspecialidad LEFT JOIN Especialidad.EstadoTurno AS E ON A.IdEstadoTurno = E.IdEstadoTurno");
+                //datos.SetearConsulta("EXEC [Especialidad].[sp_GetTurnos]");
+                datos.SetearConsulta("SELECT A.IdTurno, A.IdPaciente, A.IdEspecialista, A.IdEspecialidad, A.FechaHoraTurno, A.MotivoConsulta, A.Diagnostico, A.IdEstadoTurno, B.NombreEstado FROM Especialidad.Turno A INNER JOIN Especialidad.EstadoTurno AS B ON A.IdEstadoTurno = B.IdEstadoTurno");
+
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -34,8 +33,10 @@ namespace Negocio
                     aux.FechaHora = (DateTime)datos.Lector["FechaHoraTurno"];
                     aux.MotivoConsulta = (string)datos.Lector["MotivoConsulta"];
                     aux.Diagnostico = (string)datos.Lector["Diagnostico"];
-
-                    aux.Paciente = new Paciente();
+                    
+                    int idPaciente = (int)datos.Lector["IdPaciente"];
+                    aux.Paciente = pacienteNegocio.ListarXIdPaciente(idPaciente);
+                    /*aux.Paciente = new Paciente();
                     aux.Paciente.IdPaciente = (Int32)datos.Lector["IdPaciente"];
                     aux.Paciente.Dni = (Int32)datos.Lector["DniPaciente"];
                     aux.Paciente.Apellido = (string)datos.Lector["ApellidoPaciente"];
@@ -45,10 +46,12 @@ namespace Negocio
                     aux.Paciente.Mail = (string)datos.Lector["MailPaciente"];
                     aux.Paciente.Telefono = (string)datos.Lector["TelefonoPaciente"];
                     aux.Paciente.Cobertura = (string)datos.Lector["CoberturaPaciente"];
-                    aux.Paciente.NroCredencial = (int)datos.Lector["NroCredencialPaciente"];
-                    aux.Usuario = especialistas.Find(x => x.IdUsuario == (int)datos.Lector["IdEspecialista"]);
+                    aux.Paciente.NroCredencial = (int)datos.Lector["NroCredencialPaciente"];*/
 
-                    aux.Usuario = new Usuario();
+                    int idEspecialista = (int)datos.Lector["IdEspecialista"];
+                    aux.Usuario = usuarioNegocio.ListarXIdUsuario(idEspecialista);
+                    //aux.Usuario = especialistas.Find(x => x.IdUsuario == (int)datos.Lector["IdEspecialista"]);
+                    /*aux.Usuario = new Usuario();
                     aux.Usuario.IdUsuario = (int)datos.Lector["IdEspecialista"];
                     aux.Usuario.Apellido = (string)datos.Lector["ApellidoEspecialista"];
                     aux.Usuario.Nombre = (string)datos.Lector["NombreEspecialista"];
@@ -60,18 +63,19 @@ namespace Negocio
                     aux.Usuario.UsuarioReg = (string)datos.Lector["UsuarioEspecialista"];
                     aux.Usuario.Password = (string)datos.Lector["PasswordEspecialista"];
                     aux.Usuario.Perfil = (int)datos.Lector["IdPerfilEspecialista"];
-                    aux.Usuario.Estado = (bool)datos.Lector["EstadoEspecialidad"];
-                    aux.Especialidad = especialidades.Find(x => x.Id == (int)datos.Lector["IdEspecialidad"]);
+                    aux.Usuario.Estado = (bool)datos.Lector["EstadoEspecialidad"];*/
 
-                    aux.Especialidad = new Especialidad();
+                    int idEspecialidad = (int)datos.Lector["IdEspecialidad"];
+                    aux.Especialidad = especialidadNegocio.ListarXId(idEspecialidad);
+                    //aux.Especialidad = especialidades.Find(x => x.Id == (int)datos.Lector["IdEspecialidad"]);
+                    /*aux.Especialidad = new Especialidad();
                     aux.Especialidad.Id = (int)datos.Lector["IdEspecialidad"];
                     aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
-                    aux.Especialidad.Estado = (bool)datos.Lector["EstadoEspecialidad"];
+                    aux.Especialidad.Estado = (bool)datos.Lector["EstadoEspecialidad"];*/
 
                     aux.Estado = new EstadoTurno();
                     aux.Estado.Id = (int)datos.Lector["IdEstadoTurno"];
                     aux.Estado.Descripcion = (string)datos.Lector["NombreEstado"];
-
                     lista.Add(aux);
                 }
 
@@ -190,12 +194,7 @@ namespace Negocio
         {
             JornadaNegocio jornadaNegocio = new JornadaNegocio();
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            //EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
-            List<Usuario> especialistas = new List<Usuario>();
-            //List<Especialidad> especialidades = new List<Especialidad>();
-            especialistas = usuarioNegocio.ListarEspecialistas();
-            //especialidades = especialidadNegocio.Listar();
-            Usuario especialista = especialistas.Find(x => x.IdUsuario == idEspecialista);
+            Usuario especialista = usuarioNegocio.ListarXIdUsuario(idEspecialista);
             List<Turno> turnosDisponibles = new List<Turno>();
             List<Turno> turnosAsignadosEspecialidadMedico = new List<Turno>();
             List<string> stringsCompararTurnosAsigndos = new List<string>();
@@ -210,7 +209,7 @@ namespace Negocio
                     turnosAsignadosEspecialidadMedico.Add(turno);
                 }
             }
-
+            //POSIBLEMENTE ESTO PUEDE INCLUIRSE EN EL MISMO FOR EACH DE ARRIBA.
             foreach(Turno turno in turnosAsignadosEspecialidadMedico)
             {
                 string idEspecialistaStr = turno.Usuario.IdUsuario.ToString();

@@ -15,8 +15,10 @@ namespace TPC_equipo_2
     public partial class Especialistas : System.Web.UI.Page
     {
         public List<Usuario> EspecialistasList;
+        public Usuario UsuarioLogeado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             EspecialistasList = usuarioNegocio.ListarEspecialistas();
 
