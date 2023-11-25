@@ -190,5 +190,15 @@ namespace TPC_equipo_2
                 throw ex;
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string busqueda = Utilitarios.EliminarAcentosConRegEx(txtBusqueda.Text.Trim().ToLower());
+
+            List<Especialidad> especialidadesFiltradas = EspecialidadList.Where(x => Utilitarios.EliminarAcentosConRegEx(x.Descripcion.ToLower()).Contains(busqueda)).ToList();
+
+            repRepetidor.DataSource = especialidadesFiltradas;
+            repRepetidor.DataBind();
+        }
     }
 }

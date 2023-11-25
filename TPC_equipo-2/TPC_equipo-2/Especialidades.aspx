@@ -11,10 +11,8 @@
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills d-flex justify-content-between">
                     <li class="d-flex">
-                        <form class="d-flex" role="buscar">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn-color-project-primary" type="submit">Buscar</button>
-                        </form>
+                        <asp:TextBox CssClass="form-control me-2" placeholder="Buscar especialidad" ID="txtBusqueda" runat="server" />
+                        <asp:Button ID="btnBuscarEspecialidad" Text="Buscar" class="btn btn-color-project-primary" OnClick="btnBuscar_Click" runat="server" />
                     </li>
                     <li class="nav-item">
                         <asp:Button Text="Agregar especialidad" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnAgregarEspecialidad_Click" />
