@@ -41,7 +41,7 @@
                                     <td class="align-middle"><%#Eval("Nombre")%></td>
                                     <td style="max-width: 170px;" class="align-middle">
                                         <div class="btn-group">
-                                            <asp:Button Text="Agendar turno" ID="btnAgendarTurno" CssClass="btn btn-success" Style="width: 130px;" runat="server" CommandName="EspecialidadId" OnClick="btnAgendarTurno_Click" />
+                                            <asp:Button Text="Agendar turno" ID="btnAgendarTurno" CssClass="btn btn-success" Style="width: 130px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnAgendarTurno_Click" />
                                             <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" Style="width: 130px" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnModificarPaciente_Click" />
                                             <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 130px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnEliminarPaciente_Click" />
                                         </div>
@@ -269,7 +269,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button> -->
                 </div>
             </div>
         </div>
