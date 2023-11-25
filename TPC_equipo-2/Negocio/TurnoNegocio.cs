@@ -139,20 +139,20 @@ namespace Negocio
             }
         }
 
-        public void AgregarTurno (Turno turno)
+        public void Agregar (Turno turno)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("EXEC[Usuario].[sp_InsPaciente] @IdPaciente, @IdEspecialista, @IdEspecialidad, @FechaHoraTurno, @MotivoConsulta, @Diagnostico,  @IdEstadoTurno");
+                datos.SetearConsulta("INSERT INTO [Especialidad].[Turno] ([IdPaciente], [IdEspecialista], [IdEspecialidad], [FechaHoraTurno], [MotivoConsulta], [Diagnostico], [IdEstadoTurno]) VALUES (@IdPaciente, @IdEspecialista, @IdEspecialidad, @FechaHoraTurno, @MotivoConsulta, @Diagnostico, @IdEstadoTurno)");
                 datos.SetearParametro("@IdPaciente", turno.Paciente.IdPaciente);
                 datos.SetearParametro("@IdEspecialista", turno.Usuario.IdUsuario);
                 datos.SetearParametro("@IdEspecialidad", turno.Especialidad.Id);
                 datos.SetearParametro("@FechaHoraTurno", turno.FechaHora);
                 datos.SetearParametro("@MotivoConsulta", turno.MotivoConsulta);
                 datos.SetearParametro("@Diagnostico", turno.Diagnostico);
-                datos.SetearParametro("@IdEstadoTurno", turno.Estado.Id);
+                datos.SetearParametro("@IdEstadoTurno", 1);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)

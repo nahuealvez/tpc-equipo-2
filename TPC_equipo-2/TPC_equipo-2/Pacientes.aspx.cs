@@ -46,14 +46,16 @@ namespace TPC_equipo_2
             especialidadesActivas = especialidadNegocio.ListarActivos();
 
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            List<Usuario> especialistasActivos = new List<Usuario>();
-            especialistasActivos = usuarioNegocio.ListarEspecialistas();
 
             ddlEspecialidades.DataSource = especialidadesActivas;
             ddlEspecialidades.DataTextField = "Descripcion";
             ddlEspecialidades.DataValueField = "Id";
             ddlEspecialidades.DataBind();
             Session.Add("especialidadesActivas", especialidadesActivas);
+
+            List<Turno> turnosDisponibles = new List<Turno>();
+            repTurnosDisponibles.DataSource = turnosDisponibles;
+            repTurnosDisponibles.DataBind();
 
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
 
@@ -109,6 +111,10 @@ namespace TPC_equipo_2
         }
         protected void btnAgendarTurno_Click(object sender, EventArgs e)
         {
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Paciente paciente = PacienteList.Find(x => x.IdPaciente == id);
+            Session.Add("pacienteSeleccionado", paciente);
+
             cargarModalGestionTurnos();
         }
         protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,11 +150,20 @@ namespace TPC_equipo_2
 
         protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
         {
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+
             List<Turno> turnosDisponibles = new List<Turno>();
             turnosDisponibles = (List<Turno>)Session["turnosDisponibles"];
+            Paciente pacienteSeleccionado = (Paciente)Session["pacienteSeleccionado"];
+
             int id = int.Parse(((Button)sender).CommandArgument);
             Turno turnoSeleccionado = turnosDisponibles.Find(x => x.IdTurno == id);
 
+            turnoSeleccionado.Paciente = pacienteSeleccionado;
+            turnoSeleccionado.MotivoConsulta = "MotivoTest";
+            turnoSeleccionado.Diagnostico = "DiagnosticoTest";
+
+            turnoNegocio.Agregar(turnoSeleccionado);
 
         }
 
