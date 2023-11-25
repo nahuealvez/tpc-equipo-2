@@ -49,26 +49,17 @@ namespace TPC_equipo_2
             List<Usuario> especialistasActivos = new List<Usuario>();
             especialistasActivos = usuarioNegocio.ListarEspecialistas();
 
-            List<Turno> turnosDisponibles = new List<Turno>();
-            turnosDisponibles = (List<Turno>)Session["turnosDisponibles"];
-
             ddlEspecialidades.DataSource = especialidadesActivas;
             ddlEspecialidades.DataTextField = "Descripcion";
             ddlEspecialidades.DataValueField = "Id";
             ddlEspecialidades.DataBind();
             Session.Add("especialidadesActivas", especialidadesActivas);
 
-            /*ddlEspecialistas.DataSource = especialistasActivos;
-            ddlEspecialistas.DataTextField = "NombreCompleto";
-            ddlEspecialistas.DataValueField = "IdUsuario";
-            ddlEspecialistas.DataBind();*/
-
-            repTurnosDisponibles.DataSource = turnosDisponibles;
-            repTurnosDisponibles.DataBind();
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
+
         }
 
-        protected void cargarModalGestionTurnosSeleccionarEspecialista(int idEspecialidad, int indexDdl)
+        protected void cargarModalGestionTurnosSeleccionarEspecialista(int idEspecialidad, int indexDdlEspecialidad, int indexDdlEspecialista)
         {
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
@@ -94,15 +85,24 @@ namespace TPC_equipo_2
                 ddlEspecialistas.DataSource = especialistasFiltrados;
                 ddlEspecialistas.DataTextField = "NombreCompleto";
                 ddlEspecialistas.DataValueField = "IdUsuario";
+                ddlEspecialistas.SelectedIndex = indexDdlEspecialista;
+                btnBuscarTurnos.Visible = true;
             }
             else
             {
                 // Si no hay especialistas disponibles, carga un item que lo indique
                 ddlEspecialistas.Items.Clear();
                 ddlEspecialistas.Items.Add(new ListItem("SIN ESPECIALISTAS DISPONIBLES", ""));
+                btnBuscarTurnos.Visible = false;
             }
 
             ddlEspecialistas.DataBind();
+
+            List<Turno> turnosDisponibles = new List<Turno>();
+            turnosDisponibles = (List<Turno>)Session["turnosDisponibles"];
+
+            repTurnosDisponibles.DataSource = turnosDisponibles;
+            repTurnosDisponibles.DataBind();
 
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
 
@@ -113,17 +113,28 @@ namespace TPC_equipo_2
         }
         protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = ddlEspecialidades.SelectedIndex;
+            List<Turno> turnosDisponibles = new List<Turno>();
+            Session.Add("turnosDisponibles", turnosDisponibles);
+
+            int selectedIndexEspecialista = 0;
+            int selectedIndexEspecialidad = ddlEspecialidades.SelectedIndex;
             int idEspecialidad = int.Parse(ddlEspecialidades.Text);
-            cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndex);
+            cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndexEspecialidad, selectedIndexEspecialista);
         }
         protected void btnBuscarTurnos_Click(object sender, EventArgs e)
         {
             TurnoNegocio turnoNegocio = new TurnoNegocio();
             List<Turno> turnosDisponibles = new List<Turno>();
-            turnosDisponibles = turnoNegocio.ChequearTurnos(10, 5);
+
+            int selectedIndexEspecialidad = ddlEspecialidades.SelectedIndex;
+            int selectedIndexEspecialista = ddlEspecialistas.SelectedIndex;
+            int idEspecialidad = int.Parse(ddlEspecialidades.Text);
+            int idEspecialista = int.Parse(ddlEspecialistas.Text);
+
+            turnosDisponibles = turnoNegocio.ChequearTurnos(idEspecialista, idEspecialidad);
+
             Session.Add("turnosDisponibles", turnosDisponibles);
-            cargarModalGestionTurnos();
+            cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndexEspecialidad, selectedIndexEspecialista);
         }
 
         protected void btnAceptarAgendarTurno_Click(Object sender, EventArgs e)

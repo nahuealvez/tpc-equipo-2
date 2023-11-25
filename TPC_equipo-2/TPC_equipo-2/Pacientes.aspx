@@ -237,7 +237,7 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <asp:Button Text="Buscar turno" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnBuscarTurnos_Click" />
+                                <asp:Button ID="btnBuscarTurnos" Text="Buscar turno" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnBuscarTurnos_Click" Visible="false" />
                             </div>
                         </div>
                     </div>
