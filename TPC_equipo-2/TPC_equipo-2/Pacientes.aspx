@@ -259,7 +259,7 @@
                                             <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
                                             <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
                                             <td class="align-middle">
-                                                <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" />
+                                                <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" OnClientClick="return btnPrevenirCierreModal()" CommandArgument='<%#Eval("IdTurno") %>' CommandName="TurnoSeleccionado" OnClick="btnConfirmarTurno_Click" />
                                             </td>
                                         </tr>
                                     </ItemTemplate>
@@ -270,7 +270,6 @@
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="btnGuardarModificarEspecialista" Text="Guardar" CssClass="btn btn-success" runat="server" OnClientClick="return btnPrevenirCierreModal()" OnClick="btnAceptarAgendarTurno_Click" />
                 </div>
             </div>
         </div>

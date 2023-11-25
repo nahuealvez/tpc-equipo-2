@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
@@ -130,6 +131,33 @@ namespace Negocio
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void AgregarTurno (Turno turno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC[Usuario].[sp_InsPaciente] @IdPaciente, @IdEspecialista, @IdEspecialidad, @FechaHoraTurno, @MotivoConsulta, @Diagnostico,  @IdEstadoTurno");
+                datos.SetearParametro("@IdPaciente", turno.Paciente.IdPaciente);
+                datos.SetearParametro("@IdEspecialista", turno.Usuario.IdUsuario);
+                datos.SetearParametro("@IdEspecialidad", turno.Especialidad.Id);
+                datos.SetearParametro("@FechaHoraTurno", turno.FechaHora);
+                datos.SetearParametro("@MotivoConsulta", turno.MotivoConsulta);
+                datos.SetearParametro("@Diagnostico", turno.Diagnostico);
+                datos.SetearParametro("@IdEstadoTurno", turno.Estado.Id);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
             finally

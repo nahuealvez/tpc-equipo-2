@@ -133,12 +133,22 @@ namespace TPC_equipo_2
 
             turnosDisponibles = turnoNegocio.ChequearTurnos(idEspecialista, idEspecialidad);
 
+            for(int i = 0; i < turnosDisponibles.Count; i++)
+            {
+                turnosDisponibles[i].IdTurno = i + 1;
+            }
+
             Session.Add("turnosDisponibles", turnosDisponibles);
             cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndexEspecialidad, selectedIndexEspecialista);
         }
 
-        protected void btnAceptarAgendarTurno_Click(Object sender, EventArgs e)
+        protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
         {
+            List<Turno> turnosDisponibles = new List<Turno>();
+            turnosDisponibles = (List<Turno>)Session["turnosDisponibles"];
+            int id = int.Parse(((Button)sender).CommandArgument);
+            Turno turnoSeleccionado = turnosDisponibles.Find(x => x.IdTurno == id);
+
 
         }
 
