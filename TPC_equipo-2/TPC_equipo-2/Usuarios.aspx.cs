@@ -199,5 +199,15 @@ namespace TPC_equipo_2
                 throw ex;
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string busqueda = Utilitarios.EliminarAcentosConRegEx(txtBusqueda.Text.Trim().ToLower());
+
+            List<Usuario> usuariosFiltrados = UsuarioList.Where(x => Utilitarios.EliminarAcentosConRegEx(x.Apellido.ToLower()).Contains(busqueda) || Utilitarios.EliminarAcentosConRegEx(x.Nombre.ToLower()).Contains(busqueda)).ToList();
+
+            repRepetidor.DataSource = usuariosFiltrados;
+            repRepetidor.DataBind();
+        }
     }
 }
