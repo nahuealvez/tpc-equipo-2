@@ -39,7 +39,7 @@ namespace TPC_equipo_2
             }
             else
             {
-                lblError.Text = "Error!";
+                lblError.Text = "Las credenciales ingresadas son incorrectas";
                 lblError.Visible = true;
             }
         }

@@ -16,93 +16,102 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="text/javascript" src="Scripts/Scripts.js"></script>
 </head>
-<body>
-    <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="d-flex justify-content-center align-items-center gap-1 navbar-brand" href="#">
-                    <img width="24" height="24" src="https://img.icons8.com/material/24/0364B8/heart-with-pulse.png" alt="heart-with-pulse" />
-                    <div style="color: #0364B8; font-family: 'Fira Sans', sans-serif; font-weight: 800;">
-                        Port Salut <span style="font-weight: 400;">| Medicina privada</span>
-                    </div>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <%
-                    if (UsuarioLogeado != null)
-                    {
-
-                        switch (UsuarioLogeado.Perfil)
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1">
+        <form id="form1" runat="server">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="d-flex justify-content-center align-items-center gap-1 navbar-brand" href="#">
+                        <img width="24" height="24" src="https://img.icons8.com/material/24/0364B8/heart-with-pulse.png" alt="heart-with-pulse" />
+                        <div style="color: #0364B8; font-family: 'Fira Sans', sans-serif; font-weight: 800;">
+                            Port Salut <span style="font-weight: 400;">| Medicina privada</span>
+                        </div>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <%
+                        if (UsuarioLogeado != null)
                         {
-                            case (int)dominio.EnumPerfil.Administrador:
-                %>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
-                        </li>
-                    </ul>
-                </div>
-                <%
-                        break;
-                    case (int)dominio.EnumPerfil.Recepcionista:
-                %>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
-                        </li>
-                    </ul>
-                </div>
-                <%
-                        break;
-                    case (int)dominio.EnumPerfil.Especialista:
-                %>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
-                        </li>
-                    </ul>
-                </div>
-                <%
-                        break;
-                    default:
-                %>
-                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
-                        </li>
-                    </ul>
-                </div>
-                <%
+
+                            switch (UsuarioLogeado.Perfil)
+                            {
+                                case (int)dominio.EnumPerfil.Administrador:
+                    %>
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%
                             break;
+                        case (int)dominio.EnumPerfil.Recepcionista:
+                    %>
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%
+                            break;
+                        case (int)dominio.EnumPerfil.Especialista:
+                    %>
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%
+                            break;
+                        default:
+                    %>
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%
+                                break;
+                            }
                         }
-                    }
-                %>
+                    %>
+                </div>
+            </nav>
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
-        </nav>
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+
+        </form>
+    </div>
+    <div class="container mt-auto pt-3">
+        <div class="d-flex flex-column flex-sm-row justify-content-center py-4 my-4 border-top mt-auto">
+            <p>© 2023 Port Salut, Todos los derechos reservados.</p>
         </div>
-    </form>
+    </div>
+
 </body>
 </html>
