@@ -10,8 +10,8 @@
             <div class="card-header">
                 <ul class="nav nav-pills card-header-pills d-flex justify-content-between">
                     <li class="d-flex">
-                        <asp:TextBox CssClass="form-control me-2" placeholder="Buscar por DNI" ID="txtBusqueda" runat="server" />
-                        <asp:Button ID="btnBuscarTurnoPorDNIPaciente" Text="Buscar" class="btn btn-color-project-primary" OnClick="btnBuscarPorDNIPaciente_Click" runat="server" />
+                        <asp:TextBox CssClass="form-control me-2 input-number-noneButtons" placeholder="Buscar por DNI" Type="number" ID="txtBusqueda" runat="server" />
+                        <asp:Button ID="btnBuscarTurnoPorDNIPaciente" TextMode="SigleLine" Text="Buscar" class="btn btn-color-project-primary" OnClick="btnBuscarPorDNIPaciente_Click" runat="server" />
                     </li>
                 </ul>
             </div>
