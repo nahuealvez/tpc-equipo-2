@@ -62,5 +62,33 @@ namespace TPC_equipo_2
                 throw ex;
             }
         }
+
+        protected void btnBuscarPorDNIPaciente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string busqueda = txtBusqueda.Text.Trim();
+
+                if (busqueda != "")
+                {
+                    if (int.TryParse(busqueda, out int dni))
+                    {
+                        List<Turno> turnosFiltradosPorDNI = TurnosList.Where(x => x.Paciente.Dni == dni).ToList();
+
+                        repRepetidor.DataSource = turnosFiltradosPorDNI;
+                        repRepetidor.DataBind();
+                    }
+                }
+                else
+                {
+                    repRepetidor.DataSource = TurnosList;
+                    repRepetidor.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
