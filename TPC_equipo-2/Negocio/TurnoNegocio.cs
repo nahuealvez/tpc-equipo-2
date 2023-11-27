@@ -200,7 +200,7 @@ namespace Negocio
             
             foreach(Turno turno in turnosAsignados)
             {
-                if(turno.Usuario.IdUsuario ==  idEspecialista && turno.Especialidad.Id == idEspecialidad)
+                if(turno.Estado.Id == 1 && turno.Usuario.IdUsuario ==  idEspecialista && turno.Especialidad.Id == idEspecialidad)
                 {
                     turnosAsignadosEspecialidadMedico.Add(turno);
                 }
