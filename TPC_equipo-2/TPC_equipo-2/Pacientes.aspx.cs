@@ -51,6 +51,7 @@ namespace TPC_equipo_2
             ddlEspecialidades.DataTextField = "Descripcion";
             ddlEspecialidades.DataValueField = "Id";
             ddlEspecialidades.DataBind();
+            ddlEspecialidades.Items.Insert(0, "");
             Session.Add("especialidadesActivas", especialidadesActivas);
 
             List<Turno> turnosDisponibles = new List<Turno>();
@@ -63,41 +64,50 @@ namespace TPC_equipo_2
 
         protected void cargarModalGestionTurnosSeleccionarEspecialista(int idEspecialidad, int indexDdlEspecialidad, int indexDdlEspecialista)
         {
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
-
-            List<Especialidad> especialidadesActivas = new List<Especialidad>();
-            especialidadesActivas = (List<Especialidad>)Session["especialidadesActivas"];
-
-            List<int> idsEspecialistas = new List<int>();
-            idsEspecialistas = especialidadNegocio.EspecialistasXEspecialidad(idEspecialidad);
-
-            List<Usuario> especialistas = new List<Usuario>();
-            List<Usuario> especialistasFiltrados = new List<Usuario>();
-            especialistas = usuarioNegocio.ListarEspecialistas();
-
-            foreach (int id in idsEspecialistas)
+            if (idEspecialidad != 0)
             {
-                especialistasFiltrados.Add(especialistas.Find(x => x.IdUsuario == id));
-            }
+                UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+                EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
 
-            if (especialistasFiltrados.Count > 0)
-            {
-                // Si hay especialistas disponibles, los carga en el ddl
-                ddlEspecialistas.DataSource = especialistasFiltrados;
-                ddlEspecialistas.DataTextField = "NombreCompleto";
-                ddlEspecialistas.DataValueField = "IdUsuario";
-                ddlEspecialistas.SelectedIndex = indexDdlEspecialista;
-                btnBuscarTurnos.Visible = true;
+                List<Especialidad> especialidadesActivas = new List<Especialidad>();
+                especialidadesActivas = (List<Especialidad>)Session["especialidadesActivas"];
+
+                List<int> idsEspecialistas = new List<int>();
+                idsEspecialistas = especialidadNegocio.EspecialistasXEspecialidad(idEspecialidad);
+
+                List<Usuario> especialistas = new List<Usuario>();
+                List<Usuario> especialistasFiltrados = new List<Usuario>();
+                especialistas = usuarioNegocio.ListarEspecialistas();
+
+                foreach (int id in idsEspecialistas)
+                {
+                    especialistasFiltrados.Add(especialistas.Find(x => x.IdUsuario == id));
+                }
+
+                if (especialistasFiltrados.Count > 0)
+                {
+                    // Si hay especialistas disponibles, los carga en el ddl
+                    ddlEspecialistas.DataSource = especialistasFiltrados;
+                    ddlEspecialistas.DataTextField = "NombreCompleto";
+                    ddlEspecialistas.DataValueField = "IdUsuario";
+                    ddlEspecialistas.SelectedIndex = indexDdlEspecialista;
+                    btnBuscarTurnos.Visible = true;
+                }
+                else
+                {
+                    // Si no hay especialistas disponibles, carga un item que lo indique
+                    ddlEspecialistas.Items.Clear();
+                    ddlEspecialistas.Items.Add(new ListItem("SIN ESPECIALISTAS DISPONIBLES", ""));
+                    btnBuscarTurnos.Visible = false;
+                }
             }
             else
             {
-                // Si no hay especialistas disponibles, carga un item que lo indique
                 ddlEspecialistas.Items.Clear();
-                ddlEspecialistas.Items.Add(new ListItem("SIN ESPECIALISTAS DISPONIBLES", ""));
+                ddlEspecialistas.Items.Add(new ListItem("", ""));
                 btnBuscarTurnos.Visible = false;
             }
-
+            
             ddlEspecialistas.DataBind();
 
             List<Turno> turnosDisponibles = new List<Turno>();
@@ -124,8 +134,9 @@ namespace TPC_equipo_2
 
             int selectedIndexEspecialista = 0;
             int selectedIndexEspecialidad = ddlEspecialidades.SelectedIndex;
-            int idEspecialidad = int.Parse(ddlEspecialidades.Text);
+            int idEspecialidad = string.IsNullOrEmpty(ddlEspecialidades.Text) ? 0 : int.Parse(ddlEspecialidades.Text);
             cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndexEspecialidad, selectedIndexEspecialista);
+
         }
         protected void btnBuscarTurnos_Click(object sender, EventArgs e)
         {
