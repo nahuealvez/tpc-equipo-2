@@ -302,5 +302,34 @@ namespace TPC_equipo_2
             }
 
         }
+
+        protected void btnBuscarPorDNIPaciente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string busqueda = txtBusqueda.Text.Trim();
+
+                if (busqueda != "")
+                {
+                    if (int.TryParse(busqueda, out int dni))
+                    {
+                        PacienteNegocio pacienteNegocio = new PacienteNegocio();
+                        List<Paciente> pacienteFiltrado = pacienteNegocio.ListarXDniPaciente(dni);
+
+                        repRepetidor.DataSource = pacienteFiltrado;
+                        repRepetidor.DataBind();
+                    }
+                }
+                else
+                {
+                    repRepetidor.DataSource = PacienteList;
+                    repRepetidor.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

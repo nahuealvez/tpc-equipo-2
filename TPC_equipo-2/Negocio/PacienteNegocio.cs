@@ -85,6 +85,44 @@ namespace Negocio
             }
         }
 
+        public List<Paciente> ListarXDniPaciente(int DniPaciente)
+        {
+            List<Paciente> lista = new List<Paciente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IdPaciente, Apellido, Nombre, Dni, Sexo, FechaNacimiento, Mail, Telefono, Cobertura, NroCredencial FROM Usuario.Paciente WHERE Dni = @Dni");
+                datos.SetearParametro("@Dni", DniPaciente);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Paciente aux = new Paciente();
+                    aux.IdPaciente = (int)datos.Lector["IdPaciente"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Dni = (int)datos.Lector["Dni"];
+                    aux.Sexo = (string)datos.Lector["Sexo"];
+                    aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Cobertura = (string)datos.Lector["Cobertura"];
+                    aux.NroCredencial = (int)datos.Lector["NroCredencial"];
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
 
         public void Agregar(Paciente nuevoPaciente)
         {
