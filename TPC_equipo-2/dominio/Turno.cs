@@ -13,6 +13,7 @@ namespace dominio
         public Paciente Paciente { get; set; }
         public Usuario Usuario { get; set; }
         public Especialidad Especialidad { get; set; }
+        public Jornada jornada { get; set; }
         public DateTime FechaHora { get; set; }
         public string MotivoConsulta { get; set; }
         public string Diagnostico { get; set; }

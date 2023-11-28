@@ -175,6 +175,9 @@ namespace Negocio
                     aux.Estado.Id = (int)datos.Lector["IdEstadoTurno"];
                     aux.Estado.Descripcion = (string)datos.Lector["NombreEstado"];
 
+                    aux.Jornada = new Jornada();
+                    aux.Jornada.IdJornada = (int)datos.Lector["idJornada"];
+
                     lista.Add(aux);
                 }
 
@@ -196,7 +199,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("INSERT INTO [Especialidad].[Turno] ([IdPaciente], [IdEspecialista], [IdEspecialidad], [FechaHoraTurno], [MotivoConsulta], [Diagnostico], [IdEstadoTurno]) VALUES (@IdPaciente, @IdEspecialista, @IdEspecialidad, @FechaHoraTurno, @MotivoConsulta, @Diagnostico, @IdEstadoTurno)");
+                datos.SetearConsulta("INSERT INTO [Especialidad].[Turno] ([IdPaciente], [IdEspecialista], [IdEspecialidad], [FechaHoraTurno], [MotivoConsulta], [Diagnostico], [IdEstadoTurno], [IdJornada]) VALUES (@IdPaciente, @IdEspecialista, @IdEspecialidad, @FechaHoraTurno, @MotivoConsulta, @Diagnostico, @IdEstadoTurno, @IdJornada)");
                 datos.SetearParametro("@IdPaciente", turno.Paciente.IdPaciente);
                 datos.SetearParametro("@IdEspecialista", turno.Usuario.IdUsuario);
                 datos.SetearParametro("@IdEspecialidad", turno.Especialidad.Id);
@@ -204,6 +207,7 @@ namespace Negocio
                 datos.SetearParametro("@MotivoConsulta", turno.MotivoConsulta);
                 datos.SetearParametro("@Diagnostico", turno.Diagnostico);
                 datos.SetearParametro("@IdEstadoTurno", 1);
+                datos.SetearParametro("@IdJornada", turno.Jornada.IdJornada);
                 datos.EjecutarAccion();
             }
             catch (Exception ex)
