@@ -25,6 +25,7 @@
                             <th scope="col" class="align-middle" style="width: auto;">Especialidad</th>
                             <th scope="col" class="align-middle" style="width: auto;">Especialista</th>
                             <th scope="col" class="align-middle" style="width: auto;">Fecha</th>
+                            <th scope="col" class="align-middle" style="width: auto;">Hora</th>
                             <th scope="col" class="align-middle" style="width: auto;">Estado</th>
                             <th scope="col" class="align-middle" style="width: auto;">Acciones</th>
                         </tr>
@@ -39,6 +40,7 @@
                                     <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
                                     <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
                                     <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("dd/MM/yyyy") %></td>
+                                    <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("HH:mm") + " hs" %></td>
                                     <td class='<%# "align-middle " + ((string)Eval("Estado.Descripcion") == "Pendiente" ? "bg-warning-subtle" : ((string)Eval("Estado.Descripcion") == "Atendido" ? "bg-success-subtle" : "bg-danger-subtle")) %>'>
                                         <%# Eval("Estado.Descripcion") %>
                                     </td>
