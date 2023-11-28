@@ -17,6 +17,16 @@ function abrirModalAgendarTurno() {
     pageModal.show();
 }
 
+function abrirModalAgregarMotivoConsulta() {
+    var pageModal = new bootstrap.Modal(document.getElementById("MotivoConsulta"), { keyboard: false });
+    pageModal.show();
+}
+
+function abrirModalConfirmarTurno() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ConfirmacionTurno"), { keyboard: false });
+    pageModal.show();
+}
+
 /* Modales de usuario */
 function abrirModalAgregarUsuario() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarUsuario"), {

@@ -43,7 +43,6 @@
                                         <div class="btn-group">
                                             <asp:Button Text="Agendar turno" ID="btnAgendarTurno" CssClass="btn btn-success" Style="width: 130px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnAgendarTurno_Click" />
                                             <asp:Button Text="Modificar" ID="btnModificar" CssClass="btn btn-color-project-primary" Style="width: 130px" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnModificarPaciente_Click" />
-                                            <asp:Button Text="Eliminar" ID="btnEliminar" CssClass="btn btn-danger" Style="width: 130px;" runat="server" CommandArgument='<%#Eval("IdPaciente") %>' CommandName="EspecialidadId" OnClick="btnEliminarPaciente_Click" />
                                         </div>
                                     </td>
                                 </tr>
@@ -259,7 +258,7 @@
                                             <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
                                             <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
                                             <td class="align-middle">
-                                                <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" OnClientClick="return btnPrevenirCierreModal()" CommandArgument='<%#Eval("IdTurno") %>' CommandName="TurnoSeleccionado" OnClick="btnConfirmarTurno_Click" />
+                                                <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" OnClientClick="return btnPrevenirCierreModal()" CommandArgument='<%#Eval("IdTurno") %>' CommandName="TurnoSeleccionado" OnClick="btnConfirmarSeleccionTurno_Click" />
                                             </td>
                                         </tr>
                                     </ItemTemplate>
@@ -270,6 +269,50 @@
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal agregar motivo de consulta al turno -->
+    <div class="modal fade" id="MotivoConsulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="MotivoConsultaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblMotivoConsulta">Agregar motivo de consulta</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body d-flex flex-column gap-3">
+                        <label for="motivoConsulta">Motivo de consulta</label>
+                        <asp:TextBox ID="tbxMotivoConsulta" CssClass="form-control" TextMode="MultiLine" Rows="5" runat="server" />
+                    </div>
+                </div>
+                <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <asp:Button CssClass="btn btn-success" Text="Guardar" OnClick="btnAgregarMotivoConsulta_Click" runat="server" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal confirmación de turno -->
+    <div class="modal fade" id="ConfirmacionTurno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ConfirmacionTurnoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblConfirmacionTurno">Confirmación de turno</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <label for="motivoConsulta">Motivo de consulta: </label>
+                        <asp:Label Text="Motivo" ID="lblMotivoConsultaAConfirmar" runat="server" />
+                    </div>
+                </div>
+                <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button CssClass="btn btn-success" Text="Confirmar" OnClick="btnConfirmarTurno_Click" runat="server" />
                 </div>
             </div>
         </div>

@@ -31,7 +31,13 @@ namespace TPC_equipo_2
                 int Id = int.Parse((item.FindControl("btnVerDetalle") as Button).CommandArgument.ToString());
                 Button btnCancelar = (Button)item.FindControl("btnCancelar");
                 Turno turnoAux = TurnosList.Find(x => x.IdTurno == Id);
+                
                 if (turnoAux.Estado.Id == 3)
+                {
+                    btnCancelar.Visible = false;
+                }
+
+                if (UsuarioLogeado.Perfil == (int)EnumPerfil.Especialista)
                 {
                     btnCancelar.Visible = false;
                 }

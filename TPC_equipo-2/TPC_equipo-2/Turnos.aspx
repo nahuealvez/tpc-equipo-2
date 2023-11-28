@@ -44,7 +44,7 @@
                                     </td>
                                     <td style="max-width: auto;" class="align-middle">
                                         <div class="btn-group">
-                                            <asp:Button Text="Ver detalle" ID="btnVerDetalle" Visible="true" CssClass="btn btn-color-project-primary" Style="width: 130px" runat="server" CommandArgument='<%#Eval("IdTurno") %>' CommandName="IdTurno" />
+                                            <asp:Button Text="Ver turno" ID="btnVerDetalle" Visible="true" CssClass="btn btn-color-project-primary" Style="width: 130px" runat="server" CommandArgument='<%#Eval("IdTurno") %>' CommandName="IdTurno" />
                                             <asp:Button Text="Cancelar" ID="btnCancelar" CssClass="btn btn-danger" Style="width: 130px" runat="server" CommandArgument='<%#Eval("IdTurno") %>' CommandName="IdTurno" OnClick="btnCancelarTurno_Click" />
                                         </div>
                                     </td>

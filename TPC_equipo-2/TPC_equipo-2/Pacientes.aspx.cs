@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +14,8 @@ namespace TPC_equipo_2
     {
         public List<Paciente> PacienteList;
         public Usuario UsuarioLogeado { get; set; }
+
+        private bool confirmacionTurno = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -119,6 +122,7 @@ namespace TPC_equipo_2
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
 
         }
+
         protected void btnAgendarTurno_Click(object sender, EventArgs e)
         {
             int id = int.Parse(((Button)sender).CommandArgument);
@@ -127,6 +131,7 @@ namespace TPC_equipo_2
 
             cargarModalGestionTurnos();
         }
+
         protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<Turno> turnosDisponibles = new List<Turno>();
@@ -138,6 +143,7 @@ namespace TPC_equipo_2
             cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndexEspecialidad, selectedIndexEspecialista);
 
         }
+
         protected void btnBuscarTurnos_Click(object sender, EventArgs e)
         {
             TurnoNegocio turnoNegocio = new TurnoNegocio();
@@ -159,9 +165,9 @@ namespace TPC_equipo_2
             cargarModalGestionTurnosSeleccionarEspecialista(idEspecialidad, selectedIndexEspecialidad, selectedIndexEspecialista);
         }
 
-        protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
+        protected void btnConfirmarSeleccionTurno_Click(Object sender, EventArgs e)
         {
-            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            //TurnoNegocio turnoNegocio = new TurnoNegocio();
 
             List<Turno> turnosDisponibles = new List<Turno>();
             turnosDisponibles = (List<Turno>)Session["turnosDisponibles"];
@@ -170,12 +176,43 @@ namespace TPC_equipo_2
             int id = int.Parse(((Button)sender).CommandArgument);
             Turno turnoSeleccionado = turnosDisponibles.Find(x => x.IdTurno == id);
 
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarMotivoConsulta()", true);
+
             turnoSeleccionado.Paciente = pacienteSeleccionado;
-            turnoSeleccionado.MotivoConsulta = "MotivoTest";
-            turnoSeleccionado.Diagnostico = "DiagnosticoTest";
 
-            turnoNegocio.Agregar(turnoSeleccionado);
+            turnoSeleccionado.MotivoConsulta = "";
+            turnoSeleccionado.Diagnostico = "";
 
+            Session["turnoSeleccionado"] = turnoSeleccionado;
+
+            //turnoNegocio.Agregar(turnoSeleccionado);
+        }
+
+        protected void btnAgregarMotivoConsulta_Click(object sender, EventArgs e)
+        {
+            Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
+
+            turnoSeleccionado.MotivoConsulta = tbxMotivoConsulta.Text;
+
+            Session["turnoSeleccionado"] = turnoSeleccionado;
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfirmarTurno()", true);
+        }
+
+        protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
+        {
+            Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
+
+            if (turnoSeleccionado != null)
+            {
+                lblMotivoConsultaAConfirmar.Text = turnoSeleccionado.MotivoConsulta;
+
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                
+                turnoNegocio.Agregar(turnoSeleccionado);
+
+                Session["turnoSeleccionado"] = null;
+            }
         }
 
         protected void btnAgregarPaciente_Click(object sender, EventArgs e)
@@ -254,22 +291,6 @@ namespace TPC_equipo_2
 
                 throw ex;
             }
-
-        }
-
-
-        protected void btnEliminarPaciente_Click(Object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnDesactivarPaciente_Click(Object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnActivarPaciente_Click(Object sender, EventArgs e)
-        {
 
         }
     }
