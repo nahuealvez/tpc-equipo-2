@@ -123,6 +123,11 @@ namespace TPC_equipo_2
         protected void btnEliminarUsuario_Click(Object sender, EventArgs e)
         {
             int id = int.Parse(((Button)sender).CommandArgument);
+            if (id == UsuarioLogeado.IdUsuario)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalNoEliminarUsuario()", true);
+                return;
+            }
             Session.Add("idUsuario", id);
             Usuario usuario = UsuarioList.Find(x => x.IdUsuario == id);
             lblNombreEliminarUsuario.Text = usuario.UsuarioReg;

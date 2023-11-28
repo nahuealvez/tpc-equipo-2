@@ -56,6 +56,11 @@ function abrirModalEliminarUsuario() {
     pageModal.show();
 }
 
+function abrirModalNoEliminarUsuario() {
+    var pageModal = new bootstrap.Modal(document.getElementById("NoEliminarUsuario"), { keyboard: false });
+    pageModal.show();
+}
+
 /* Modales de especialista */
 function abrirModalAgregarEspecialista() {
     var pageModal = new bootstrap.Modal(document.getElementById("AgregarEspecialista"), {
