@@ -203,20 +203,44 @@ namespace TPC_equipo_2
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfirmarTurno()", true);
         }
 
-        protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
-        {
-            Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
-
-            if (turnoSeleccionado != null)
+            protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
             {
-                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
+
+                if (turnoSeleccionado != null)
+                {
+                    TurnoNegocio turnoNegocio = new TurnoNegocio();
                 
-                turnoNegocio.Agregar(turnoSeleccionado);
+                    turnoNegocio.Agregar(turnoSeleccionado);
 
-                Session["turnoSeleccionado"] = null;
+                    Session["turnoSeleccionado"] = null;
 
-                lblMotivoConsultaAConfirmar.Text = "";
-            }
+                    string fechaTurno = turnoSeleccionado.FechaHora.ToString("dd/MM/yyyy");
+                    string horaTurno = turnoSeleccionado.FechaHora.ToString("HH:mm");
+                    //lblMotivoConsultaAConfirmar.Text = "";
+                    //lblFechaTurno.Text = fechaTurno + horaTurno;
+
+                    MailService envioMail = new MailService();
+                    string mailPaciente = turnoSeleccionado.Paciente.Mail;
+                    string asunto = "Turno confirmado Port Salut Medicina";
+                    string cuerpoMail = "Su turno ha sido confirmado para el día " + fechaTurno + " a las " + horaTurno + ".\n" +
+                         "Especialidad: " + turnoSeleccionado.Especialidad.Descripcion + "\n" +
+                         "Especialista: " + turnoSeleccionado.Usuario.NombreCompleto + "\n" +
+                         "Motivo de consulta: " + turnoSeleccionado.MotivoConsulta + "\n" +
+                         "Saludos cordiales, Port Salut Medicina.";
+                    envioMail.armarCorreo(mailPaciente, asunto, cuerpoMail);
+
+                    try
+                    {
+                        envioMail.enviarCorreo();
+                        //Response.Redirect(Request.RawUrl);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                }
         }
 
         protected void btnNoConfirmarTurno_Click(Object sender, EventArgs e)

@@ -307,6 +307,10 @@
                         <label for="motivoConsulta">Motivo de consulta: </label>
                         <asp:Label Text="Motivo" ID="lblMotivoConsultaAConfirmar" runat="server" />
                     </div>
+                    <div class="card-body">
+                        <label for="Dia">Dia / Horario: </label>
+                        <asp:Label Text="Fecha" ID="lblFechaTurno" runat="server" />
+                    </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
                     <asp:Button CssClass="btn btn-danger" Text="Cancelar" OnClick="btnNoConfirmarTurno_Click" runat="server" />
