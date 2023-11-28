@@ -244,20 +244,20 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr class="table-primary">
-                                    <th scope="col" class="align-middle">Fecha</th>
-                                    <th scope="col" class="align-middle">Hora</th>
-                                    <th scope="col" class="align-middle">Especialidad</th>
-                                    <th scope="col" class="align-middle">Especialista</th>
-                                    <th scope="col" class="align-middle">Acciones</th>
+                                    <th scope="col" class="align-middle text-center">Fecha</th>
+                                    <th scope="col" class="align-middle text-center">Hora</th>
+                                    <th scope="col" class="align-middle text-center">Especialidad</th>
+                                    <th scope="col" class="align-middle text-center">Especialista</th>
+                                    <th scope="col" class="align-middle text-center">Acciones</th>
                                 </tr>
                                 <asp:Repeater ID="repTurnosDisponibles" runat="server">
                                     <ItemTemplate>
                                         <tr>
-                                            <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("dd/MM/yyyy")%></td>
-                                            <td class="align-middle"><%#((DateTime)Eval("FechaHora")).ToString("HH:mm")%></td>
-                                            <td class="align-middle"><%#Eval("Especialidad.Descripcion")%></td>
-                                            <td class="align-middle"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
-                                            <td class="align-middle">
+                                            <td class="align-middle text-center"><%#((DateTime)Eval("FechaHora")).ToString("dd/MM/yyyy")%></td>
+                                            <td class="align-middle text-center"><%#((DateTime)Eval("FechaHora")).ToString("HH:mm")%></td>
+                                            <td class="align-middle text-center"><%#Eval("Especialidad.Descripcion")%></td>
+                                            <td class="align-middle text-center"><%#Eval("Usuario.Apellido")%> <%#Eval("Usuario.Nombre")%></td>
+                                            <td class="align-middle text-center" style="width: auto;">
                                                 <asp:Button Text="Seleccionar" CssClass="btn btn-color-project-primary" runat="server" OnClientClick="return btnPrevenirCierreModal()" CommandArgument='<%#Eval("IdTurno") %>' CommandName="TurnoSeleccionado" OnClick="btnConfirmarSeleccionTurno_Click" />
                                             </td>
                                         </tr>
@@ -283,7 +283,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card-body d-flex flex-column gap-3">
+                    <div class="card-body d-flex flex-column gap-2">
                         <label for="motivoConsulta">Motivo de consulta</label>
                         <asp:TextBox ID="tbxMotivoConsulta" CssClass="form-control" TextMode="MultiLine" Rows="5" runat="server" />
                     </div>
@@ -311,7 +311,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button CssClass="btn btn-danger" Text="Cancelar" OnClick="btnNoConfirmarTurno_Click" runat="server" />
                     <asp:Button CssClass="btn btn-success" Text="Confirmar" OnClick="btnConfirmarTurno_Click" runat="server" />
                 </div>
             </div>

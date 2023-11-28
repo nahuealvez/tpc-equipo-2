@@ -61,8 +61,10 @@ namespace TPC_equipo_2
             repTurnosDisponibles.DataSource = turnosDisponibles;
             repTurnosDisponibles.DataBind();
 
+            ddlEspecialistas.Items.Clear();
+            ddlEspecialistas.Items.Add(new ListItem("", ""));
+            btnBuscarTurnos.Visible = false;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgendarTurno()", true);
-
         }
 
         protected void cargarModalGestionTurnosSeleccionarEspecialista(int idEspecialidad, int indexDdlEspecialidad, int indexDdlEspecialista)
@@ -100,7 +102,7 @@ namespace TPC_equipo_2
                 {
                     // Si no hay especialistas disponibles, carga un item que lo indique
                     ddlEspecialistas.Items.Clear();
-                    ddlEspecialistas.Items.Add(new ListItem("SIN ESPECIALISTAS DISPONIBLES", ""));
+                    ddlEspecialistas.Items.Add(new ListItem("Sin especialistas disponibles", ""));
                     btnBuscarTurnos.Visible = false;
                 }
             }
@@ -176,8 +178,6 @@ namespace TPC_equipo_2
             int id = int.Parse(((Button)sender).CommandArgument);
             Turno turnoSeleccionado = turnosDisponibles.Find(x => x.IdTurno == id);
 
-            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarMotivoConsulta()", true);
-
             turnoSeleccionado.Paciente = pacienteSeleccionado;
 
             turnoSeleccionado.MotivoConsulta = "";
@@ -185,16 +185,20 @@ namespace TPC_equipo_2
 
             Session["turnoSeleccionado"] = turnoSeleccionado;
 
-            //turnoNegocio.Agregar(turnoSeleccionado);
+            tbxMotivoConsulta.Text = "";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarMotivoConsulta()", true);
         }
 
         protected void btnAgregarMotivoConsulta_Click(object sender, EventArgs e)
         {
-            Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
+            Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;            
 
             turnoSeleccionado.MotivoConsulta = tbxMotivoConsulta.Text;
 
             Session["turnoSeleccionado"] = turnoSeleccionado;
+
+            lblMotivoConsultaAConfirmar.Text = turnoSeleccionado.MotivoConsulta;
 
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfirmarTurno()", true);
         }
@@ -205,14 +209,19 @@ namespace TPC_equipo_2
 
             if (turnoSeleccionado != null)
             {
-                lblMotivoConsultaAConfirmar.Text = turnoSeleccionado.MotivoConsulta;
-
                 TurnoNegocio turnoNegocio = new TurnoNegocio();
                 
                 turnoNegocio.Agregar(turnoSeleccionado);
 
                 Session["turnoSeleccionado"] = null;
+
+                lblMotivoConsultaAConfirmar.Text = "";
             }
+        }
+
+        protected void btnNoConfirmarTurno_Click(Object sender, EventArgs e)
+        {
+            Session["turnoSeleccionado"] = null;
         }
 
         protected void btnAgregarPaciente_Click(object sender, EventArgs e)
