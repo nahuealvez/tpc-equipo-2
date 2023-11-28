@@ -175,8 +175,8 @@ namespace Negocio
                     aux.Estado.Id = (int)datos.Lector["IdEstadoTurno"];
                     aux.Estado.Descripcion = (string)datos.Lector["NombreEstado"];
 
-                    aux.Jornada = new Jornada();
-                    aux.Jornada.IdJornada = (int)datos.Lector["idJornada"];
+                    //aux.Jornada = new Jornada();
+                    //aux.Jornada.IdJornada = (int)datos.Lector["idJornada"];
 
                     lista.Add(aux);
                 }
