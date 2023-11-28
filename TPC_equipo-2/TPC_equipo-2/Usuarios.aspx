@@ -290,4 +290,26 @@
         </div>
     </div>
 
+    <%-- Modal no puede eliminar usuario --%>
+    <div class="modal fade" id="NoEliminarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="noEliminarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lblNoEliminarUsuario">Eliminar usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="lblNombreEspecialidad" class="form-label">Usuario: </label>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" />
+                        <label for="lblNombreEspecialidad" class="form-label">No puede eliminar un usuario logeado actualmente</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>
