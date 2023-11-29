@@ -102,10 +102,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3 d-flex flex-column gap-3">
-                        <div class="d-flex flex-column">
+                        <%--<div class="d-flex flex-column">
                             <asp:Label ID="LabelIdTurno" Text="Id Turno" CssClass="form-label" runat="server" />
                             <asp:TextBox Enabled="false" ID="txtIdTurno" CssClass="form-control" runat="server" />
-                        </div>
+                        </div>--%>
                         <div class="d-flex flex-column">
                             <asp:Label ID="LabelFecha" Text="Fecha" CssClass="form-label" runat="server" />
                             <asp:TextBox Enabled="false" ID="txtFecha" CssClass="form-control" runat="server" />
@@ -116,15 +116,15 @@
                         </div>
                         <div class="d-flex flex-column">
                             <asp:Label ID="LabelEspecialidad" Text="Especialidad" CssClass="form-label" runat="server" />
-                            <asp:TextBox Enabled="false" ID="txtEspecialidad" CssClass="form-control" runat="server" />
+                            <asp:TextBox Enabled="false" ID="txtEspecialidad" CssClass="form-control" runat="server" MaxLength="50"/>
                         </div>
                         <div class="d-flex flex-column">
                             <asp:Label ID="LabelEspecialista" Text="Especialista" CssClass="form-label" runat="server" />
-                            <asp:TextBox Enabled="false" ID="txtEspecialista" CssClass="form-control" runat="server" />
+                            <asp:TextBox Enabled="false" ID="txtEspecialista" CssClass="form-control" runat="server" MaxLength="50"/>
                         </div>
                         <div class="d-flex flex-column">
                             <asp:Label ID="LabelMotivoConsulta" Text="Motivo de consulta" CssClass="form-label" runat="server" />
-                            <asp:TextBox Enabled="false" ID="txtMotivoConsulta" CssClass="form-control" TextMode="MultiLine" Rows="5" runat="server" />
+                            <asp:TextBox Enabled="false" ID="txtMotivoConsulta" CssClass="form-control" TextMode="MultiLine" Rows="5" runat="server" MaxLength="200"/>
                         </div>
                     </div>
                     <div class="mb-3">

@@ -111,7 +111,7 @@ namespace TPC_equipo_2
 
             Session.Add("IdTurno", id);
 
-            txtIdTurno.Text = turno.IdTurno.ToString();
+            //txtIdTurno.Text = turno.IdTurno.ToString();
             txtFecha.Text = turno.FechaHora.ToString("dd/MM/yyyy");
             txtHora.Text = turno.FechaHora.ToString("HH:mm") + " Hs.";
             txtEspecialidad.Text = turno.Especialidad.Descripcion;

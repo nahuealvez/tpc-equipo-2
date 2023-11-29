@@ -87,16 +87,16 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblApellidosUsuario" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" MaxLength="50"/>
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblNombresUsuario" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" MaxLength="8"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblSexo" class="form-label">Sexo</label>
@@ -115,19 +115,19 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblContrasenia" class="form-label">Contraseña</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxContrasenia" type="password" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxContrasenia" type="password" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblPerfil" class="form-label">Perfil</label>
@@ -167,16 +167,16 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblApellidosUsuario" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserApellido" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserApellido" MaxLength="50"/>
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblNombresUsuario" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserNombre" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserNombre" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserDni" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserDni" MaxLength="8"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblSexo" class="form-label">Sexo</label>
@@ -195,19 +195,19 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserMail" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserMail" type="mail" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserTel" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserTel" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUser" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUser" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblContrasenia" class="form-label">Contraseña</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserPass" type="password" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUserPass" type="password" MaxLength="50"/>
                             </div>
                         </div>
                     </div>

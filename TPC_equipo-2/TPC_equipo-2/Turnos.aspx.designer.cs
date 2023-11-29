@@ -42,24 +42,6 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.Repeater repRepetidor;
 
         /// <summary>
-        /// Control LabelIdTurno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelIdTurno;
-
-        /// <summary>
-        /// Control txtIdTurno.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdTurno;
-
-        /// <summary>
         /// Control LabelFecha.
         /// </summary>
         /// <remarks>
