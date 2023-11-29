@@ -19,7 +19,7 @@ namespace TPC_equipo_2
         {
             List<Usuario> usuario = new List<Usuario>();
             UsuarioNegocio valida = new UsuarioNegocio();
-            usuario = valida.LoginUsuario(exampleInputEmail1.Text, exampleInputPassword1.Text);
+            usuario = valida.LoginUsuario(exampleInputUser1.Text, exampleInputPassword1.Text);
 
             if (usuario.Count > 0)
             {

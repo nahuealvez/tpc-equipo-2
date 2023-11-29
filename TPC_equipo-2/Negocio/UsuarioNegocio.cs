@@ -35,7 +35,7 @@ namespace Negocio
                     aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.Mail = (string)datos.Lector["Mail"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
-                    //aux.UsuarioReg = (string)datos.Lector["Usuario"];
+                    aux.UsuarioReg = (string)datos.Lector["Usuario"];
                     aux.Password = (string)datos.Lector["Password"];
                     aux.Perfil = (int)datos.Lector["IdPerfil"];
                     aux.Estado = (bool)datos.Lector["Estado"];
@@ -75,7 +75,7 @@ namespace Negocio
                     usuarioEncontrado.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     usuarioEncontrado.Mail = (string)datos.Lector["Mail"];
                     usuarioEncontrado.Telefono = (string)datos.Lector["Telefono"];
-                    //usuarioEncontrado.UsuarioReg = (string)datos.Lector["Usuario"];
+                    usuarioEncontrado.UsuarioReg = (string)datos.Lector["Usuario"];
                     usuarioEncontrado.Password = (string)datos.Lector["Password"];
                     usuarioEncontrado.Perfil = (int)datos.Lector["IdPerfil"];
                     usuarioEncontrado.Estado = (bool)datos.Lector["Estado"];
@@ -115,7 +115,7 @@ namespace Negocio
                     aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.Mail = (string)datos.Lector["Mail"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
-                    //aux.UsuarioReg = (string)datos.Lector["Usuario"];
+                    aux.UsuarioReg = (string)datos.Lector["Usuario"];
                     aux.Password = (string)datos.Lector["Password"];
                     aux.Perfil = (int)datos.Lector["IdPerfil"];
                     aux.Estado = (bool)datos.Lector["Estado"];
@@ -140,7 +140,7 @@ namespace Negocio
 
             try
             {                
-                datos.SetearConsulta("EXEC [Usuario].[sp_InsUsuario] @Apellido, @Nombre, @Dni, @Sexo, @FechaNacimiento, @Mail, @Telefono, @Password, @IdPerfil");
+                datos.SetearConsulta("EXEC [Usuario].[sp_InsUsuario] @Apellido, @Nombre, @Dni, @Sexo, @FechaNacimiento, @Mail, @Telefono, @NombreUsuario, @Password, @IdPerfil");
                 datos.SetearParametro("@Apellido", nuevoUsuario.Apellido);
                 datos.SetearParametro("@Nombre", nuevoUsuario.Nombre);
                 datos.SetearParametro("@Dni", nuevoUsuario.Dni);
@@ -148,7 +148,7 @@ namespace Negocio
                 datos.SetearParametro("@FechaNacimiento", nuevoUsuario.FechaNacimiento);
                 datos.SetearParametro("@Mail", nuevoUsuario.Mail);
                 datos.SetearParametro("@Telefono", nuevoUsuario.Telefono);
-                //datos.SetearParametro("@NombreUsuario", nuevoUsuario.UsuarioReg);
+                datos.SetearParametro("@NombreUsuario", nuevoUsuario.UsuarioReg);
                 datos.SetearParametro("@Password", nuevoUsuario.Password);
                 datos.SetearParametro("@IdPerfil", nuevoUsuario.Perfil);
                 datos.EjecutarAccion();
@@ -169,7 +169,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("EXEC [Usuario].[sp_UpdUsuario] @IdUsuario, @NuevoApellido, @NuevoNombre, @NuevoDni, @NuevoSexo, @NuevaFechaNacimiento, @NuevoMail, @NuevoTelefono, @NuevoPassword, @NuevoIdPerfil, @NuevoEstado");
+                datos.SetearConsulta("EXEC [Usuario].[sp_UpdUsuario] @IdUsuario, @NuevoApellido, @NuevoNombre, @NuevoDni, @NuevoSexo, @NuevaFechaNacimiento, @NuevoMail, @NuevoTelefono, @NuevoNombreUsuario, @NuevoPassword, @NuevoIdPerfil, @NuevoEstado");
                 datos.SetearParametro("@IdUsuario", usuario.IdUsuario);
                 datos.SetearParametro("@NuevoApellido", usuario.Apellido);
                 datos.SetearParametro("@NuevoNombre", usuario.Nombre);
@@ -178,7 +178,7 @@ namespace Negocio
                 datos.SetearParametro("@NuevaFechaNacimiento", usuario.FechaNacimiento);
                 datos.SetearParametro("@NuevoMail", usuario.Mail);
                 datos.SetearParametro("@NuevoTelefono", usuario.Telefono);
-                //datos.SetearParametro("@NuevoNombreUsuario", usuario.UsuarioReg);
+                datos.SetearParametro("@NuevoNombreUsuario", usuario.UsuarioReg);
                 datos.SetearParametro("@NuevoPassword", usuario.Password);
                 datos.SetearParametro("@NuevoIdPerfil", usuario.Perfil);
                 datos.SetearParametro("@NuevoEstado", usuario.Estado);
@@ -242,7 +242,7 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("EXEC [Usuario].[sp_GetUsuarioByMailPassword] @Usuario, @Password");
+                datos.SetearConsulta("EXEC [Usuario].[sp_GetUsuarioByUsuarioPassword] @Usuario, @Password");
                 datos.SetearParametro("@Usuario", usuario);
                 datos.SetearParametro("@Password", password);
                 datos.EjecutarLectura();
@@ -258,7 +258,7 @@ namespace Negocio
                     aux.FechaNacimiento = (DateTime)datos.Lector["FechaNacimiento"];
                     aux.Mail = (string)datos.Lector["Mail"];
                     aux.Telefono = (string)datos.Lector["Telefono"];
-                    //aux.UsuarioReg = (string)datos.Lector["Usuario"];
+                    aux.UsuarioReg = (string)datos.Lector["Usuario"];
                     aux.Password = (string)datos.Lector["Password"];
                     aux.Perfil = (int)datos.Lector["IdPerfil"];
                     aux.Estado = (bool)datos.Lector["Estado"];

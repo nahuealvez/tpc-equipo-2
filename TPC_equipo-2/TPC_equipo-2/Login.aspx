@@ -14,7 +14,7 @@
                 <h3 class="h3">Acceso</h3>
                 <div>
                     <asp:Label class="form-label" Text="Usuario" runat="server" />
-                    <asp:TextBox type="email" class="form-control" ID="exampleInputEmail1" aria-describedby="emailHelp" runat="server" />
+                    <asp:TextBox type="text" class="form-control" ID="exampleInputUser1" aria-describedby="emailHelp" runat="server" />
                 </div>
                 <div>
                     <asp:Label ID="lblContraseña" class="form-label" Text="Contraseña" runat="server" />
