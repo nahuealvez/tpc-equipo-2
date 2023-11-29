@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuracion.aspx" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\Styles.css" />
     <Content Include="Especialidades.aspx" />
     <Content Include="Especialistas.aspx" />
