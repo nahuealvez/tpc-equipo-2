@@ -312,12 +312,30 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.Label lblMotivoConsultaAConfirmar;
 
         /// <summary>
-        /// Control lblFechaTurno.
+        /// Control lblFechaTurnoAConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaTurno;
+        protected global::System.Web.UI.WebControls.Label lblFechaTurnoAConfirmar;
+
+        /// <summary>
+        /// Control lblEspecialidadAConfirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEspecialidadAConfirmar;
+
+        /// <summary>
+        /// Control lblEspecialistaAConfirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEspecialistaAConfirmar;
     }
 }

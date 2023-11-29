@@ -313,7 +313,15 @@
                     </div>
                     <div class="card-body">
                         <label for="Dia">Dia / Horario: </label>
-                        <asp:Label Text="Fecha" ID="lblFechaTurno" runat="server" />
+                        <asp:Label Text="" ID="lblFechaTurnoAConfirmar" runat="server" />
+                    </div>
+                    <div class="card-body">
+                        <label for="Dia">Especialidad: </label>
+                        <asp:Label Text="" ID="lblEspecialidadAConfirmar" runat="server" />
+                    </div>
+                    <div class="card-body">
+                        <label for="Dia">Especialista: </label>
+                        <asp:Label Text="" ID="lblEspecialistaAConfirmar" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">

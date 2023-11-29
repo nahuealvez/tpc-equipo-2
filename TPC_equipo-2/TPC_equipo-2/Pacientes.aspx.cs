@@ -202,6 +202,17 @@ namespace TPC_equipo_2
 
             lblMotivoConsultaAConfirmar.Text = turnoSeleccionado.MotivoConsulta;
 
+            string fechaTurno = turnoSeleccionado.FechaHora.ToString("dd/MM/yyyy");
+            string horaTurno = turnoSeleccionado.FechaHora.ToString("HH:mm");
+
+            lblFechaTurnoAConfirmar.Text = fechaTurno + " " + horaTurno;
+            lblEspecialidadAConfirmar.Text = turnoSeleccionado.Especialidad.Descripcion;
+
+            string apellidoEsp = turnoSeleccionado.Usuario.Apellido;
+            string nombreEsp = turnoSeleccionado.Usuario.Nombre;
+
+            lblEspecialistaAConfirmar.Text = nombreEsp + " " + apellidoEsp;
+
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfirmarTurno()", true);
         }
 
