@@ -5,7 +5,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%
-        //if (UsuarioLogeado.Perfil != (int)dominio.EnumPerfil.Especialista)
         if (UsuarioLogeado != null && UsuarioLogeado.Perfil != (int)dominio.EnumPerfil.Especialista)
         {%>
     <div class="container">
@@ -80,16 +79,16 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblApellidosPaciente" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" MaxLength="50"/>
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblNombresPaciente" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" MaxLength="8"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblSexo" class="form-label">Sexo</label>
@@ -108,19 +107,19 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" maxlenght="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblCobertura" class="form-label">Cobertura</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxCobertura" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxCobertura" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblNroCredencial" class="form-label">Nro. de credencial</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNroCredencial" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNroCredencial" MaxLength="16" />
                             </div>
                         </div>
                     </div>
@@ -152,16 +151,16 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblModApellidosPaciente" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModApellidoPaciente" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModApellidoPaciente" MaxLength="50"/>
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblModNombresPaciente" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModNombrePaciente" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModNombrePaciente" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblModDniPaciente" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModDniPaciente" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModDniPaciente" MaxLength="8" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblModSexoPaciente" class="form-label">Sexo</label>
@@ -180,19 +179,19 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblModEmailPaciente" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModEmailPaciente" type="mail" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModEmailPaciente" type="mail" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblModTelefonoPaciente" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModTelPaciente" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModTelPaciente" maxlenght="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblModCoberturaPaciente" class="form-label">Cobertura</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModCoberturaPaciente" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModCoberturaPaciente" MaxLength="50"/>
                             </div>
                             <div class="mb-3">
                                 <label for="lblModNroCredencialPaciente" class="form-label">Nro. de credencial</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModCredPaciente" />
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModCredPaciente" MaxLength="8" />
                             </div>
                         </div>
                     </div>
