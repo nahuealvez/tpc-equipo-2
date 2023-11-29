@@ -223,12 +223,12 @@ namespace TPC_equipo_2
                     MailService envioMail = new MailService();
                     string mailPaciente = turnoSeleccionado.Paciente.Mail;
                     string asunto = "Turno confirmado Port Salut Medicina";
-                    string cuerpoMail = "Su turno ha sido confirmado para el día " + fechaTurno + " a las " + horaTurno + ".\n" +
-                         "Especialidad: " + turnoSeleccionado.Especialidad.Descripcion + "\n" +
-                         "Especialista: " + turnoSeleccionado.Usuario.NombreCompleto + "\n" +
-                         "Motivo de consulta: " + turnoSeleccionado.MotivoConsulta + "\n" +
-                         "Saludos cordiales, Port Salut Medicina.";
-                    envioMail.armarCorreo(mailPaciente, asunto, cuerpoMail);
+                    string cuerpoMail = "<p>Su turno ha sido confirmado para el día " + fechaTurno + " a las " + horaTurno + ".</p>" +
+                        "<p><strong>Especialidad:</strong> " + turnoSeleccionado.Especialidad.Descripcion + "</p>" +
+                        "<p><strong>Especialista:</strong> " + turnoSeleccionado.Usuario.NombreCompleto + "</p>" +
+                        "<p><strong>Motivo de consulta:</strong> " + turnoSeleccionado.MotivoConsulta + "</p>" +
+                        "<p>Saludos cordiales, Port Salut Medicina.</p>";
+                envioMail.armarCorreo(mailPaciente, asunto, cuerpoMail);
 
                     try
                     {

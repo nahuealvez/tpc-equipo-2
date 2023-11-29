@@ -16,9 +16,9 @@ namespace Negocio
         public MailService()
         {
             server = new SmtpClient();
-            server.Host = "sandbox.smtp.mailtrap.io";
-            server.Port = 2525;
-            server.Credentials = new NetworkCredential("61d97d360a7c65", "d6610f6914b893");
+            server.Host = "smtp-relay.sendinblue.com";
+            server.Port = 587;
+            server.Credentials = new NetworkCredential("portsaludmed@gmail.com", "5yq0X7rghmKxJBdf");
             server.EnableSsl = true;
         }
 
@@ -29,6 +29,7 @@ namespace Negocio
             email.To.Add(destinatario);
             email.Subject = asunto;
             email.Body = cuerpo;
+            email.IsBodyHtml = true;
         }
 
         public void enviarCorreo()

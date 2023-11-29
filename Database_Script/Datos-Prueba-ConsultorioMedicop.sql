@@ -59,31 +59,31 @@ VALUES
 --    Asegúrate de ajustar las contraseñas antes de ejecutar este script
 
 -- Insertar administradores
-INSERT INTO [Usuario].[Usuario] ([Apellido], [Nombre], [Dni], [Sexo], [FechaNacimiento], [Mail], [Telefono], [Usuario], [Password], [IdPerfil], [Estado])
+INSERT INTO [Usuario].[Usuario] ([Apellido], [Nombre], [Dni], [Sexo], [FechaNacimiento], [Mail], [Telefono], [Password], [IdPerfil], [Estado])
 VALUES
-    ('Gomez', 'Ana', 30123456, 'F', '1990-01-01', 'ana@email.com', '1122334455', 'agomez', 'Gomez1234', 1, 1),
-    ('Rodriguez', 'Carlos', 40123456, 'M', '1985-02-02', 'carlos@email.com', '9988776655', 'crodriguez', 'Rodriguez1234', 1, 1);
+    ('Gomez', 'Ana', 30123456, 'F', '1990-01-01', 'ana@email.com', '1122334455', 'Gomez1234', 1, 1),
+    ('Rodriguez', 'Carlos', 40123456, 'M', '1985-02-02', 'carlos@email.com', '9988776655', 'Rodriguez1234', 1, 1);
 
 -- Insertar recepcionistas
-INSERT INTO [Usuario].[Usuario] ([Apellido], [Nombre], [Dni], [Sexo], [FechaNacimiento], [Mail], [Telefono], [Usuario], [Password], [IdPerfil], [Estado])
+INSERT INTO [Usuario].[Usuario] ([Apellido], [Nombre], [Dni], [Sexo], [FechaNacimiento], [Mail], [Telefono], [Password], [IdPerfil], [Estado])
 VALUES
-    ('Lopez', 'Laura', 50123456, 'F', '1988-03-03', 'laura@email.com', '5544332211', 'llopez', 'Lopez1234', 2, 1),
-    ('Perez', 'Juan', 60123456, 'M', '1987-04-04', 'juan@email.com', '1122334455', 'jperez', 'Perez1234', 2, 1),
-    ('Fernandez', 'Maria', 70123456, 'F', '1986-05-05', 'maria@email.com', '9988776655', 'mfernandez', 'Fernandez1234', 2, 1);
+    ('Lopez', 'Laura', 50123456, 'F', '1988-03-03', 'laura@email.com', '5544332211', 'Lopez1234', 2, 1),
+    ('Perez', 'Juan', 60123456, 'M', '1987-04-04', 'juan@email.com', '1122334455', 'Perez1234', 2, 1),
+    ('Fernandez', 'Maria', 70123456, 'F', '1986-05-05', 'maria@email.com', '9988776655', 'Fernandez1234', 2, 1);
 
 -- Insertar especialistas
-INSERT INTO [Usuario].[Usuario] ([Apellido], [Nombre], [Dni], [Sexo], [FechaNacimiento], [Mail], [Telefono], [Usuario], [Password], [IdPerfil], [Estado])
+INSERT INTO [Usuario].[Usuario] ([Apellido], [Nombre], [Dni], [Sexo], [FechaNacimiento], [Mail], [Telefono], [Password], [IdPerfil], [Estado])
 VALUES
-    ('Gonzalez', 'Martin', 80123456, 'M', '1985-06-06', 'martin@email.com', '5544332211', 'mgonzalez', 'Gonzalez1234', 3, 1),
-    ('Diaz', 'Luisa', 90123456, 'F', '1984-07-07', 'luisa@email.com', '1122334455', 'ldiaz', 'Diaz1234', 3, 1),
-    ('Alvarez', 'Javier', 10012345, 'M', '1983-08-08', 'javier@email.com', '9988776655', 'jalvarez', 'Alvarez1234', 3, 1),
-    ('Torres', 'Silvia', 11012345, 'F', '1982-09-09', 'silvia@email.com', '5544332211', 'storres', 'Torres1234', 3, 1),
-    ('Rios', 'Eduardo', 12012345, 'M', '1981-10-10', 'eduardo@email.com', '1122334455', 'erios', 'Rios1234', 3, 1),
-    ('Mendoza', 'Camila', 13012345, 'F', '1980-11-11', 'camila@email.com', '9988776655', 'cmendoza', 'Mendoza1234', 3, 1),
-    ('Castro', 'Roberto', 14012345, 'M', '1979-12-12', 'roberto@email.com', '5544332211', 'rcastro', 'Castro1234', 3, 1),
-    ('Romero', 'Alicia', 15012345, 'F', '1978-01-01', 'alicia@email.com', '1122334455', 'aromero', 'Romero1234', 3, 1),
-    ('Ortega', 'Carlos', 16012345, 'M', '1977-02-02', 'carlos@email.com', '9988776655', 'cortega', 'Ortega1234', 3, 1),
-    ('Suarez', 'Marcela', 17012345, 'F', '1976-03-03', 'marcela@email.com', '5544332211', 'msuarez', 'Suarez1234', 3, 1);
+    ('Gonzalez', 'Martin', 80123456, 'M', '1985-06-06', 'martin@email.com', '5544332211', 'Gonzalez1234', 3, 1),
+    ('Diaz', 'Luisa', 90123456, 'F', '1984-07-07', 'luisa@email.com', '1122334455', 'Diaz1234', 3, 1),
+    ('Alvarez', 'Javier', 10012345, 'M', '1983-08-08', 'javier@email.com', '9988776655', 'Alvarez1234', 3, 1),
+    ('Torres', 'Silvia', 11012345, 'F', '1982-09-09', 'silvia@email.com', '5544332211', 'Torres1234', 3, 1),
+    ('Rios', 'Eduardo', 12012345, 'M', '1981-10-10', 'eduardo@email.com', '1122334455', 'Rios1234', 3, 1),
+    ('Mendoza', 'Camila', 13012345, 'F', '1980-11-11', 'camila@email.com', '9988776655', 'Mendoza1234', 3, 1),
+    ('Castro', 'Roberto', 14012345, 'M', '1979-12-12', 'roberto@email.com', '5544332211', 'Castro1234', 3, 1),
+    ('Romero', 'Alicia', 15012345, 'F', '1978-01-01', 'alicia@email.com', '1122334455', 'Romero1234', 3, 1),
+    ('Ortega', 'Carlos', 16012345, 'M', '1977-02-02', 'carlos@email.com', '9988776655', 'Ortega1234', 3, 1),
+    ('Suarez', 'Marcela', 17012345, 'F', '1976-03-03', 'marcela@email.com', '5544332211','Suarez1234', 3, 1);
 
 -- Verificar que los datos se han insertado correctamente
 SELECT * FROM [Usuario].[Usuario];
