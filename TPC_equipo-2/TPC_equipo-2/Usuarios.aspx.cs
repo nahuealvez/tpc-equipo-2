@@ -20,6 +20,8 @@ namespace TPC_equipo_2
             UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             UsuarioList = usuarioNegocio.Listar();
+            UsuarioList = UsuarioList.OrderBy(x => x.Apellido).ToList();
+
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = UsuarioList;
