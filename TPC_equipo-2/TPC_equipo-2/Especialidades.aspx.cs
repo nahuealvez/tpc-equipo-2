@@ -15,6 +15,7 @@ namespace TPC_equipo_2
     {
         public List<Especialidad> EspecialidadList;
         public Usuario UsuarioLogeado { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
@@ -43,6 +44,7 @@ namespace TPC_equipo_2
 
         protected void btnAgregarEspecialidad_Click(object sender, EventArgs e)
         {
+            lblAlertaAgregar.Visible = false;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialidad()", true);
         }
 
@@ -52,6 +54,7 @@ namespace TPC_equipo_2
             Session.Add("idEspecialidad", id);
             tbxModificarEspecialidad.Text = EspecialidadList.Find(x => x.Id == id).Descripcion;
 
+            lblAlertaModificar.Visible = false;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalModificarEspecialidad()", true);
             
         }
@@ -111,7 +114,12 @@ namespace TPC_equipo_2
                     }
                 }
             }
-
+            else
+            {
+                lblAlertaAgregar.Text = "Debe completar el campo para poder guardar";
+                lblAlertaAgregar.Visible = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialidad()", true);
+            }
         }
 
         protected void btnGuardarModificacionEspecialidad_Click(object sender, EventArgs e)
@@ -135,6 +143,12 @@ namespace TPC_equipo_2
 
                     throw ex;
                 }
+            }
+            else
+            {
+                lblAlertaModificar.Text = "Debe completar el campo para poder guardar";
+                lblAlertaModificar.Visible = true;
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialidad()", true);
             }
         }
 

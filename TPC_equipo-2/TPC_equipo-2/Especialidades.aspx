@@ -76,7 +76,10 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Nombre</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxEspecialidad" />
+                        <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxEspecialidad" />
+                    </div>
+                    <div class="mb-3">
+                        <asp:Label ID="lblAlertaAgregar" Visible="false" CssClass="alert alert-danger d-flex justify-content-center align-items-center" Text="" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -98,7 +101,10 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="lblNombreEspecialidad" class="form-label">Nombre</label>
-                        <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarEspecialidad" />
+                        <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxModificarEspecialidad" />
+                    </div>
+                    <div class="mb-3">
+                        <asp:Label ID="lblAlertaModificar" Visible="false" CssClass="alert alert-danger d-flex justify-content-center align-items-center" Text="" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer">

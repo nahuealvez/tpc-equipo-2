@@ -60,6 +60,15 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.TextBox tbxEspecialidad;
 
         /// <summary>
+        /// Control lblAlertaAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlertaAgregar;
+
+        /// <summary>
         /// Control tbxModificarEspecialidad.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace TPC_equipo_2
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxModificarEspecialidad;
+
+        /// <summary>
+        /// Control lblAlertaModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlertaModificar;
 
         /// <summary>
         /// Control lblNombreEspecEliminar.
