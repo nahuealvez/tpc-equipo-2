@@ -49,6 +49,7 @@ namespace TPC_equipo_2
             int id = int.Parse(((Button)sender).CommandArgument);
             Session.Add("IdTurno", id);
             Turno turno = TurnosList.Find(x => x.IdTurno == id);
+
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalCancelarTurno()", true);
         }
 
@@ -94,6 +95,95 @@ namespace TPC_equipo_2
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        protected void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(((Button)sender).CommandArgument);
+
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+            Turno turno = turnoNegocio.listarTurnoPorId(id);
+
+            Session.Add("IdTurno", id);
+
+            txtIdTurno.Text = turno.IdTurno.ToString();
+            txtFecha.Text = turno.FechaHora.ToString("dd/MM/yyyy");
+            txtHora.Text = turno.FechaHora.ToString("HH:mm") + " Hs.";
+            txtEspecialidad.Text = turno.Especialidad.Descripcion;
+            txtEspecialista.Text = turno.Usuario.Apellido + " " + turno.Usuario.Nombre;
+            txtMotivoConsulta.Text = turno.MotivoConsulta;
+
+            if (turno.Estado.Id == 2 || turno.Estado.Id == 3 || turno.Estado.Id == 4)
+            {
+                tbxDiagnostico.Text = turno.Diagnostico;
+                tbxDiagnostico.Enabled = false;
+                lblEstadoTurno.Visible = false;
+                lblPipe.Visible = false;
+                btnAusente.Visible = false;
+                btnAtendido.Visible = false;
+                lblAlertDiagnostico.Visible = false;
+                lblDangerDiagnostico.Visible = false;
+            }
+            else
+            {
+                tbxDiagnostico.Enabled = true;
+                lblEstadoTurno.Visible = true;
+                lblPipe.Visible = true;
+                btnAusente.Visible = true;
+                btnAtendido.Visible = true;
+                lblAlertDiagnostico.Visible = true;
+                lblDangerDiagnostico.Visible = false;
+                tbxDiagnostico.Text = "";
+            }
+
+            ClientScript.RegisterStartupScript(this.GetType(), "pop", "abrirModalVerDetalleTurno()", true);
+        }
+
+        protected void btnMarcarEstadoAusente_Click(object sender, EventArgs e)
+        {
+            int idTurno = (int)Session["IdTurno"];
+
+            TurnoNegocio turnoNegocio = new TurnoNegocio();
+
+            try
+            {
+                turnoNegocio.MarcarTurnoComoAusente(idTurno);
+                Response.Redirect(Request.RawUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "postbackKey", "__doPostBack('', '');", true);
+        }
+
+        protected void btnMarcarEstadoAtendido_Click(object sender, EventArgs e)
+        {
+            if (tbxDiagnostico.Text == "")
+            {
+                lblAlertDiagnostico.Visible = false;
+                lblDangerDiagnostico.Visible = true;
+                
+                ClientScript.RegisterStartupScript(this.GetType(), "pop", "abrirModalVerDetalleTurno()", true);
+            }
+            else
+            {
+                int idTurno = (int)Session["IdTurno"];
+
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+
+                try
+                {
+                    turnoNegocio.MarcarTurnoComoAtendido(idTurno);
+                    turnoNegocio.CargarDiagnostico(idTurno, tbxDiagnostico.Text);
+                    Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
     }

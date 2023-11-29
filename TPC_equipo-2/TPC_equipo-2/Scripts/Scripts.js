@@ -152,3 +152,8 @@ function abrirModalCancelarTurno() {
     var pageModal = new bootstrap.Modal(document.getElementById("CancelarTurno"), { keyboard: false });
     pageModal.show();
 }
+
+function abrirModalVerDetalleTurno() {
+    var pageModal = new bootstrap.Modal(document.getElementById("VerDetalleTurno"), { keyboard: false });
+    pageModal.show();
+}

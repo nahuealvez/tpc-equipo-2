@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -193,6 +194,47 @@ namespace Negocio
             }
         }
 
+        public Turno listarTurnoPorId(int IdTurno)
+        {
+            Turno turnoEncontrado = new Turno();
+            Usuario especialista = new Usuario();
+            Especialidad especialidad = new Especialidad();
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("SELECT A.IdTurno, A.FechaHoraTurno, B.Especialidad, C.Apellido, C.Nombre, A.MotivoConsulta, A.Diagnostico, A.IdEstadoTurno FROM Especialidad.Turno AS A INNER JOIN Especialidad.Especialidad AS B ON A.IdEspecialidad = B.IdEspecialidad INNER JOIN Usuario.Usuario AS C ON A.IdEspecialista = C.IdUsuario WHERE IdTurno = @Id");
+                datos.SetearParametro("@Id", IdTurno);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    turnoEncontrado.IdTurno = (int)datos.Lector["IdTurno"];
+                    turnoEncontrado.FechaHora = (DateTime)datos.Lector["FechaHoraTurno"];
+                    turnoEncontrado.Especialidad = new Especialidad();
+                    turnoEncontrado.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
+                    turnoEncontrado.Usuario = new Usuario();
+                    turnoEncontrado.Usuario.Apellido = (string)datos.Lector["Apellido"];
+                    turnoEncontrado.Usuario.Nombre = (string)datos.Lector["Nombre"];
+                    turnoEncontrado.MotivoConsulta = (string)datos.Lector["MotivoConsulta"];
+                    turnoEncontrado.Diagnostico = (string)datos.Lector["Diagnostico"];
+                    turnoEncontrado.Estado = new EstadoTurno();
+                    turnoEncontrado.Estado.Id = (int)datos.Lector["IdEstadoTurno"];
+                }
+
+                return turnoEncontrado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Agregar (Turno turno)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -312,6 +354,67 @@ namespace Negocio
                
             }
             return turnosDisponibles;
+        }
+
+        public void MarcarTurnoComoAusente(int idTurno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Especialidad.Turno SET IdEstadoTurno = 4 WHERE IdTurno = @Id");
+                datos.SetearParametro("@Id", idTurno);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void MarcarTurnoComoAtendido(int idTurno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Especialidad.Turno SET IdEstadoTurno = 2 WHERE IdTurno = @Id");
+                datos.SetearParametro("@Id", idTurno);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void CargarDiagnostico(int idTurno, string diagnostico)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Especialidad.Turno SET Diagnostico = @Diagnostico WHERE IdTurno = @Id");
+                datos.SetearParametro("@Diagnostico", diagnostico);
+                datos.SetearParametro("@Id", idTurno);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
     }
 }
