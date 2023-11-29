@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if (UsuarioLogeado.Perfil == (int)dominio.EnumPerfil.Administrador)
+    <%if (UsuarioLogeado != null && UsuarioLogeado.Perfil == (int)dominio.EnumPerfil.Administrador)
         {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Especialidades</h2>
@@ -57,6 +57,9 @@
         else
         {%>
     <h2 class="h2">Acceso solo para Administradores</h2>
+    <h5 class="h5">Inicie sesión con los permisos requeridos</h5>
+
+
 
     <% }
     %>

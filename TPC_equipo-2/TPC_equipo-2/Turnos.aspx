@@ -4,6 +4,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%
+        if (UsuarioLogeado != null)
+        {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Turnos</h2>
         <div class="card text-center">
@@ -58,6 +61,15 @@
             </div>
         </div>
     </div>
+    <%}
+        else
+        {%>
+    <h2 class="h2">Usuario no registrado</h2>
+    <h5 class="h5">Debe iniciar sesión para acceder</h5>
+
+    <%}
+    %>
+
 
     <%-- Modal cancelar turno --%>
     <div class="modal fade" id="CancelarTurno" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="cancelarTurnoLabel" aria-hidden="true">
@@ -126,7 +138,7 @@
                         <asp:Label Visible="false" ID="lblDangerDiagnostico" class="alert alert-danger d-flex justify-content-center align-items-center" role="alert" Text="Falta cargar el diagnóstico para cambiar el estado a Atendido" runat="server" />
                     </div>
                 </div>
-                
+
                 <div class="modal-footer">
                     <asp:Label ID="lblEstadoTurno" CssClass="h5" Text="Estado del turno | " runat="server" />
                     <asp:Button ID="btnAusente" Text="Ausente" CssClass="btn btn-warning" data-bs-dismiss="modal" runat="server" OnClick="btnMarcarEstadoAusente_Click" />

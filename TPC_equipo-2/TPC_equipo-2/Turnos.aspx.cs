@@ -17,31 +17,35 @@ namespace TPC_equipo_2
         {
             UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             TurnoNegocio turnoNegocio = new TurnoNegocio();
-            if (UsuarioLogeado.Perfil == (int)EnumPerfil.Especialista) TurnosList = turnoNegocio.ListarPorEspecialista(UsuarioLogeado.IdUsuario);
-            else TurnosList = turnoNegocio.Listar();
+            if(UsuarioLogeado != null)
+            {
+                if (UsuarioLogeado.Perfil == (int)EnumPerfil.Especialista) TurnosList = turnoNegocio.ListarPorEspecialista(UsuarioLogeado.IdUsuario);
+                else TurnosList = turnoNegocio.Listar();
+
+                if (!IsPostBack)
+                {
+                    repRepetidor.DataSource = TurnosList;
+                    repRepetidor.DataBind();
+                }
+
+                foreach (RepeaterItem item in repRepetidor.Items)
+                {
+                    int Id = int.Parse((item.FindControl("btnVerDetalle") as Button).CommandArgument.ToString());
+                    Button btnCancelar = (Button)item.FindControl("btnCancelar");
+                    Turno turnoAux = TurnosList.Find(x => x.IdTurno == Id);
+
+                    if (turnoAux.Estado.Id == 3)
+                    {
+                        btnCancelar.Visible = false;
+                    }
+
+                    if (UsuarioLogeado.Perfil == (int)EnumPerfil.Especialista)
+                    {
+                        btnCancelar.Visible = false;
+                    }
+                }
+            }
             
-            if (!IsPostBack)
-            {
-                repRepetidor.DataSource = TurnosList;
-                repRepetidor.DataBind();
-            }
-
-            foreach (RepeaterItem item in repRepetidor.Items)
-            {
-                int Id = int.Parse((item.FindControl("btnVerDetalle") as Button).CommandArgument.ToString());
-                Button btnCancelar = (Button)item.FindControl("btnCancelar");
-                Turno turnoAux = TurnosList.Find(x => x.IdTurno == Id);
-                
-                if (turnoAux.Estado.Id == 3)
-                {
-                    btnCancelar.Visible = false;
-                }
-
-                if (UsuarioLogeado.Perfil == (int)EnumPerfil.Especialista)
-                {
-                    btnCancelar.Visible = false;
-                }
-            }
         }
 
         protected void btnCancelarTurno_Click(object sender, EventArgs e)

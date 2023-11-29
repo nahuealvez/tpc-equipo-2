@@ -4,7 +4,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%if (UsuarioLogeado.Perfil != (int)dominio.EnumPerfil.Especialista)
+    <%
+        //if (UsuarioLogeado.Perfil != (int)dominio.EnumPerfil.Especialista)
+        if (UsuarioLogeado != null && UsuarioLogeado.Perfil != (int)dominio.EnumPerfil.Especialista)
         {%>
     <div class="container">
         <h2 class="pt-3 pb-3">Pacientes</h2>
@@ -13,7 +15,7 @@
                 <ul class="nav nav-pills card-header-pills d-flex justify-content-between">
                     <li class="d-flex">
                         <asp:TextBox CssClass="form-control me-2 input-number-noneButtons" placeholder="Buscar por DNI" Type="number" ID="txtBusqueda" runat="server" />
-                        <asp:Button ID="btnBuscarPacientePorDNI" TextMode="SigleLine" Text="Buscar" class="btn btn-color-project-primary" OnClick="btnBuscarPorDNIPaciente_Click" runat="server" />     
+                        <asp:Button ID="btnBuscarPacientePorDNI" TextMode="SigleLine" Text="Buscar" class="btn btn-color-project-primary" OnClick="btnBuscarPorDNIPaciente_Click" runat="server" />
                     </li>
                     <li class="nav-item">
                         <asp:Button Text="Agregar paciente" ID="btnAgregar" CssClass="btn btn-color-project-primary" runat="server" OnClick="btnAgregarPaciente_Click" />
@@ -55,6 +57,9 @@
         else
         {%>
     <h2 class="h2">Acceso solo para Recepcionistas y Administradores</h2>
+    <h5 class="h5">Inicie sesión con los permisos requeridos</h5>
+
+
     <% }
     %>
 
