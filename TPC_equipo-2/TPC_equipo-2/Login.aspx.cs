@@ -31,11 +31,11 @@ namespace TPC_equipo_2
                 }
                 if (usuarios[0].Perfil == (int)EnumPerfil.Recepcionista)
                 {
-                    Response.Redirect("Turnos.aspx");
+                    Response.Redirect("Pacientes.aspx");
                 }
                 else
                 {
-                    Response.Redirect("Turnos.aspx");
+                    Response.Redirect("Pacientes.aspx");
                 }
             }
             else

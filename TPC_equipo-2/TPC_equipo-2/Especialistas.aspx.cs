@@ -261,6 +261,19 @@ namespace TPC_equipo_2
             nuevaJornada.HoraInicio = TimeSpan.Parse(horaInicioFormateada);
             nuevaJornada.HoraFin = TimeSpan.Parse(horaFinFormateada);
 
+            List<Jornada> jornadasExistentes = jornadaNegocio.ListarXEspecialista(especialista);
+            foreach (Jornada jornada in jornadasExistentes)
+            {
+                if (jornada.DiaSemana == nuevaJornada.DiaSemana)
+                {
+                    if (jornada.HoraInicio < nuevaJornada.HoraFin && jornada.HoraFin > nuevaJornada.HoraInicio)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ErrorAgregarJornadaSuperpuesta()", true);
+                        return;
+                    }
+                }
+            }
+
             jornadaNegocio.Agregar(nuevaJornada);
 
             cargarModalConfigurarJornadas(especialista);
@@ -269,6 +282,13 @@ namespace TPC_equipo_2
         protected void btnQuitarJornada_Click(object sender, EventArgs e)
         {
             Usuario especialista = (Usuario)(Session["especialista"]);
+
+            JornadaNegocio jornadaNegocio = new JornadaNegocio();
+            Button btnQuitarJornada = (Button)sender;
+            int idEspecialidad = Int32.Parse(btnQuitarJornada.CommandArgument);
+            
+            jornadaNegocio.Eliminar(idEspecialidad);
+
             cargarModalConfigurarJornadas(especialista);
         }
 
