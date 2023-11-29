@@ -117,6 +117,27 @@ namespace Negocio
             }
         }
 
-        
+        public void Eliminar(int IdJornada)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC [Usuario].[sp_DelJornada] @IdJornada");
+                //datos.SetearConsulta("EXEC [Usuario].[sp_InsJornada] @IdEspecialidad, @IdEspecialista, @DiaSemana, @HoraInicio, @HoraFin");
+                datos.SetearParametro("@IdJornada", IdJornada);
+                datos.EjecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }

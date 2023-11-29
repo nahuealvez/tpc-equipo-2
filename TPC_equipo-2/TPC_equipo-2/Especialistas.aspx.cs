@@ -247,6 +247,13 @@ namespace TPC_equipo_2
         protected void btnQuitarJornada_Click(object sender, EventArgs e)
         {
             Usuario especialista = (Usuario)(Session["especialista"]);
+
+            JornadaNegocio jornadaNegocio = new JornadaNegocio();
+            Button btnQuitarJornada = (Button)sender;
+            int idEspecialidad = Int32.Parse(btnQuitarJornada.CommandArgument);
+
+            jornadaNegocio.Eliminar(idEspecialidad);
+
             cargarModalConfigurarJornadas(especialista);
         }
 
