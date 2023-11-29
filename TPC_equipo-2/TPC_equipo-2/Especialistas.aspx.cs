@@ -23,6 +23,7 @@ namespace TPC_equipo_2
             UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
             EspecialistasList = usuarioNegocio.ListarEspecialistas();
+            EspecialistasList = EspecialistasList.OrderBy(x => x.Apellido).ToList();
 
             List<Especialidad> especialidadesList = new List<Especialidad>();
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
