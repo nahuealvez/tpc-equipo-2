@@ -109,6 +109,10 @@ function abrirModalConfigurarJornada() {
     var pageModal = new bootstrap.Modal(document.getElementById("ConfigurarJornada"), { keyboard: false });
     pageModal.show();
 }
+function ErrorAgregarJornadaSuperpuesta() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ErrorAgregarJornadaSuperpuesta"), { keyboard: false });
+    pageModal.show();
+}
 
 /* Modales de especialidad */
 function abrirModalAgregarEspecialidad() {
