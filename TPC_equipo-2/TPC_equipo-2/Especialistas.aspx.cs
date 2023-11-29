@@ -3,7 +3,9 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -54,6 +56,8 @@ namespace TPC_equipo_2
 
         protected void btnAgregarEspecialista_Click(object sender, EventArgs e)
         {
+            lblAlertAgregar.Visible = false;
+            lblCamposObligatoriosAgregar.Visible = true;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialista()", true);
         }
 
@@ -83,25 +87,56 @@ namespace TPC_equipo_2
 
             nuevoEspecialista.Nombre = tbxNombres.Text;
             nuevoEspecialista.Apellido = tbxApellidos.Text;
-            nuevoEspecialista.Dni = int.Parse(tbxDNI.Text);
+
+            if (int.TryParse(tbxDNI.Text.Trim(), out int dni))
+            {
+                nuevoEspecialista.Dni = dni;
+            }
+            else
+            {
+                nuevoEspecialista.Dni = 0;
+            }
+            
             nuevoEspecialista.Sexo = DropDownListSexo.Text;
-            nuevoEspecialista.FechaNacimiento = DateTime.Parse(tbxFechaNacimiento.Text);
+
+            string formatoFecha = "yyyy-MM-dd";
+            DateTime fechaPorDefecto = new DateTime(1800, 1, 1);
+
+            if (DateTime.TryParseExact(tbxFechaNacimiento.Text.Trim(), formatoFecha, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaNacimiento))
+            {
+                nuevoEspecialista.FechaNacimiento = fechaNacimiento;
+            }
+            else
+            {
+                nuevoEspecialista.FechaNacimiento = fechaPorDefecto;
+            }
+
             nuevoEspecialista.Mail = tbxEmail.Text;
             nuevoEspecialista.Telefono = tbxTelefono.Text;
             nuevoEspecialista.UsuarioReg = tbxUsuario.Text;
             nuevoEspecialista.Password = tbxContrasenia.Text;
             nuevoEspecialista.Perfil = 3;
 
-            try
+            if (string.IsNullOrEmpty(nuevoEspecialista.Nombre) || string.IsNullOrEmpty(nuevoEspecialista.Apellido) || nuevoEspecialista.Dni == 0 || string.IsNullOrEmpty(nuevoEspecialista.Sexo) || nuevoEspecialista.FechaNacimiento == fechaPorDefecto || string.IsNullOrEmpty(nuevoEspecialista.Mail) || string.IsNullOrEmpty(nuevoEspecialista.Telefono) || string.IsNullOrEmpty(nuevoEspecialista.UsuarioReg) || string.IsNullOrEmpty(nuevoEspecialista.Password))
             {
-                negocio.Agregar(nuevoEspecialista);
-                Response.Redirect(Request.RawUrl);
+                lblAlertAgregar.Visible = true;
+                lblAlertAgregar.Text = "Todos los campos son obligatorios y no deben quedar vacíos para guardar el registro";
+                lblCamposObligatoriosAgregar.Visible = false;
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarEspecialista()", true);
             }
-            catch (Exception ex)
+            else
             {
+                try
+                {
+                    negocio.Agregar(nuevoEspecialista);
+                    Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
 
-                throw ex;
-            }
+                    throw ex;
+                }
+            } 
         }
 
         protected void cargarModalAgregarQuitarEspecialidades(int id)
@@ -226,19 +261,6 @@ namespace TPC_equipo_2
             nuevaJornada.HoraInicio = TimeSpan.Parse(horaInicioFormateada);
             nuevaJornada.HoraFin = TimeSpan.Parse(horaFinFormateada);
 
-            List<Jornada> jornadasExistentes = jornadaNegocio.ListarXEspecialista(especialista);
-            foreach(Jornada jornada in jornadasExistentes)
-            {
-                if(jornada.DiaSemana == nuevaJornada.DiaSemana)
-                {
-                    if(jornada.HoraInicio < nuevaJornada.HoraFin && jornada.HoraFin > nuevaJornada.HoraInicio)
-                    {
-                        ClientScript.RegisterStartupScript(this.GetType(), "Pop", "ErrorAgregarJornadaSuperpuesta()", true);
-                        return;
-                    }
-                }
-            }
-
             jornadaNegocio.Agregar(nuevaJornada);
 
             cargarModalConfigurarJornadas(especialista);
@@ -247,13 +269,6 @@ namespace TPC_equipo_2
         protected void btnQuitarJornada_Click(object sender, EventArgs e)
         {
             Usuario especialista = (Usuario)(Session["especialista"]);
-
-            JornadaNegocio jornadaNegocio = new JornadaNegocio();
-            Button btnQuitarJornada = (Button)sender;
-            int idEspecialidad = Int32.Parse(btnQuitarJornada.CommandArgument);
-
-            jornadaNegocio.Eliminar(idEspecialidad);
-
             cargarModalConfigurarJornadas(especialista);
         }
 

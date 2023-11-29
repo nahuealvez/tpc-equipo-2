@@ -90,16 +90,16 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblApellidosEspecialista" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxApellidos" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxApellidos" />
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblNombresEspecialista" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxNombres" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxNombres" />
                             </div>
                             <div class="mb-3">
-                                <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxDNI" MaxLength="8"/>
+                                <label for="lblDni" class="form-label">DNI</label>
+                                <asp:TextBox CssClass="form-control" MaxLength="8" runat="server" ID="tbxDNI" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblSexo" class="form-label">Sexo</label>
@@ -118,24 +118,25 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxEmail" type="mail" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxEmail" type="mail" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxTelefono" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxUsuario" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxUsuario" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblContrasenia" class="form-label">Contraseña</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxContrasenia" type="password" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" MaxLength="50" runat="server" ID="tbxContrasenia" type="password" />
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-primary" role="alert">
-                        * Todos los campos son obligatorios
+                    <div class="alert alert-warning" role="alert">
+                        <asp:Label ID="lblCamposObligatoriosAgregar" Text="Todos los campos son obligatorios" runat="server" />
+                        <asp:Label ID="lblAlertAgregar" Text="" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -162,16 +163,16 @@
                         <div class="col">
                             <div class="mb-3" data-bs-backdrop="static" data-bs-keyboard="false">
                                 <label for="lblApellidosEspecialista" class="form-label">Apellidos</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarApellido" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarApellido" />
                                 <asp:RequiredFieldValidator ForeColor="red" ValidationGroup="valForm" ErrorMessage="* Campo incompleto" ControlToValidate="tbxApellidos" runat="server" Display="Dynamic" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblNombresEspecialista" class="form-label">Nombres</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarNombre" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarNombre" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblDni" class="form-label">DNI (Sin puntos)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarDni" MaxLength="8"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarDni" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblSexo" class="form-label">Sexo</label>
@@ -190,24 +191,25 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="lblEmail" class="form-label">Email</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarMail" type="mail" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarMail" type="mail" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblTelefono" class="form-label">Teléfono (Sin guiones ni espacios)</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarTel" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarTel" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblUsuario" class="form-label">Usuario</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUser" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarUser" />
                             </div>
                             <div class="mb-3">
                                 <label for="lblContrasenia" class="form-label">Contraseña</label>
-                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarPass" type="password" MaxLength="50"/>
+                                <asp:TextBox CssClass="form-control" runat="server" ID="tbxModificarPass" type="password" />
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-primary" role="alert">
-                        * Todos los campos son obligatorios
+                    <div class="alert alert-warning" role="alert">
+                        <asp:Label ID="lblCamposObligatoriosModificar" Text="Todos los campos son obligatorios" runat="server" />
+                        <asp:Label ID="lblAlertModificar" Text="" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -447,26 +449,6 @@
                         <label for="lblNombreEspecialidad" class="form-label">Especialista: </label>
                         <asp:Label CssClass="form-label" ID="lblNombreErrorEliminarEspecialista" runat="server" />
                         <label for="lblNombreEspecialidad" class="form-label">El especialista no se puede eliminar porque se encuentra vinculado a otro registro.</label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <%-- Modal error agregar jornada Superpuesto --%>
-    <div class="modal fade" id="ErrorAgregarJornadaSuperpuesta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorEliminarEspecialidadLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">Error: No es posible agregar la jornada</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="lblMsjeError" class="form-label">La jornada se superpone con una existente</label>
                     </div>
                 </div>
                 <div class="modal-footer">
