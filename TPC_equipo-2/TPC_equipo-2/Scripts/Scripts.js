@@ -26,6 +26,10 @@ function abrirModalConfirmarTurno() {
     var pageModal = new bootstrap.Modal(document.getElementById("ConfirmacionTurno"), { keyboard: false });
     pageModal.show();
 }
+function abrirModalErrorAgendarTurnoSuperpuesto() {
+    var pageModal = new bootstrap.Modal(document.getElementById("ErrorAgendarTurnoSuperpuesto"), { keyboard: false });
+    pageModal.show();
+}
 
 /* Modales de usuario */
 function abrirModalAgregarUsuario() {

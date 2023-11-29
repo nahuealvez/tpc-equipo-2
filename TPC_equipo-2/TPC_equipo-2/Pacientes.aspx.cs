@@ -216,7 +216,7 @@ namespace TPC_equipo_2
                 {
                     if(turno.Estado.Id !=3 && turno.Paciente.IdPaciente == turnoSeleccionado.Paciente.IdPaciente && turno.FechaHora == turnoSeleccionado.FechaHora)
                     {
-                        //preparar msje error
+                        ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalErrorAgendarTurnoSuperpuesto()", true);
                         return;
                     }
                 }
