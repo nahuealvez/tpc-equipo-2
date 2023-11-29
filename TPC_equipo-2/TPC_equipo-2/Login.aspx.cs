@@ -35,7 +35,7 @@ namespace TPC_equipo_2
                 }
                 else
                 {
-                    Response.Redirect("Pacientes.aspx");
+                    Response.Redirect("Turnos.aspx");
                 }
             }
             else
