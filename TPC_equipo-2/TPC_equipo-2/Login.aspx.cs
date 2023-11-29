@@ -11,24 +11,25 @@ namespace TPC_equipo_2
 {
     public partial class Login : System.Web.UI.Page
     {
+        public UsuarioNegocio UsuarioLogeado = new UsuarioNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["UsuarioSesion"] = null;
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            List<Usuario> usuario = new List<Usuario>();
-            UsuarioNegocio valida = new UsuarioNegocio();
-            usuario = valida.LoginUsuario(exampleInputUser1.Text, exampleInputPassword1.Text);
+            List<Usuario> usuarios = new List<Usuario>();
+            usuarios = UsuarioLogeado.LoginUsuario(exampleInputUser1.Text, exampleInputPassword1.Text);
 
-            if (usuario.Count > 0)
+            if (usuarios.Count > 0)
             {
-                Session["UsuarioSesion"] = usuario[0];
-                if (usuario[0].Perfil == (int)EnumPerfil.Administrador)
+                Session["UsuarioSesion"] = usuarios[0];
+                if (usuarios[0].Perfil == (int)EnumPerfil.Administrador)
                 {
                     Response.Redirect("Configuracion.aspx");
                 }
-                if (usuario[0].Perfil == (int)EnumPerfil.Recepcionista)
+                if (usuarios[0].Perfil == (int)EnumPerfil.Recepcionista)
                 {
                     Response.Redirect("Turnos.aspx");
                 }

@@ -49,12 +49,16 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" aria-current="page" href="Login.aspx">Salir</a>
+                            </li>
                         </ul>
                     </div>
                     <%
                             break;
                         case (int)dominio.EnumPerfil.Recepcionista:
                     %>
+
                     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -62,6 +66,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" aria-current="page" href="Login.aspx">Salir</a>
                             </li>
                         </ul>
                     </div>
@@ -73,6 +80,9 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" aria-current="page" href="Login.aspx">Salir</a>
                             </li>
                         </ul>
                     </div>
@@ -97,6 +107,16 @@
                                 break;
                             }
                         }
+                        else
+                        {%>
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="Login.aspx" style="color: #0364B8;">Acceder</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%}
                     %>
                 </div>
             </nav>
