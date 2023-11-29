@@ -49,8 +49,8 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Configuracion.aspx" style="color: #0364B8;">Configuración</a>
                             </li>
-                            <li class="nav-item pe-2">
-                                <p class="nav-link active" style="color: #0364B8;"> | </p>
+                            <li class="nav-item pe-2 m-0">
+                                <p class="nav-link active m-0" style="color: #0364B8;"> | </p>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-color-project-primary" aria-current="page" href="Login.aspx">Cerrar Sesión</a>
@@ -62,16 +62,16 @@
                         case (int)dominio.EnumPerfil.Recepcionista:
                     %>
 
-                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
+                    <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
+                        <ul class="navbar-nav align-items-center">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
                             </li>
-                            <li class="nav-item pe-2">
-                                <p class="nav-link active" style="color: #0364B8;">| </p>
+                            <li class="nav-item pe-2 m-0">
+                                <p class="nav-link active m-0" style="color: #0364B8;"> | </p>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-color-project-primary" aria-current="page" href="Login.aspx">Cerrar Sesión</a>
@@ -82,13 +82,13 @@
                             break;
                         case (int)dominio.EnumPerfil.Especialista:
                     %>
-                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
+                    <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
+                        <ul class="navbar-nav align-items-center">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Turnos.aspx" style="color: #0364B8;">Turnos</a>
                             </li>
-                            <li class="nav-item pe-2">
-                                <p class="nav-link active" style="color: #0364B8;">| </p>
+                            <li class="nav-item pe-2 m-0">
+                                <p class="nav-link active m-0" style="color: #0364B8;"> | </p>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-color-project-primary" aria-current="page" href="Login.aspx">Cerrar Sesión</a>
@@ -99,8 +99,8 @@
                             break;
                         default:
                     %>
-                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
+                    <div class="collapse navbar-collapse d-flex justify-content-end align-items-center" id="navbarNav">
+                        <ul class="navbar-nav align-items-center">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Pacientes.aspx" style="color: #0364B8;">Pacientes</a>
                             </li>
@@ -119,7 +119,7 @@
                         else
                         {%>
                     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav align-items-center">
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Login.aspx" style="color: #0364B8;">Iniciar Sesión</a>
                             </li>
