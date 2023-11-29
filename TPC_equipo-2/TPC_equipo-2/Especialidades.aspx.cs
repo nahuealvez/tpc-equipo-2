@@ -21,6 +21,8 @@ namespace TPC_equipo_2
             UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
             EspecialidadList = especialidadNegocio.Listar();
+            EspecialidadList = EspecialidadList.OrderBy(x => x.Descripcion).ToList();
+
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = EspecialidadList;
