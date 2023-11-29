@@ -233,6 +233,7 @@ namespace TPC_equipo_2
                 {
                     if(jornada.HoraInicio < nuevaJornada.HoraFin && jornada.HoraFin > nuevaJornada.HoraInicio)
                     {
+                        //AGREGAR MSJE ERROR EN PANTALLA
                         Console.WriteLine("Error: La nueva jornada se superpone con una jornada existente.");
                         return;
                     }

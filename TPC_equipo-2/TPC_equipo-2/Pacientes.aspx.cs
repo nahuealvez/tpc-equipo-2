@@ -203,44 +203,54 @@ namespace TPC_equipo_2
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalConfirmarTurno()", true);
         }
 
-            protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
+        protected void btnConfirmarTurno_Click(Object sender, EventArgs e)
+        {
+            Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
+
+            if (turnoSeleccionado != null)
             {
-                Turno turnoSeleccionado = Session["turnoSeleccionado"] as Turno;
+                TurnoNegocio turnoNegocio = new TurnoNegocio();
+                List<Turno> turnosAsignados = turnoNegocio.Listar();
 
-                if (turnoSeleccionado != null)
+                foreach(Turno turno in turnosAsignados)
                 {
-                    TurnoNegocio turnoNegocio = new TurnoNegocio();
-                
-                    turnoNegocio.Agregar(turnoSeleccionado);
-
-                    Session["turnoSeleccionado"] = null;
-
-                    string fechaTurno = turnoSeleccionado.FechaHora.ToString("dd/MM/yyyy");
-                    string horaTurno = turnoSeleccionado.FechaHora.ToString("HH:mm");
-                    //lblMotivoConsultaAConfirmar.Text = "";
-                    //lblFechaTurno.Text = fechaTurno + horaTurno;
-
-                    MailService envioMail = new MailService();
-                    string mailPaciente = turnoSeleccionado.Paciente.Mail;
-                    string asunto = "Turno confirmado Port Salut Medicina";
-                    string cuerpoMail = "<p>Su turno ha sido confirmado para el día " + fechaTurno + " a las " + horaTurno + ".</p>" +
-                        "<p><strong>Especialidad:</strong> " + turnoSeleccionado.Especialidad.Descripcion + "</p>" +
-                        "<p><strong>Especialista:</strong> " + turnoSeleccionado.Usuario.NombreCompleto + "</p>" +
-                        "<p><strong>Motivo de consulta:</strong> " + turnoSeleccionado.MotivoConsulta + "</p>" +
-                        "<p>Saludos cordiales, Port Salut Medicina.</p>";
-                envioMail.armarCorreo(mailPaciente, asunto, cuerpoMail);
-
-                    try
+                    if(turno.Estado.Id !=3 && turno.Paciente.IdPaciente == turnoSeleccionado.Paciente.IdPaciente && turno.FechaHora == turnoSeleccionado.FechaHora)
                     {
-                        envioMail.enviarCorreo();
-                        //Response.Redirect(Request.RawUrl);
-                    }
-                    catch (Exception ex)
-                    {
-
-                        throw ex;
+                        //preparar msje error
+                        return;
                     }
                 }
+                    
+                turnoNegocio.Agregar(turnoSeleccionado);
+
+                Session["turnoSeleccionado"] = null;
+
+                string fechaTurno = turnoSeleccionado.FechaHora.ToString("dd/MM/yyyy");
+                string horaTurno = turnoSeleccionado.FechaHora.ToString("HH:mm");
+                //lblMotivoConsultaAConfirmar.Text = "";
+                //lblFechaTurno.Text = fechaTurno + horaTurno;
+
+                MailService envioMail = new MailService();
+                string mailPaciente = turnoSeleccionado.Paciente.Mail;
+                string asunto = "Turno confirmado Port Salut Medicina";
+                string cuerpoMail = "<p>Su turno ha sido confirmado para el día " + fechaTurno + " a las " + horaTurno + ".</p>" +
+                    "<p><strong>Especialidad:</strong> " + turnoSeleccionado.Especialidad.Descripcion + "</p>" +
+                    "<p><strong>Especialista:</strong> " + turnoSeleccionado.Usuario.NombreCompleto + "</p>" +
+                    "<p><strong>Motivo de consulta:</strong> " + turnoSeleccionado.MotivoConsulta + "</p>" +
+                    "<p>Saludos cordiales, Port Salut Medicina.</p>";
+                envioMail.armarCorreo(mailPaciente, asunto, cuerpoMail);
+
+                try
+                {
+                    envioMail.enviarCorreo();
+                    //Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
         }
 
         protected void btnNoConfirmarTurno_Click(Object sender, EventArgs e)
