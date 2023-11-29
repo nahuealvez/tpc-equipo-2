@@ -139,8 +139,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-primary" role="alert">
-                        * Todos los campos son obligatorios
+                    <div class="alert alert-warning" role="alert">
+                        <asp:Label ID="lblCamposObligatoriosAgregar" Text="Todos los campos son obligatorios" runat="server" />
+                        <asp:Label ID="lblAlertAgregar" Text="" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer" data-bs-backdrop="static" data-bs-keyboard="false">

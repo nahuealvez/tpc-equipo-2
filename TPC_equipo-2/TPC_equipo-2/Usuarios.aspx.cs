@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -41,40 +42,81 @@ namespace TPC_equipo_2
 
         protected void btnAgregarUsuario_Click(object sender, EventArgs e)
         {
+            lblAlertAgregar.Visible = false;
+            lblCamposObligatoriosAgregar.Visible = true;
             ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarUsuario()", true);
         }
 
         protected void btnGuardarAgregarUsuario_Click(object sender, EventArgs e)
         {
-            //PENDIENTE MANEJAR VALIDACIONES COMO USUARIO REPETIDO / DNI REPETIDO X EJ
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario nuevoUsuario = new Usuario();
 
             nuevoUsuario.Nombre = tbxNombres.Text;
             nuevoUsuario.Apellido = tbxApellidos.Text;
-            nuevoUsuario.Dni = int.Parse(tbxDNI.Text);
+
+            if (int.TryParse(tbxDNI.Text.Trim(), out int dni))
+            {
+                nuevoUsuario.Dni = dni;
+            }
+            else
+            {
+                nuevoUsuario.Dni = 0;
+            }
+            
             nuevoUsuario.Sexo = DropDownListSexo.Text;
-            nuevoUsuario.FechaNacimiento = DateTime.Parse(tbxFechaNacimiento.Text);
+
+            string formatoFecha = "yyyy-MM-dd";
+            DateTime fechaPorDefecto = new DateTime(1800, 1, 1);
+
+            if (DateTime.TryParseExact(tbxFechaNacimiento.Text.Trim(), formatoFecha, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime fechaNacimiento))
+            {
+                nuevoUsuario.FechaNacimiento = fechaNacimiento;
+            }
+            else
+            {
+                nuevoUsuario.FechaNacimiento = fechaPorDefecto;
+            }
+            
             nuevoUsuario.Mail = tbxEmail.Text;
             nuevoUsuario.Telefono = tbxTelefono.Text;
             nuevoUsuario.UsuarioReg = tbxUsuario.Text;
             nuevoUsuario.Password = tbxContrasenia.Text;
-            nuevoUsuario.Perfil = int.Parse(DropDownListPerfil.Text);
 
-            try
+            if (int.TryParse(DropDownListPerfil.Text.Trim(), out int perfil))
             {
-                negocio.Agregar(nuevoUsuario);
-                Response.Redirect(Request.RawUrl);
+                nuevoUsuario.Perfil = perfil;
             }
-            catch (Exception ex)
+            else
             {
+                nuevoUsuario.Perfil = 0;
+            }
 
-                throw ex;
-            }
-            if (!Page.IsValid)
+            if (string.IsNullOrEmpty(nuevoUsuario.Nombre) || string.IsNullOrEmpty(nuevoUsuario.Apellido) || nuevoUsuario.Dni == 0 || string.IsNullOrEmpty(nuevoUsuario.Sexo) || nuevoUsuario.FechaNacimiento == fechaPorDefecto || string.IsNullOrEmpty(nuevoUsuario.Mail) || string.IsNullOrEmpty(nuevoUsuario.Telefono) || string.IsNullOrEmpty(nuevoUsuario.UsuarioReg) || string.IsNullOrEmpty(nuevoUsuario.Password) || nuevoUsuario.Perfil == 0)
             {
-                valSummaryForm.Visible = true;
+                lblAlertAgregar.Visible = true;
+                lblAlertAgregar.Text = "Todos los campos son obligatorios y no deben quedar vacíos para guardar el registro";
+                lblCamposObligatoriosAgregar.Visible = false;
+
+                ClientScript.RegisterStartupScript(this.GetType(), "Pop", "abrirModalAgregarUsuario()", true);
             }
+            else
+            {
+                try
+                {
+                    negocio.Agregar(nuevoUsuario);
+                    Response.Redirect(Request.RawUrl);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                if (!Page.IsValid)
+                {
+                    valSummaryForm.Visible = true;
+                }
+            }
+
         }
 
         protected void btnModificarUsuario_Click(Object sender, EventArgs e)

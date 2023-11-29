@@ -150,6 +150,24 @@ namespace TPC_equipo_2
         protected global::System.Web.UI.WebControls.DropDownList DropDownListPerfil;
 
         /// <summary>
+        /// Control lblCamposObligatoriosAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCamposObligatoriosAgregar;
+
+        /// <summary>
+        /// Control lblAlertAgregar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlertAgregar;
+
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
