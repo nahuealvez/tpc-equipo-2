@@ -22,6 +22,8 @@ namespace TPC_equipo_2
             UsuarioLogeado = Session["UsuarioSesion"] as Usuario;
             PacienteNegocio pacienteNegocio = new PacienteNegocio();
             PacienteList = pacienteNegocio.Listar();
+            PacienteList = PacienteList.OrderBy(x => x.Apellido).ToList();
+
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = PacienteList;
