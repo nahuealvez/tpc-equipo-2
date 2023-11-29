@@ -320,7 +320,7 @@ namespace Negocio
                 
                 foreach(Jornada jornadaAEvaluar in jornadasEspecialista)
                 {
-                    if(nombreDia == (jornadaAEvaluar.DiaSemana).ToUpper())
+                    if(nombreDia == (jornadaAEvaluar.DiaSemana).ToUpper() && jornadaAEvaluar.Especialidad.Id == idEspecialidad)
                     {
                         int cantidadHsJornada = (int)(jornadaAEvaluar.HoraFin - jornadaAEvaluar.HoraInicio).TotalHours;
                         DateTime fechaHoraTurnoPotencial = new DateTime(

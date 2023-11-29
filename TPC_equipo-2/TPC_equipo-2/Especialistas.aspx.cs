@@ -226,6 +226,18 @@ namespace TPC_equipo_2
             nuevaJornada.HoraInicio = TimeSpan.Parse(horaInicioFormateada);
             nuevaJornada.HoraFin = TimeSpan.Parse(horaFinFormateada);
 
+            List<Jornada> jornadasExistentes = jornadaNegocio.ListarXEspecialista(especialista);
+            foreach(Jornada jornada in jornadasExistentes)
+            {
+                if(jornada.DiaSemana == nuevaJornada.DiaSemana)
+                {
+                    if(jornada.HoraInicio < nuevaJornada.HoraFin && jornada.HoraFin > nuevaJornada.HoraInicio)
+                    {
+                        Console.WriteLine("Error: La nueva jornada se superpone con una jornada existente.");
+                        return;
+                    }
+                }
+            }
             jornadaNegocio.Agregar(nuevaJornada);
 
             cargarModalConfigurarJornadas(especialista);

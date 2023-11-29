@@ -97,7 +97,8 @@ namespace Negocio
 
             try
             {
-                datos.SetearConsulta("EXEC [Usuario].[sp_InsJornada] @IdEspecialidad, @IdEspecialista, @DiaSemana, @HoraInicio, @HoraFin");
+                datos.SetearConsulta("INSERT INTO Usuario.Jornada (IdEspecialidad, IdEspecialista, DiaSemana, HoraInicio, HoraFin) VALUES (@IdEspecialidad, @IdEspecialista, @DiaSemana, @HoraInicio, @HoraFin)");
+                //datos.SetearConsulta("EXEC [Usuario].[sp_InsJornada] @IdEspecialidad, @IdEspecialista, @DiaSemana, @HoraInicio, @HoraFin");
                 datos.SetearParametro("@IdEspecialidad", nuevaJornada.Especialidad.Id);
                 datos.SetearParametro("@IdEspecialista", nuevaJornada.Especialista.IdUsuario);
                 datos.SetearParametro("@DiaSemana", nuevaJornada.DiaSemana);
