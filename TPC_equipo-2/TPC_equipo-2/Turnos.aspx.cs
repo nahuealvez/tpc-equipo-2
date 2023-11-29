@@ -63,9 +63,24 @@ namespace TPC_equipo_2
             TurnoNegocio negocio = new TurnoNegocio();
             Turno turnoCancelar = TurnosList.Find(x => x.IdTurno == idTurno);
 
+            string fechaTurno = turnoCancelar.FechaHora.ToString("dd/MM/yyyy");
+            string horaTurno = turnoCancelar.FechaHora.ToString("HH:mm");
+
+            MailService envioMail = new MailService();
+            string mailPaciente = turnoCancelar.Paciente.Mail;
+            string asunto = "Turno cancelado Port Salut Medicina";
+            string cuerpoMail = "<p>Su turno del día " + fechaTurno + " a las " + horaTurno + ".</p>" +
+                "<p><strong>Especialidad:</strong> " + turnoCancelar.Especialidad.Descripcion + "</p>" +
+                "<p><strong>Especialista:</strong> " + turnoCancelar.Usuario.NombreCompleto + "</p>" +
+                "<p><strong>HA SIDO CANCELADO</strong>" +
+                "<p>Si no ha sido solicitado por usted por favor contactese con nuestro contact center</p>" +
+                "<p>Saludos cordiales, Port Salut Medicina.</p>";
+            envioMail.armarCorreo(mailPaciente, asunto, cuerpoMail);
+
             try
             {
                 negocio.CancelarTurno(turnoCancelar);
+                envioMail.enviarCorreo();
                 Response.Redirect(Request.RawUrl);
             }
             catch (Exception ex)
